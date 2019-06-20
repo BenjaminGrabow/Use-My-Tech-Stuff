@@ -1,11 +1,13 @@
 import React from 'react';
 import LoginPage from "./Components/Login/LoginPage";
+import ListItem from './Components/TechStuff/ListItem';
 import { Link, Route } from 'react-router-dom';
 import PrivateRoute from './Components/Login/PrivateRoute';
-// import Friends from './Components/Friends/Friends';
+import TechList from './Components/TechStuff/TechList';
+import { connect } from 'react-redux';
 import './App.css';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <ul>
@@ -18,10 +20,19 @@ function App() {
       </ul>
       <Route path="/login" component={LoginPage} />
       <PrivateRoute exact path="/protected" 
-      // component={Friends}
+      component={TechList}
        />
+       {props.friends.map((friend) => <Route 
+       path={`/protected/${friend.name}`}
+       render={() => <ListItem friend={friend} />} />)}
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    friends: state.friends
+  }
+};
+
+export default connect(mapStateToProps)(App);
