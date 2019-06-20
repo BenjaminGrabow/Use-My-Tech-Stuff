@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
                         return { friends: [], loading: true, error: null };
 
                 case types.SUCCESS:
-                        return { friends: action.payload, loading: false, error: null };
+                        return {...state, friends: action.payload, loading: false, error: null };
 
                 case types.ERROR:
                         return { friends: [], loading: false, error: 'ERROR NETWORK' };
@@ -32,6 +32,9 @@ const reducer = (state = initialState, action) => {
 
                         case types.ADD:
                                 return { ...state, friends: action.payload}
+
+                case types.UPDATE_MESSAGES:
+                        return { ...state, friends: action.payload}
                 default: return state;
         }
 };

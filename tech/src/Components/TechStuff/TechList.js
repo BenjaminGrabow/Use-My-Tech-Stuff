@@ -35,7 +35,7 @@ class Friends extends React.Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.props.fetch();
   };
 

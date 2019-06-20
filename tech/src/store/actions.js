@@ -10,6 +10,7 @@ export const ERROR = 'ERROR';
 export const DELETE = 'DELETE';
 export const UPDATE = 'UPDATE';
 export const ADD = 'ADD';
+export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
 
 export const login = creds => dispatch => {
         dispatch({ type: LOGIN_START });
@@ -48,6 +49,7 @@ export const update = (id, name, age, email) => dispatch => {
         axiosWithAuth().put(`http://localhost:5000/api/friends/${id}`, updateFriend)
                 .then(res => {
                         dispatch({ type: UPDATE, payload: res.data })
+
                 });
 };
 
@@ -61,5 +63,22 @@ export const add = (name, age, email) => (dispatch) => {
         axiosWithAuth().post('http://localhost:5000/api/friends', newFriend)
                 .then(res => {
                         dispatch({ type: ADD, payload: res.data })
+                });
+};
+
+export const addRating = (id, message) => (dispatch) => {
+        const newMessage = {
+                message: message
+        };
+
+        axiosWithAuth().get(`http://localhost:5000/api/friends/${id}`)
+                .then(res => {
+                        const theFriend = res.data;
+
+                        const updateFriend = theFriend.messages.push(newMessage);
+
+                        return axiosWithAuth().put(`http://localhost:5000/api/friends/${id}`, theFriend).then(res => {
+                                dispatch({ type: UPDATE_MESSAGES, payload: res.data })
+                        });
                 });
 };

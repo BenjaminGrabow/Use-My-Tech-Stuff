@@ -19,10 +19,12 @@ function App(props) {
         </li>
       </ul>
       <Route path="/login" component={LoginPage} />
-      <PrivateRoute exact path="/protected" 
+      <PrivateRoute 
+      exact path="/protected" 
       component={TechList}
        />
-       {props.friends.map((friend) => <Route 
+       {props.friends.map((friend) => <Route
+       key={friend.id} 
        path={`/protected/${friend.name}`}
        render={() => <ListItem friend={friend} />} />)}
     </div>
