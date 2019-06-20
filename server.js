@@ -13,19 +13,61 @@ let friends = [
     id: 1,
     name: 'Ben',
     age: 30,
-    email: 'ben@lambdaschool.com'
+    email: 'ben@lambdaschool.com',
+    messages: [
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+    ]
   },
   {
     id: 2,
     name: 'Austen',
     age: 45,
-    email: 'austen@lambdaschool.com'
+    email: 'austen@lambdaschool.com',
+    messages: [
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+    ]
   },
   {
     id: 3,
     name: 'Ryan',
     age: 15,
-    email: 'ryan@lambdaschool.com'
+    email: 'ryan@lambdaschool.com',
+    messages: [
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+    ]
   },
   {
     id: 4,
@@ -33,22 +75,59 @@ let friends = [
     age: 25,
     email: 'D-munny@lambdaschool.com',
     messages: [
-      {message: 'Very good work, next time again !'},
-      {message: 'Very good work, next time again !'},
-      {message: 'Very good work, next time again !'},
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
     ]
   },
   {
     id: 5,
     name: 'Sean',
     age: 35,
-    email: 'sean@lambdaschool.com'
+    email: 'sean@lambdaschool.com',
+    messages: [
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+    ]
   },
   {
     id: 6,
     name: 'Michelle',
     age: 67,
-    email: 'michelle@gmail.com'
+    email: 'michelle@gmail.com',
+    messages: [
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+      {
+        message: 'Very good work, next time again !',
+        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      },
+    ]
   }
 ];
 

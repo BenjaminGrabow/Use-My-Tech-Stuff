@@ -68,7 +68,8 @@ export const add = (name, age, email) => (dispatch) => {
 
 export const addRating = (id, message) => (dispatch) => {
         const newMessage = {
-                message: message
+                message: message,
+                img: ''
         };
 
         axiosWithAuth().get(`http://localhost:5000/api/friends/${id}`)

@@ -3,6 +3,21 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { addRating } from '../../store/actions'
+import '../../App.css'
+
+const StyledDiv = styled.div`
+
+.ratings {
+        display: flex;
+        
+}
+
+.rating-pic {
+        width: 10%;
+        height: 4rem;
+        border-radius: 50%
+}
+`;
 
 class List extends React.Component {
         constructor(props) {
@@ -28,12 +43,18 @@ class List extends React.Component {
 
         render() {
                 return (
-                        <div>
+                        <StyledDiv>
                                 <h1>{this.props.friend.name}</h1>
                                 <p>{this.props.friend.age}</p>
                                 <p>{this.props.friend.email}</p>
                                 {this.props.friend.messages.map(message =>
-                                        <div className="ratings">
+                                        <div
+                                         key={this.props.friend.id}
+                                         className="ratings">
+                                                <img 
+                                                src={message.img}
+                                                 alt={this.props.id}
+                                                 className="rating-pic" />
                                                 <p>{message.message}</p>
                                         </div>)}
                                 <button onClick={() => this.addRating(this.props.friend.id)} >Add</button>
@@ -41,7 +62,7 @@ class List extends React.Component {
                                 onChange={this.handleChange}
                                 name="rating" />
                                 <Link to="/protected">Back</Link>
-                        </div>
+                        </StyledDiv>
                 );
         }
 }
