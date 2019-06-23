@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 const StyledDiv = styled.div`
 
-background-color: #555;
+background-color: visible;
 width: 80%;
-height: 35rem;
+height: 5rem;
 margin: .5rem;
 display: flex;
 flex-wrap: wrap;
@@ -17,8 +17,9 @@ class Droppable extends React.Component {
         drop = (event) => {
                 event.preventDefault();
                 const data = event.dataTransfer.getData('transfer');
+              
                 event.target.append(document.getElementById(data));
-              };
+        };
 
               allowDrop = (event) => {
                 event.preventDefault();

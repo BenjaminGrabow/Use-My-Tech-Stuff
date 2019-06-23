@@ -9,7 +9,7 @@ class LoginPage extends React.Component {
                 this.state = {
                         credentials: {
                                 username: '',
-                                password: ''
+                                password: '',
                         }
                 }
         }

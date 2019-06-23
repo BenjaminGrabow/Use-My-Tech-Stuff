@@ -10,30 +10,30 @@ import './App.css';
 function App(props) {
   return (
     <div className="App">
-      <ul>
+      {/* <ul>
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/">Login</Link>
         </li>
         <li>
           <Link to="/protected">Protected Page</Link>
         </li>
-      </ul>
-      <Route path="/login" component={LoginPage} />
+      </ul> */}
+      <Route exact path="/login" component={LoginPage} />
       <PrivateRoute 
       exact path="/protected" 
       component={TechList}
        />
-       {props.friends.map((friend) => <Route
-       key={friend.id} 
-       path={`/protected/${friend.name}`}
-       render={() => <ListItem friend={friend} />} />)}
+       {props.techItems.map((techItem) => <Route
+       key={techItem.id} 
+       path={`/protected/${techItem.title}`}
+       render={() => <ListItem techItem={techItem} />} />)}
     </div>
   );
 }
 
 const mapStateToProps = state => {
   return {
-    friends: state.friends
+    techItems: state.techItems
   }
 };
 

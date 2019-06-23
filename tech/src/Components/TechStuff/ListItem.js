@@ -8,8 +8,7 @@ import '../../App.css'
 const StyledDiv = styled.div`
 
 .ratings {
-        display: flex;
-        
+        display: flex;     
 }
 
 .rating-pic {
@@ -44,12 +43,14 @@ class List extends React.Component {
         render() {
                 return (
                         <StyledDiv>
-                                <h1>{this.props.friend.name}</h1>
-                                <p>{this.props.friend.age}</p>
-                                <p>{this.props.friend.email}</p>
-                                {this.props.friend.messages.map(message =>
+                                <div className="">
+                                <h1>{this.props.techItem.title}</h1>
+                                <p>{this.props.techItem.type}</p>
+                                <p>{this.props.techItem.description}</p>
+                                </div>
+                                {this.props.techItem.messages.map(message =>
                                         <div
-                                         key={this.props.friend.id}
+                                         key={this.props.techItem.id}
                                          className="ratings">
                                                 <img 
                                                 src={message.img}
@@ -57,7 +58,7 @@ class List extends React.Component {
                                                  className="rating-pic" />
                                                 <p>{message.message}</p>
                                         </div>)}
-                                <button onClick={() => this.addRating(this.props.friend.id)} >Add</button>
+                                <button onClick={() => this.addRating(this.props.techItem.id)} >Add</button>
                                 <input value={this.state.rating}
                                 onChange={this.handleChange}
                                 name="rating" />
