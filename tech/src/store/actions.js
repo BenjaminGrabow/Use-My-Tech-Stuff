@@ -66,10 +66,6 @@ export const update = (id, owner, title, description, type,
       model: model,
       // imageURL: imageURL,
       renter: numRenter2,
-      // messages: [{
-      //   message: '',
-      //   img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
-      // },]
     };
 debugger
     axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateItem)
@@ -77,7 +73,8 @@ debugger
         debugger
 
         return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
-          dispatch({ type: UPDATE, payload: res.data })
+        debugger 
+        dispatch({ type: UPDATE, payload: res.data })
         })
       }).catch(err => {
 debugger
@@ -114,15 +111,15 @@ export const add = (owner, title, type, description,
 
     axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)
       .then(res => {
-        debugger
-
+       
+debugger
         return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items')
           .then(res => {
-           debugger
+          
             dispatch({ type: ADD, payload: res.data })
           })
       }).catch(err => {
-       debugger
+    debugger
       });
   };
 
@@ -132,20 +129,21 @@ export const addRating = (id, message) => (dispatch) => {
     img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
   };
 
-  axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items`)
-    .then(res => {
-      const theFriend = res.data[id];
+  dispatch({ type: UPDATE_MESSAGES, message: newMessage, id: id })
 
-      const updateFriend = theFriend.messages.push(newMessage);
+  // axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items`)
+  //   .then(res => {
+  //     const theFriend = res.data[id];
 
-      return axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, theFriend).then(res => {
+  //     const updateFriend = theFriend.messages.push(newMessage);
 
-        return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
-          dispatch({ type: UPDATE_MESSAGES, payload: res.data })
+  //     return axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, theFriend).then(res => {
 
-        })
-      });
-    });
+  //       return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
+  //         dispatch({ type: UPDATE_MESSAGES, payload: res.data })
+  //       })
+  //     });
+  //   });
 };
 
 export const search = (brand) => dispatch => {
