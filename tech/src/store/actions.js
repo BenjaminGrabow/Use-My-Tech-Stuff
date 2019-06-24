@@ -146,10 +146,10 @@ export const addRating = (id, message) => (dispatch) => {
   //   });
 };
 
-export const search = (brand) => dispatch => {
-  dispatch({ type: SEARCH, payload: brand })
+export const search = (brand) => {
+  return { type: SEARCH, payload: brand }
 };
 
-export const back = () => dispatch => {
-  dispatch({ type: BACK })
+export const back = () => {
+  return { type: BACK }
 };

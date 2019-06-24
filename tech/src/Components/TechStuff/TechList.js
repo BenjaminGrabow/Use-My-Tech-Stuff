@@ -94,6 +94,16 @@ font-size: 3rem;
 color: black;
 height: 6rem;
 }
+
+.dr2 {
+  max-width: 100%;
+  height: 6rem;
+}
+
+#dr2 {
+  width: 100%;
+  height: 6rem;
+}
  
 .itemButton {
 border-radius: 50%;
@@ -127,16 +137,6 @@ class TechList extends React.Component {
       renter: '',
       input: 'off',
       showInput: 'off',
-      // ownerUpdate: '',
-      // titleUpdate: '',
-      // typeUpdate: '',
-      // descriptionUpdate: '',
-      // priceUpdate: '',
-      // availabilityUpdate: true,
-      // brandUpdate: '',
-      // modelUpdate: '',
-      // imageURLUpdate: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
-      // renterUpdate: '',
       searchBrand: '',
       idForUpdate: '',
       inputAdd: 'off',
@@ -183,10 +183,10 @@ class TechList extends React.Component {
       type: '',
       description: '',
       price: '',
-      // availabilityUpdate: true,
+      // availability: true,
       brand: '',
       model: '',
-      // imageURLUpdate: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
+      // imageURL: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
       renter: '',
       input: 'off',
       idForUpdate: '',
@@ -246,12 +246,12 @@ class TechList extends React.Component {
           Add
           </button>
 </div>
-{/* <div 
+<div 
 className="dr2">
         <Droppable 
         id="dr2" >
         </Droppable>
-        </div> */}
+        </div>
         <div 
         className="techList">
         {this.props.techItems.map(techItem => {

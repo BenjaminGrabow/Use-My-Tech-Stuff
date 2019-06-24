@@ -2,9 +2,10 @@ import React from 'react';
 import HomePage from './Components/HomePage/HomePage'
 import LoginPage from "./Components/Login/LoginPage";
 import ListItem from './Components/TechStuff/ListItem';
-import { Link, Route } from 'react-router-dom';
-import PrivateRoute from './Components/Login/PrivateRoute';
 import TechList from './Components/TechStuff/TechList';
+import Footer from "./Components/Footer/Footer";
+import {  Route } from 'react-router-dom';
+import PrivateRoute from './Components/Login/PrivateRoute';
 import { connect } from 'react-redux';
 import './App.css';
 
@@ -29,6 +30,7 @@ function App(props) {
        key={techItem.id} 
        path={`/protected/${techItem.title}`}
        render={() => <ListItem techItem={techItem} />} />)}
+       <Footer />
     </div>
   );
 }
