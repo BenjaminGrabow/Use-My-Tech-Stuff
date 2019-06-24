@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetch, deleter, add, update, search, back } from '../../store/actions';
+import { buy, deleter, add, update, search, back } from '../../store/actions';
 import 'react-animated-slider/build/horizontal.css';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -29,16 +29,18 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+flex-wrap: wrap;
 box-shadow: 1rem .5rem .5rem black;
 }
  
 a {
 text-decoration: none;
-margin-top: 1rem;
+/* margin-top: 1rem; */
 }
  
 p {
 color: black;
+margin: 0;
 }
  
 .off {
@@ -95,6 +97,12 @@ color: black;
 height: 6rem;
 }
 
+#dr1 {
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+}
+
 .dr2 {
   max-width: 100%;
   height: 6rem;
@@ -118,13 +126,30 @@ box-shadow: 1rem .5rem .5rem black;
 font-weight: bold;
 }
 
+.sold {
+  font-size: 5rem;
+  color: red;
+}
+
  
 `;
 
+  // componentDidMount() {
+  //   localStorage.getItem('techItems') && this.setState({
+  //     techItems: JSON.parse(localStorage.getItem('techItems'))
+  //   })
+  // };
+  
+  // componentWillUpdate(nextProps, nextState) {
+  //   localStorage.setItem('techItems', JSON.stringify(nextState.techItems));
+  // }
+  
 class TechList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      techItems: '',
+      data: '',
       owner: '',
       title: '',
       type: '',
@@ -133,7 +158,7 @@ class TechList extends React.Component {
       availability: true,
       brand: '',
       model: '',
-      imageURL: "https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg",
+      imgURL: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
       renter: '',
       input: 'off',
       showInput: 'off',
@@ -142,14 +167,15 @@ class TechList extends React.Component {
       inputAdd: 'off',
     }
   }
-
-  componentDidMount() {
-    this.fetchData();
-  };
-
-  fetchData = () => {
-    this.props.fetch();
-  };
+  
+  // componentDidMount() {
+  //   this.fetchData() && localStorage.getItem('techItems') && this.setState({
+  //     techItems: JSON.parse(localStorage.getItem('techItems'))
+  //   })
+  // };
+  //             fetchData = () => {
+  //               this.props.fetch();
+  //             };
 
   handleChange = (e) => {
     this.setState({
@@ -175,7 +201,7 @@ class TechList extends React.Component {
     this.props.update(this.state.idForUpdate,this.state.owner, this.state.title,
       this.state.type, this.state.description, this.state.price, this.state.availability, this.state.brand,
       this.state.model,
-      this.state.imageURL, this.state.renter);
+      this.state.imgURL, this.state.renter);
 
     this.setState({
       owner: '',
@@ -186,7 +212,7 @@ class TechList extends React.Component {
       // availability: true,
       brand: '',
       model: '',
-      // imageURL: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
+      // imgURL: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
       renter: '',
       input: 'off',
       idForUpdate: '',
@@ -198,7 +224,7 @@ class TechList extends React.Component {
     this.props.add(this.state.owner, this.state.title,
       this.state.type, this.state.description, this.state.price, this.state.availability, this.state.brand,
       this.state.model,
-      this.state.imageURL, this.state.renter);
+      this.state.imgURL, this.state.renter);
 
     this.setState({
       owner: '',
@@ -209,7 +235,7 @@ class TechList extends React.Component {
       price: '',
       brand: '',
       model: '',
-      // imageURL: '',
+      // imgURL: '',
       renter: '',
       showInput: 'off',
 
@@ -223,6 +249,12 @@ class TechList extends React.Component {
       searchBrand: '',
     });
   };
+
+  
+  // componentDidUpdate(nextProps, nextState) {
+  //   localStorage.setItem('techItems', JSON.stringify(this.props.techItems));
+  // };
+
 
   render() {
     return (
@@ -256,7 +288,7 @@ className="dr2">
         className="techList">
         {this.props.techItems.map(techItem => {
           return <div
-            className={techItem.imgURL !== "" ? "techItem" : 'off'}
+            className={techItem.imgURL !== ""  ? "techItem" : 'off'}
             key={techItem.id}>
             <Droppable id="dr1">
               <Draggable id={techItem.id}
@@ -277,7 +309,7 @@ className="dr2">
             </Link>
             <p>{techItem.type}</p>
             <p>{techItem.model}</p>
-            <p>{techItem.availability ? 'still to have' : null}</p>
+            <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? 'still to have' : 'SOLD'}</p>
             <p>{techItem.description}</p>
             <p>{techItem.price}$</p>
             <button
@@ -291,6 +323,10 @@ className="dr2">
               onClick={() => this.showInput(techItem.id)}>
               Update
 </button>
+<button 
+onClick={() => this.props.buy(techItem.id)} >
+  Buy
+  </button>
           </div>
         })}
         <div className="hiddenInput">
@@ -341,9 +377,9 @@ className="dr2">
               placeholder="model" />
             <input
               onChange={this.handleChange}
-              name="imageURL"
+              name="imgURL"
               type="text"
-              value={this.state.imageURL}
+              value={this.state.imgURL}
               placeholder="image url" />
             <input
               onChange={this.handleChange}
@@ -372,4 +408,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, { fetch, deleter, add, update, search, back })(TechList);
+export default connect(mapStateToProps, { deleter, add, update, search, back, buy })(TechList);

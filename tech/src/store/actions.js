@@ -4,6 +4,7 @@ import { axiosWithAuth } from './axiosWithAuth';
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const REGISTER = 'REGISTER';
 export const LOADING = 'LOADING';
 export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
@@ -13,6 +14,7 @@ export const ADD = 'ADD';
 export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
 export const SEARCH = 'SEARCH';
 export const BACK = 'BACK';
+export const BUY = 'BUY';
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -26,14 +28,22 @@ export const login = creds => dispatch => {
     .catch(err => console.log(err));
 };
 
+export const register = creds => dispatch => {
+  return axios.post('https://usemytechstuffapp.herokuapp.com/api/register', creds)
+    .then(res => {
+      dispatch({ type: REGISTER })
+    })
+}
+
 export const fetch = () => dispatch => {
   dispatch({ type: LOADING })
 
   axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
     dispatch({ type: SUCCESS, payload: res.data })
-  }).catch(err => {
-    dispatch({ type: ERROR })
-  });
+  })
+    .catch(err => {
+      dispatch({ type: ERROR })
+    });
 };
 
 export const deleter = (id) => dispatch => {
@@ -42,7 +52,6 @@ export const deleter = (id) => dispatch => {
     .then(res => {
 
       return axiosWithAuth().get("https://usemytechstuffapp.herokuapp.com/api/items").then(res => {
-
         dispatch({ type: DELETE, payload: res.data })
       });
     });
@@ -67,23 +76,21 @@ export const update = (id, owner, title, description, type,
       // imageURL: imageURL,
       renter: numRenter2,
     };
-debugger
+
     axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateItem)
       .then(res => {
-        debugger
 
-        return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
-        debugger 
-        dispatch({ type: UPDATE, payload: res.data })
-        })
+        return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items')
+          .then(res => {
+            dispatch({ type: UPDATE, payload: res.data })
+          })
       }).catch(err => {
-debugger
       });
   };
 
 
 export const add = (owner, title, type, description,
-  price, availability, brand, model, imageURL,
+  price, availability, brand, model, imgURL,
   renter) => (dispatch) => {
 
     const numOwner = Number(owner);
@@ -98,7 +105,7 @@ export const add = (owner, title, type, description,
       availability: availability,
       brand: brand,
       model: model,
-      // imageURL: imageURL,
+      imgURL: imgURL,
       renter: numRenter,
       // messages: [{
       //   message: '',
@@ -106,20 +113,12 @@ export const add = (owner, title, type, description,
       // },]
       // dont work because server don't accept messages
     };
-    debugger
-   
 
     axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)
       .then(res => {
-       
-debugger
-        return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items')
-          .then(res => {
-          
-            dispatch({ type: ADD, payload: res.data })
-          })
-      }).catch(err => {
-    debugger
+        dispatch({ type: ADD, payload: res.data.item })
+      })
+      .catch(err => {
       });
   };
 
@@ -153,3 +152,11 @@ export const search = (brand) => {
 export const back = () => {
   return { type: BACK }
 };
+
+export const buy = id => dispatch => {
+ 
+  axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`)
+  .then(res => {
+dispatch({ type: BUY, payload: res.data })
+  })
+}

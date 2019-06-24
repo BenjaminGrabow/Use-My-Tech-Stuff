@@ -12,10 +12,16 @@ const reducer = (state = initialState, action) => {
         switch (action.type) {
                 case types.LOGIN_START:
                         return { ...state, loggingIn: true };
+
                 case types.LOGIN_SUCCESS:
                         return { ...state, logginIn: false };
+
                 case types.LOGIN_FAIL:
                         return {}
+
+                case types.REGISTER:
+                        return { ...state }
+
                 case types.LOADING:
                         return { techItems: [], loading: true, error: null };
 
@@ -60,7 +66,11 @@ const reducer = (state = initialState, action) => {
                         return { ...state, techItems: addTheMessages };
 
                 case types.ADD:
-                        const addMessagesToNewPost = action.payload.map(el => {
+
+                const copyArray = state.techItems;
+                copyArray.unshift(action.payload);
+
+                        const addMessagesToNewPost = copyArray.map(el => {
                                 const copyOfData = Object.assign({}, el);
                                 copyOfData.messages = [
                                         {
@@ -74,6 +84,8 @@ const reducer = (state = initialState, action) => {
                                 ];
                                 return copyOfData;
                         });
+                        
+                        
                         return { ...state, techItems: addMessagesToNewPost }
 
                 case types.UPDATE_MESSAGES:
@@ -94,7 +106,16 @@ const reducer = (state = initialState, action) => {
 
                 case types.BACK:
                         return { ...state, techItems: state.copyOfList }
-                default: return state;
+                        
+                        case types.BUY:
+                                const bought = state.techItems.map(item => {
+                                        if(item.id === action.payload.id){
+                                                item.availability = false;
+                                        } return item;
+                                });
+
+                                return { ...state, techItems: bought }
+                                default: return state;
         };
 };
 
