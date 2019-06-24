@@ -126,6 +126,7 @@ class TechList extends React.Component {
       imageURL: "https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg",
       renter: '',
       input: 'off',
+      showInput: 'off',
       // ownerUpdate: '',
       // titleUpdate: '',
       // typeUpdate: '',
@@ -158,16 +159,17 @@ class TechList extends React.Component {
 
   showInput = (id) => {
     this.setState({
+      showInput: "on",
       input: 'on',
       idForUpdate: id
     });
   };
 
-  // showAddInput = () => {
-  //   this.setState({
-  //     inputAdd: 'on',
-  //   });
-  // };
+  showAddInput = () => {
+    this.setState({
+      showInput: 'on',
+    });
+  };
 
   updateIt = () => {
     this.props.update(this.state.idForUpdate,this.state.owner, this.state.title,
@@ -187,7 +189,8 @@ class TechList extends React.Component {
       // imageURLUpdate: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
       renter: '',
       input: 'off',
-      idForUpdate: ''
+      idForUpdate: '',
+      showInput: "off",
     });
   };
 
@@ -208,7 +211,8 @@ class TechList extends React.Component {
       model: '',
       // imageURL: '',
       renter: '',
-      inputAdd: 'off',
+      showInput: 'off',
+
     });
   };
 
@@ -237,10 +241,10 @@ class TechList extends React.Component {
         <button onClick={this.searchIt}>
           Search
 </button>
-        {/* <button 
+        <button 
         onClick={this.showAddInput}>
           Add
-          </button> */}
+          </button>
 </div>
 {/* <div 
 className="dr2">
@@ -291,7 +295,7 @@ className="dr2">
         })}
         <div className="hiddenInput">
           <div
-            // className={this.state.input === 'off' ? 'off' : 'on'}
+            className={this.state.showInput === 'off' ? 'off' : 'on'}
             >
                <input
           onChange={this.handleChange}
@@ -347,7 +351,9 @@ className="dr2">
               type="number"
               value={this.state.renter}
               placeholder="renter" />
-        <button onClick={this.state.input === 'on' ? this.updateIt : this.adder}>
+        <button onClick={
+          this.state.input === 'on' ? this.updateIt : this.adder
+          }>
          {this.state.input === 'on' ? 'update' : 'add'}
 </button>
           </div>

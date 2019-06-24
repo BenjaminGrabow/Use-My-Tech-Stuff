@@ -60,7 +60,7 @@ const reducer = (state = initialState, action) => {
                         return { ...state, techItems: addTheMessages };
 
                 case types.ADD:
-                                const addMessages = action.payload.map(el => {
+                                const addMessagesToNewPost = action.payload.map(el => {
                                         const copyOfData = Object.assign({}, el);
                                         copyOfData.messages = [
                                                 {
@@ -74,7 +74,7 @@ const reducer = (state = initialState, action) => {
                                         ];
                                         return copyOfData;
                                 });
-                        return { ...state, techItems: addMessages }
+                        return { ...state, techItems: addMessagesToNewPost }
 
                 case types.UPDATE_MESSAGES:
 const addMessage = state.techItems.map(item => {
