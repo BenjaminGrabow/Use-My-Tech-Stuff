@@ -111,17 +111,17 @@ export const add = (owner, title, type, description,
       // },]
     };
    
-debugger
+
     axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)
       .then(res => {
-debugger
+
         return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items')
           .then(res => {
-            debugger
+           
             dispatch({ type: ADD, payload: res.data })
           })
       }).catch(err => {
-        debugger
+       
       });
   };
 
