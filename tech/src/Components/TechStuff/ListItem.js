@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { addRating } from '../../store/actions'
 import '../../App.css'
+import uuid from 'uuid';
 
 const StyledDiv = styled.div`
 
@@ -50,7 +51,7 @@ class List extends React.Component {
                                 </div>
                                 {this.props.techItem.messages.map(message =>
                                         <div
-                                         key={this.props.techItem.id}
+                                         key={uuid()}
                                          className="ratings">
                                                 <img 
                                                 src={message.img}
