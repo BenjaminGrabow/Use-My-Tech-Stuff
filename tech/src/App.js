@@ -1,4 +1,5 @@
 import React from 'react';
+import HomePage from './Components/HomePage/HomePage'
 import LoginPage from "./Components/Login/LoginPage";
 import ListItem from './Components/TechStuff/ListItem';
 import { Link, Route } from 'react-router-dom';
@@ -18,6 +19,7 @@ function App(props) {
           <Link to="/protected">Protected Page</Link>
         </li>
       </ul> */}
+      <Route exact path="/" component={HomePage} />
       <Route exact path="/login" component={LoginPage} />
       <PrivateRoute 
       exact path="/protected" 
