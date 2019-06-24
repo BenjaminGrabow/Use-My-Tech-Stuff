@@ -16,7 +16,6 @@ justify-content: center;
 background: #0f0c29; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-margin: 3rem;
 }
 
 .techItem {
@@ -127,16 +126,16 @@ class TechList extends React.Component {
       imageURL: "https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg",
       renter: '',
       input: 'off',
-      ownerUpdate: '',
-      titleUpdate: '',
-      typeUpdate: '',
-      descriptionUpdate: '',
-      priceUpdate: '',
-      availabilityUpdate: true,
-      brandUpdate: '',
-      modelUpdate: '',
-      imageURLUpdate: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
-      renterUpdate: '',
+      // ownerUpdate: '',
+      // titleUpdate: '',
+      // typeUpdate: '',
+      // descriptionUpdate: '',
+      // priceUpdate: '',
+      // availabilityUpdate: true,
+      // brandUpdate: '',
+      // modelUpdate: '',
+      // imageURLUpdate: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
+      // renterUpdate: '',
       searchBrand: '',
       idForUpdate: '',
       inputAdd: 'off',
@@ -164,29 +163,29 @@ class TechList extends React.Component {
     });
   };
 
-  showAddInput = () => {
-    this.setState({
-      inputAdd: 'on',
-    });
-  };
+  // showAddInput = () => {
+  //   this.setState({
+  //     inputAdd: 'on',
+  //   });
+  // };
 
   updateIt = () => {
-    this.props.update(this.state.ownerUpdate, this.state.titleUpdate,
-      this.state.typeUpdate, this.state.descriptionUpdate, this.state.priceUpdate, this.state.availabilityUpdate, this.state.brandUpdate,
-      this.state.modelUpdate,
-      this.state.imageURLUpdate, this.state.renterUpdate);
+    this.props.update(this.state.owner, this.state.title,
+      this.state.type, this.state.description, this.state.price, this.state.availability, this.state.brand,
+      this.state.model,
+      this.state.imageURL, this.state.renter);
 
     this.setState({
-      ownerUpdate: '',
-      titleUpdate: '',
-      typeUpdate: '',
-      descriptionUpdate: '',
-      priceUpdate: '',
+      owner: '',
+      title: '',
+      type: '',
+      description: '',
+      price: '',
       // availabilityUpdate: true,
-      brandUpdate: '',
-      modelUpdate: '',
+      brand: '',
+      model: '',
       // imageURLUpdate: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
-      renterUpdate: '',
+      renter: '',
       input: 'off',
       idForUpdate: ''
     });
@@ -225,7 +224,8 @@ class TechList extends React.Component {
     return (
 <StyledDiv>
       <div className="functionality">
-        <button onClick={this.props.back}>
+        <button 
+        onClick={this.props.back}>
           Back
 </button>
         <input
@@ -235,17 +235,21 @@ class TechList extends React.Component {
           type="text"
         />
         <button onClick={this.searchIt}>
-        <button onClick={this.showAddInput}>Add</button>
           Search
 </button>
+        {/* <button 
+        onClick={this.showAddInput}>
+          Add
+          </button> */}
 </div>
-<div 
+{/* <div 
 className="dr2">
         <Droppable 
         id="dr2" >
         </Droppable>
-        </div>
-        <div className="techList">
+        </div> */}
+        <div 
+        className="techList">
         {this.props.techItems.map(techItem => {
           return <div
             className={techItem.imgURL !== "" ? "techItem" : 'off'}
@@ -255,12 +259,16 @@ className="dr2">
                 className="draggable">
                 <Link
                   id={techItem.id} to={`/protected/${techItem.title}`}>
-                  <img id={techItem.model} src={techItem.imgURL} alt={techItem.id} />
+                  <img 
+                  id={techItem.model} 
+                  src={techItem.imgURL} 
+                  alt={techItem.id} />
                 </Link>
               </Draggable>
             </Droppable>
             <Link
-              id={techItem.id} to={`/protected/${techItem.title}`}>
+              id={techItem.id} 
+              to={`/protected/${techItem.title}`}>
               <h1>{techItem.brand}</h1>
             </Link>
             <p>{techItem.type}</p>
@@ -283,75 +291,9 @@ className="dr2">
         })}
         <div className="hiddenInput">
           <div
-            className={this.state.input === 'off' ? 'off' : 'on'}>
-            <input
-              onChange={this.handleChange}
-              name="brandUpdate"
-              type="text"
-              value={this.state.brand}
-              placeholder="brand" />
-            <input
-              onChange={this.handleChange}
-              name="modelUpdate"
-              type="text"
-              value={this.state.model}
-              placeholder="model" />
-            <input
-              onChange={this.handleChange}
-              name="imageURLUpdate"
-              type="text"
-              value={this.state.imageURL}
-              placeholder="image url" />
-            <input
-              onChange={this.handleChange}
-              name="renterUpdate"
-              type="number"
-              value={this.state.renter}
-              placeholder="renter" />
-            <button onClick={this.updateIt}>
-              update
-</button>
-          </div>
-        </div>
-        <div className="hiddenInput hiddenInput2">
-          <div
-            className={this.state.input === 'off' ? 'off' : 'on'}>
-            <input
-              onChange={this.handleChange}
-              name="ownerUpdate"
-              type="number"
-              value={this.state.owner}
-              placeholder="owner" />
-            <input
-              onChange={this.handleChange}
-              name="titleUpdate"
-              type="text"
-              value={this.state.title}
-              placeholder="title" />
-            <input
-              onChange={this.handleChange}
-              name="typeUpdate"
-              type="text"
-              value={this.state.type}
-              placeholder="type" />
-            <input
-              onChange={this.handleChange}
-              name="priceUpdate"
-              type="number"
-              value={this.state.price}
-              placeholder="price" />
-            <input
-              onChange={this.handleChange}
-              name="descriptionUpdate"
-              type="text"
-              value={this.state.description}
-              placeholder="description" />
-          </div>
-        </div>
-        <div className="hiddenInput hiddenInput2">
-          <div
-            className={this.state.inputAdd === 'off' ? 'off' : 'on'}>
-            <input
+            // className={this.state.input === 'off' ? 'off' : 'on'}
+            >
+            {/* <input
               onChange={this.handleChange}
               name="owner"
               type="number"
@@ -364,6 +306,122 @@ className="dr2">
               value={this.state.title}
               placeholder="title" />
             <input
+              onChange={this.handleChange}
+              name="type"
+              type="text"
+              value={this.state.type}
+              placeholder="type" />
+            <input
+              onChange={this.handleChange}
+              name="price"
+              type="number"
+              value={this.state.price}
+              placeholder="price" /> */}
+               <input
+          onChange={this.handleChange}
+          name="owner"
+          type="number"
+          value={this.state.owner}
+          placeholder="owner" />
+          <input
+              onChange={this.handleChange}
+              name="title"
+              type="text"
+              value={this.state.title}
+              placeholder="title" />
+              <input
+              onChange={this.handleChange}
+              name="type"
+              type="text"
+              value={this.state.type}
+              placeholder="type" />
+            <input
+              onChange={this.handleChange}
+              name="price"
+              type="number"
+              value={this.state.price}
+              placeholder="price" />
+            <input
+              onChange={this.handleChange}
+              name="description"
+              type="text"
+              value={this.state.description}
+              placeholder="description" />
+            <input
+              onChange={this.handleChange}
+              name="brand"
+              type="text"
+              value={this.state.brand}
+              placeholder="brand" />
+            <input
+              onChange={this.handleChange}
+              name="model"
+              type="text"
+              value={this.state.model}
+              placeholder="model" />
+            <input
+              onChange={this.handleChange}
+              name="imageURL"
+              type="text"
+              value={this.state.imageURL}
+              placeholder="image url" />
+            <input
+              onChange={this.handleChange}
+              name="renter"
+              type="number"
+              value={this.state.renter}
+              placeholder="renter" />
+        <button onClick={this.state.input === 'on' ? this.updateIt : this.adder}>
+         {this.state.input === 'on' ? 'update' : 'add'}
+</button>
+            {/* <input
+              onChange={this.handleChange}
+              name="description"
+              type="text"
+              value={this.state.description}
+              placeholder="description" />
+        <input
+          onChange={this.handleChange}
+          name="brand"
+          type="text"
+          value={this.state.brand}
+          placeholder="brand" />
+        <input
+          onChange={this.handleChange}
+          name="model"
+          type="text"
+          value={this.state.model}
+          placeholder="model" />
+        <input
+          onChange={this.handleChange}
+          name="imageURL"
+          type="text"
+          value={this.state.imageURL}
+          placeholder="image url" />
+        <input
+          onChange={this.handleChange}
+          name="renter"
+          type="number"
+          value={this.state.renter}
+          placeholder="renter" /> */}
+          </div>
+        </div>
+        {/* <div className="hiddenInput hiddenInput2">
+          <div
+          className={this.state.inputAdd === 'off' ? 'off' : 'on'}>
+          <input
+          onChange={this.handleChange}
+          name="owner"
+          type="number"
+          value={this.state.owner}
+          placeholder="owner" />
+          <input
+              onChange={this.handleChange}
+              name="title"
+              type="text"
+              value={this.state.title}
+              placeholder="title" />
+              <input
               onChange={this.handleChange}
               name="type"
               type="text"
@@ -409,7 +467,7 @@ className="dr2">
               Add
 </button>
           </div>
-        </div>
+        </div> */}
         </div>
       </StyledDiv>
     );

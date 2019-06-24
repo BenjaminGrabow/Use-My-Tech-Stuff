@@ -68,7 +68,7 @@ const reducer = (state = initialState, action) => {
                                         ];
                                         return copyOfData;
                                 });
-                        return { ...state, techItems: addMessages }
+                        return { ...state, techItems: action.payload }
 
                 case types.UPDATE_MESSAGES:
                         return { ...state, techItems: action.payload }

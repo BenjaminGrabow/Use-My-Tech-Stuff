@@ -62,10 +62,10 @@ export const update = (id, owner, title, description, type,
       model: model,
       imageURL: imageURL,
       renter: renter,
-      messages: [{
-        message: '',
-        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
-      },]
+      // messages: [{
+      //   message: '',
+      //   img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      // },]
     };
 
     axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateFriend)
@@ -75,7 +75,7 @@ export const update = (id, owner, title, description, type,
 
         })
       }).catch(err => {
-
+debugger
       });
   };
 
@@ -101,6 +101,7 @@ export const add = (owner, title, type, description,
       // },]
       // dont work because server don't accept messages
     };
+    debugger
    
 
     axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)
