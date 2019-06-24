@@ -102,16 +102,16 @@ class TechList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      owner: '',
+      owner: 2,
       title: '',
-      desciption: '',
       type: '',
-      price: '',
-      availability: '',
+      description: 'dsfgdsfg',
+      price: 2,
+      availability: true,
       brand: '',
       model: '',
-      imageURL: '',
-      renter: '',
+      imageURL: "https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg",
+      renter: 4,
       input: 'off',
       nameUpdate: '',
       ageUpdate: '',
@@ -151,14 +151,14 @@ class TechList extends React.Component {
   };
 
   adder = () => {
-    this.props.add(this.state.owner, this.state.title, this.state.description,
-      this.state.type, this.state.price, this.state.availability, this.state.brand,
+    this.props.add(this.state.owner, this.state.title,
+      this.state.type, this.state.description, this.state.price, this.state.availability, this.state.brand,
       this.state.model,
       this.state.imageURL, this.state.renter);
     this.setState({
       owner: '',
       title: '',
-      desciption: '',
+      description: '',
       type: '',
       price: '',
       availability: '',
@@ -274,36 +274,36 @@ class TechList extends React.Component {
 // model(string)
 // imgURL(string)
 // renter(integer)(Foreign Key)(References user id) */}
-        <input
+        {/* <input
           onChange={this.handleChange}
           name="owner"
           type="number"
           value={this.state.owner}
-          placeholder="owner" />
+          placeholder="owner" /> */}
         <input
           onChange={this.handleChange}
           name="title"
           type="text"
           value={this.state.title}
           placeholder="title" />
-        <input
-          onChange={this.handleChange}
-          name="description"
-          type="text"
-          value={this.state.description}
-          placeholder="description" />
-        <input
+        {/* <input
           onChange={this.handleChange}
           name="price"
           type="number"
           value={this.state.price}
-          placeholder="price" />
-        <input
+          placeholder="price" /> */}
+        {/* <input
+          onChange={this.handleChange}
+          name="description"
+          type="text"
+          value={this.state.description}
+          placeholder="description" /> */}
+        {/* <input
           onChange={this.handleChange}
           name="availability"
           type="text"
-          value={this.state.avail}
-          placeholder="true or false" />
+          value={this.state.availability}
+          placeholder="true or false" /> */}
         <input
           onChange={this.handleChange}
           name="brand"
@@ -316,18 +316,18 @@ class TechList extends React.Component {
           type="text"
           value={this.state.model}
           placeholder="model" />
-        <input
+        {/* <input
           onChange={this.handleChange}
           name="imageURL"
           type="text"
           value={this.state.imageURL}
-          placeholder="image url" />
-        <input
+          placeholder="image url" /> */}
+        {/* <input
           onChange={this.handleChange}
           name="renter"
           type="number"
           value={this.state.renter}
-          placeholder="renter" />
+          placeholder="renter" /> */}
         <button onClick={this.adder} >
           Add
 </button>

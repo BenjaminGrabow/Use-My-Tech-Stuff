@@ -91,33 +91,37 @@ export const update = (id, owner, title, description, type,
 // imgURL(string)
 // renter(integer)(Foreign Key)(References user id)
 
-export const add = (owner, title, description, type,
+export const add = (owner, title, type, description,
   price, availability, brand, model, imageURL,
   renter) => (dispatch) => {
     const newItem = {
       owner: owner,
       title: title,
-      description: description,
       type: type,
+      description: description,
       price: price,
       availability: availability,
-      brand: brand,
-      model: model,
-      imageURL: imageURL,
-      renter: renter,
-      messages: [{
-        message: '',
-        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
-      },]
+      // brand: brand,
+      // model: model,
+      // imageURL: imageURL,
+      // renter: renter,
+      // messages: [{
+      //   message: '',
+      //   img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      // },]
     };
-
+   
+debugger
     axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)
       .then(res => {
-
+debugger
         return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items')
           .then(res => {
+            debugger
             dispatch({ type: ADD, payload: res.data })
           })
+      }).catch(err => {
+        debugger
       });
   };
 
@@ -148,5 +152,5 @@ export const search = (brand) => dispatch => {
 };
 
 export const back = () => dispatch => {
-  dispatch({ type: BACK })[]
+  dispatch({ type: BACK })
 };
