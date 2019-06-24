@@ -41,7 +41,13 @@ color: black;
 .off {
 display:none;
 }
- 
+
+.hiddenInput2 {
+  position: fixed;
+  top: 0;
+  right: 0%;
+}
+
 .hiddenInput {
 position: fixed;
 bottom: 0;
@@ -49,6 +55,8 @@ left: 0;
 width: 100%;
 height: 4rem;
 margin-bottom: 3rem;
+display: flex;
+flex-wrap: wrap;
  
 .on {
 width: 100%;
@@ -59,6 +67,7 @@ input {
 border-radius: 3rem;
 margin-top: .5rem;
 box-shadow: 1rem .5rem .5rem black;
+width: 10%;
 }
  
 button {
@@ -250,63 +259,68 @@ class TechList extends React.Component {
         <div className="hiddenInput">
           <div
             className={this.state.input === 'off' ? 'off' : 'on'}>
-             <input
-          onChange={this.handleChange}
-          name="owner"
-          type="number"
-          value={this.state.owner}
-          placeholder="owner" />
         <input
           onChange={this.handleChange}
-          name="title"
-          type="text"
-          value={this.state.title}
-          placeholder="title" />
-           <input
-          onChange={this.handleChange}
-          name="type"
-          type="text"
-          value={this.state.type}
-          placeholder="type" />
-        <input
-          onChange={this.handleChange}
-          name="price"
-          type="number"
-          value={this.state.price}
-          placeholder="price" />
-        <input
-          onChange={this.handleChange}
-          name="description"
-          type="text"
-          value={this.state.description}
-          placeholder="description" />
-        <input
-          onChange={this.handleChange}
-          name="brand"
+          name="brandUpdate"
           type="text"
           value={this.state.brand}
           placeholder="brand" />
         <input
           onChange={this.handleChange}
-          name="model"
+          name="modelUpdate"
           type="text"
           value={this.state.model}
           placeholder="model" />
         <input
           onChange={this.handleChange}
-          name="imageURL"
+          name="imageURLUpdate"
           type="text"
           value={this.state.imageURL}
           placeholder="image url" />
         <input
           onChange={this.handleChange}
-          name="renter"
+          name="renterUpdate"
           type="number"
           value={this.state.renter}
           placeholder="renter" />
             <button onClick={this.updateIt}>
               update
 </button>
+          </div>
+        </div>
+        <div className="hiddenInput hiddenInput2">
+          <div
+            className={this.state.input === 'off' ? 'off' : 'on'}>
+             <input
+          onChange={this.handleChange}
+          name="ownerUpdate"
+          type="number"
+          value={this.state.owner}
+          placeholder="owner" />
+        <input
+          onChange={this.handleChange}
+          name="titleUpdate"
+          type="text"
+          value={this.state.title}
+          placeholder="title" />
+           <input
+          onChange={this.handleChange}
+          name="typeUpdate"
+          type="text"
+          value={this.state.type}
+          placeholder="type" />
+        <input
+          onChange={this.handleChange}
+          name="priceUpdate"
+          type="number"
+          value={this.state.price}
+          placeholder="price" />
+        <input
+          onChange={this.handleChange}
+          name="descriptionUpdate"
+          type="text"
+          value={this.state.description}
+          placeholder="description" />
           </div>
         </div>
         <input
