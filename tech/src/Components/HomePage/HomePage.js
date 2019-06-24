@@ -1,5 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+
+nav {
+display: flex;
+justify-content: space-around;
+}
+
+a {
+        text-decoration: none;
+}
+`;
 
 class HomePage extends React.Component {
         constructor(props) {
@@ -10,7 +23,7 @@ class HomePage extends React.Component {
         }
 
         componentDidMount = () => {
-                const texts = ['websites', 'illustration', 'hello'];
+                const texts = ['Camera', 'Laptop', 'PC', 'Mobilephone', ''];
                 let count = 0;
                 let index = 0;
                 let currentText = "";
@@ -40,13 +53,17 @@ class HomePage extends React.Component {
 
         render() {
                 return (
-                        <div>
+                        <StyledDiv>
+                                <nav>
                                 <NavLink to="/"><p onClick={this.endAnimation}>Home</p></NavLink>
                                 <NavLink to="/login"><p onClick={this.endAnimation}>Login</p></NavLink>
                                 <NavLink to="/register"><p onClick={this.endAnimation}>Register</p></NavLink>
-                                <h1>The game to train your</h1>
-                                <h1 className="typing">Hi</h1>
-                        </div>
+                                </nav>
+                                <h1>Tired of paying ridiculous fees for camera and other equipment rentals?
+                                         Bypass the middleman and rent from a real person!
+</h1>
+                                <h1>Rent your</h1><h1 className="typing">Hi</h1>
+                        </StyledDiv>
                 );
         }
 }
