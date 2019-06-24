@@ -170,7 +170,7 @@ class TechList extends React.Component {
   // };
 
   updateIt = () => {
-    this.props.update(this.state.owner, this.state.title,
+    this.props.update(this.state.idForUpdate,this.state.owner, this.state.title,
       this.state.type, this.state.description, this.state.price, this.state.availability, this.state.brand,
       this.state.model,
       this.state.imageURL, this.state.renter);
@@ -293,30 +293,6 @@ className="dr2">
           <div
             // className={this.state.input === 'off' ? 'off' : 'on'}
             >
-            {/* <input
-              onChange={this.handleChange}
-              name="owner"
-              type="number"
-              value={this.state.owner}
-              placeholder="owner" />
-            <input
-              onChange={this.handleChange}
-              name="title"
-              type="text"
-              value={this.state.title}
-              placeholder="title" />
-            <input
-              onChange={this.handleChange}
-              name="type"
-              type="text"
-              value={this.state.type}
-              placeholder="type" />
-            <input
-              onChange={this.handleChange}
-              name="price"
-              type="number"
-              value={this.state.price}
-              placeholder="price" /> */}
                <input
           onChange={this.handleChange}
           name="owner"
@@ -374,100 +350,8 @@ className="dr2">
         <button onClick={this.state.input === 'on' ? this.updateIt : this.adder}>
          {this.state.input === 'on' ? 'update' : 'add'}
 </button>
-            {/* <input
-              onChange={this.handleChange}
-              name="description"
-              type="text"
-              value={this.state.description}
-              placeholder="description" />
-        <input
-          onChange={this.handleChange}
-          name="brand"
-          type="text"
-          value={this.state.brand}
-          placeholder="brand" />
-        <input
-          onChange={this.handleChange}
-          name="model"
-          type="text"
-          value={this.state.model}
-          placeholder="model" />
-        <input
-          onChange={this.handleChange}
-          name="imageURL"
-          type="text"
-          value={this.state.imageURL}
-          placeholder="image url" />
-        <input
-          onChange={this.handleChange}
-          name="renter"
-          type="number"
-          value={this.state.renter}
-          placeholder="renter" /> */}
           </div>
         </div>
-        {/* <div className="hiddenInput hiddenInput2">
-          <div
-          className={this.state.inputAdd === 'off' ? 'off' : 'on'}>
-          <input
-          onChange={this.handleChange}
-          name="owner"
-          type="number"
-          value={this.state.owner}
-          placeholder="owner" />
-          <input
-              onChange={this.handleChange}
-              name="title"
-              type="text"
-              value={this.state.title}
-              placeholder="title" />
-              <input
-              onChange={this.handleChange}
-              name="type"
-              type="text"
-              value={this.state.type}
-              placeholder="type" />
-            <input
-              onChange={this.handleChange}
-              name="price"
-              type="number"
-              value={this.state.price}
-              placeholder="price" />
-            <input
-              onChange={this.handleChange}
-              name="description"
-              type="text"
-              value={this.state.description}
-              placeholder="description" />
-            <input
-              onChange={this.handleChange}
-              name="brand"
-              type="text"
-              value={this.state.brand}
-              placeholder="brand" />
-            <input
-              onChange={this.handleChange}
-              name="model"
-              type="text"
-              value={this.state.model}
-              placeholder="model" />
-            <input
-              onChange={this.handleChange}
-              name="imageURL"
-              type="text"
-              value={this.state.imageURL}
-              placeholder="image url" />
-            <input
-              onChange={this.handleChange}
-              name="renter"
-              type="number"
-              value={this.state.renter}
-              placeholder="renter" />
-            <button onClick={this.adder} >
-              Add
-</button>
-          </div>
-        </div> */}
         </div>
       </StyledDiv>
     );

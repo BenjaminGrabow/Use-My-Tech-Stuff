@@ -51,28 +51,33 @@ export const deleter = (id) => dispatch => {
 export const update = (id, owner, title, description, type,
   price, availability, brand, model, imageURL,
   renter) => dispatch => {
-    const updateFriend = {
-      owner: owner,
+    const numOwner2 = Number(owner);
+    const numPrice2 = Number(price);
+    const numRenter2 = Number(renter)
+
+    const updateItem = {
+      owner: numOwner2,
       title: title,
       description: description,
       type: type,
-      price: price,
+      price: numPrice2,
       availability: availability,
       brand: brand,
       model: model,
-      imageURL: imageURL,
-      renter: renter,
+      // imageURL: imageURL,
+      renter: numRenter2,
       // messages: [{
       //   message: '',
       //   img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
       // },]
     };
-
-    axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateFriend)
+debugger
+    axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateItem)
       .then(res => {
-        return axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items`).then(res => {
-          dispatch({ type: UPDATE, payload: res.data })
+        debugger
 
+        return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
+          dispatch({ type: UPDATE, payload: res.data })
         })
       }).catch(err => {
 debugger
@@ -84,17 +89,20 @@ export const add = (owner, title, type, description,
   price, availability, brand, model, imageURL,
   renter) => (dispatch) => {
 
+    const numOwner = Number(owner);
+    const numPrice = Number(price);
+    const numRenter = Number(renter)
     const newItem = {
-      owner: owner,
+      owner: numOwner,
       title: title,
       type: type,
       description: description,
-      price: price,
+      price: numPrice,
       availability: availability,
       brand: brand,
       model: model,
-      imageURL: imageURL,
-      renter: renter,
+      // imageURL: imageURL,
+      renter: numRenter,
       // messages: [{
       //   message: '',
       //   img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
