@@ -37,7 +37,7 @@ const reducer = (state = initialState, action) => {
                                         },
                                 ];
                                 return copyOfData;
-                        })
+                        });
                         return { ...state, techItems: result, loading: false, error: null };
 
                 case types.ERROR:
@@ -50,7 +50,25 @@ const reducer = (state = initialState, action) => {
                         return { ...state, techItems: action.payload };
 
                 case types.ADD:
-                        return { ...state, techItems: action.payload }
+                                const addMessages = action.payload.map(el => {
+                                        const copyOfData = Object.assign({}, el);
+                                        copyOfData.messages = [
+                                                {
+                                                        message: 'Very good work, next time again !',
+                                                        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+                                                },
+                                                {
+                                                        message: 'Very good work, next time again !',
+                                                        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+                                                },
+                                                {
+                                                        message: 'Very good work, next time again !',
+                                                        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+                                                },
+                                        ];
+                                        return copyOfData;
+                                });
+                        return { ...state, techItems: addMessages }
 
                 case types.UPDATE_MESSAGES:
                         return { ...state, techItems: action.payload }

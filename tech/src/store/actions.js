@@ -79,21 +79,11 @@ export const update = (id, owner, title, description, type,
       });
   };
 
-// owner < --Required(Foreign Key)(References user id)
-// title < --Required(string)
-// description < --Required(string)
-// type < --Required(string)
-// description < --Required(string)
-// price < --Required(integer)
-// availibility < --Required(boolean)
-// brand(string)
-// model(string)
-// imgURL(string)
-// renter(integer)(Foreign Key)(References user id)
 
 export const add = (owner, title, type, description,
   price, availability, brand, model, imageURL,
   renter) => (dispatch) => {
+
     const newItem = {
       owner: owner,
       title: title,
@@ -101,27 +91,29 @@ export const add = (owner, title, type, description,
       description: description,
       price: price,
       availability: availability,
-      // brand: brand,
-      // model: model,
-      // imageURL: imageURL,
-      // renter: renter,
+      brand: brand,
+      model: model,
+      imageURL: imageURL,
+      renter: renter,
       // messages: [{
       //   message: '',
       //   img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
       // },]
+      // dont work because server don't accept messages
     };
    
 
     axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)
       .then(res => {
+        debugger
 
         return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items')
           .then(res => {
-           
+           debugger
             dispatch({ type: ADD, payload: res.data })
           })
       }).catch(err => {
-       
+       debugger
       });
   };
 
