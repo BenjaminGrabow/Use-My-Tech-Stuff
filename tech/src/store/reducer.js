@@ -49,7 +49,14 @@ const reducer = (state = initialState, action) => {
                         return { ...state, techItems: action.payload };
 
                 case types.UPDATE:
-                        const addTheMessages = action.payload.map(el => {
+
+                const changeItem = state.techItems.map(item => {
+                        if(item.id === action.payload.id) {
+                                item = action.payload;
+                        } return item
+                });
+                
+                        const addTheMessages = changeItem.map(el => {
                                 const copyOfData = Object.assign({}, el);
                                 copyOfData.messages = [
                                         {
@@ -67,8 +74,8 @@ const reducer = (state = initialState, action) => {
 
                 case types.ADD:
 
-                const copyArray = state.techItems;
-                copyArray.unshift(action.payload);
+                        const copyArray = state.techItems;
+                        copyArray.unshift(action.payload);
 
                         const addMessagesToNewPost = copyArray.map(el => {
                                 const copyOfData = Object.assign({}, el);
@@ -84,8 +91,8 @@ const reducer = (state = initialState, action) => {
                                 ];
                                 return copyOfData;
                         });
-                        
-                        
+
+
                         return { ...state, techItems: addMessagesToNewPost }
 
                 case types.UPDATE_MESSAGES:
@@ -106,16 +113,16 @@ const reducer = (state = initialState, action) => {
 
                 case types.BACK:
                         return { ...state, techItems: state.copyOfList }
-                        
-                        case types.BUY:
-                                const bought = state.techItems.map(item => {
-                                        if(item.id === action.payload.id){
-                                                item.availability = false;
-                                        } return item;
-                                });
 
-                                return { ...state, techItems: bought }
-                                default: return state;
+                case types.BUY:
+                        const bought = state.techItems.map(item => {
+                                if (item.id === action.payload.id) {
+                                        item.availability = false;
+                                } return item;
+                        });
+
+                        return { ...state, techItems: bought }
+                default: return state;
         };
 };
 
