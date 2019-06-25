@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { buy, deleter, add, update, search, back } from '../../store/actions';
 import 'react-animated-slider/build/horizontal.css';
 import styled from 'styled-components';
-import { Link,  NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Draggable from './DragDrop/Draggable';
 import Droppable from './DragDrop/Droppable';
 
