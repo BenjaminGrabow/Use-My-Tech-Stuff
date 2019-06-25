@@ -155,6 +155,8 @@ class List extends React.Component {
                                                 placeholder="message"
                                                 name="rating" />
                                         <input
+                                        max="5"
+                                        min="0"
                                                 type="number"
                                                 value={this.state.ratingStar}
                                                 onChange={this.handleChange}
