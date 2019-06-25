@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetch, deleter, add, update, search, back } from '../../store/actions';
+import { buy, deleter, add, update, search, back } from '../../store/actions';
 import 'react-animated-slider/build/horizontal.css';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -8,13 +8,16 @@ import Draggable from './DragDrop/Draggable';
 import Droppable from './DragDrop/Droppable';
 
 const StyledDiv = styled.div`
+
+.techList {
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
 background: #0f0c29; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
- 
+}
+
 .techItem {
 background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
@@ -26,22 +29,30 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+flex-wrap: wrap;
 box-shadow: 1rem .5rem .5rem black;
 }
  
 a {
 text-decoration: none;
-margin-top: 1rem;
+/* margin-top: 1rem; */
 }
  
 p {
 color: black;
+margin: 0;
 }
  
 .off {
 display:none;
 }
- 
+
+.hiddenInput2 {
+  position: fixed;
+  top: 0;
+  right: 0%;
+}
+
 .hiddenInput {
 position: fixed;
 bottom: 0;
@@ -49,6 +60,8 @@ left: 0;
 width: 100%;
 height: 4rem;
 margin-bottom: 3rem;
+display: flex;
+flex-wrap: wrap;
  
 .on {
 width: 100%;
@@ -59,6 +72,7 @@ input {
 border-radius: 3rem;
 margin-top: .5rem;
 box-shadow: 1rem .5rem .5rem black;
+width: 10%;
 }
  
 button {
@@ -82,6 +96,22 @@ font-size: 3rem;
 color: black;
 height: 6rem;
 }
+
+#dr1 {
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.dr2 {
+  max-width: 100%;
+  height: 6rem;
+}
+
+#dr2 {
+  width: 100%;
+  height: 6rem;
+}
  
 .itemButton {
 border-radius: 50%;
@@ -95,35 +125,57 @@ background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, F
 box-shadow: 1rem .5rem .5rem black;
 font-weight: bold;
 }
+
+.sold {
+  font-size: 5rem;
+  color: red;
+}
+
  
 `;
 
+  // componentDidMount() {
+  //   localStorage.getItem('techItems') && this.setState({
+  //     techItems: JSON.parse(localStorage.getItem('techItems'))
+  //   })
+  // };
+  
+  // componentWillUpdate(nextProps, nextState) {
+  //   localStorage.setItem('techItems', JSON.stringify(nextState.techItems));
+  // }
+  
 class TechList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      techItems: '',
+      data: '',
       owner: '',
       title: '',
-      desciption: '',
       type: '',
+      description: '',
       price: '',
-      availability: '',
+      availability: true,
       brand: '',
       model: '',
-      imageURL: '',
+      imgURL: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
       renter: '',
       input: 'off',
-      nameUpdate: '',
-      ageUpdate: '',
-      emailUpdate: '',
+      showInput: 'off',
       searchBrand: '',
       idForUpdate: '',
+      inputAdd: 'off',
     }
   }
-
-  componentDidMount() {
-    this.props.fetch();//call it in extra function
-  };
+  
+  // componentDidMount() {
+  //   this.fetchData() && localStorage.getItem('techItems') && this.setState({
+  //     techItems: JSON.parse(localStorage.getItem('techItems'))
+  //   })
+  // };
+  //             fetchData = () => {
+  //               this.props.fetch();
+  //             };
 
   handleChange = (e) => {
     this.setState({
@@ -133,39 +185,60 @@ class TechList extends React.Component {
 
   showInput = (id) => {
     this.setState({
+      showInput: "on",
       input: 'on',
       idForUpdate: id
     });
   };
 
+  showAddInput = () => {
+    this.setState({
+      showInput: 'on',
+    });
+  };
+
   updateIt = () => {
-    this.props.update(this.state.idForUpdate, this.state.nameUpdate, this.state.ageUpdate, this.state.emailUpdate);
+    this.props.update(this.state.idForUpdate,this.state.owner, this.state.title,
+      this.state.type, this.state.description, this.state.price, this.state.availability, this.state.brand,
+      this.state.model,
+      this.state.imgURL, this.state.renter);
 
     this.setState({
-      nameUpdate: '',
-      ageUpdate: '',
-      emailUpdate: '',
+      owner: '',
+      title: '',
+      type: '',
+      description: '',
+      price: '',
+      // availability: true,
+      brand: '',
+      model: '',
+      // imgURL: 'https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg',
+      renter: '',
       input: 'off',
-      idForUpdate: ''
+      idForUpdate: '',
+      showInput: "off",
     });
   };
 
   adder = () => {
-    this.props.add(this.state.owner, this.state.title, this.state.description,
-      this.state.type, this.state.price, this.state.availability, this.state.brand,
+    this.props.add(this.state.owner, this.state.title,
+      this.state.type, this.state.description, this.state.price, this.state.availability, this.state.brand,
       this.state.model,
-      this.state.imageURL, this.state.renter);
+      this.state.imgURL, this.state.renter);
+
     this.setState({
       owner: '',
       title: '',
-      desciption: '',
+      description: '',
+      // availability: '',
       type: '',
       price: '',
-      availability: '',
       brand: '',
       model: '',
-      imageURL: '',
+      // imgURL: '',
       renter: '',
+      showInput: 'off',
+
     });
   };
 
@@ -177,21 +250,18 @@ class TechList extends React.Component {
     });
   };
 
-  // "id": 3,
-  // "owner": 2,
-  // "title": "Flat screen TV",
-  // "type": "TV",
-  // "description": "high resolution",
-  // "price": 20,
-  // "availability": true,
-  // "brand": "Samsung",
-  // "model": "100",
-  // "imgURL": "https://www.flatpanelshd.com/pictures/samsungf8000-1l.jpg",
-  // "renter": null
+  
+  // componentDidUpdate(nextProps, nextState) {
+  //   localStorage.setItem('techItems', JSON.stringify(this.props.techItems));
+  // };
+
+
   render() {
     return (
-      <StyledDiv>
-        <button onClick={this.props.back}>
+<StyledDiv>
+      <div className="functionality">
+        <button 
+        onClick={this.props.back}>
           Back
 </button>
         <input
@@ -203,28 +273,43 @@ class TechList extends React.Component {
         <button onClick={this.searchIt}>
           Search
 </button>
-        <Droppable id="dr2" >
+        <button 
+        onClick={this.showAddInput}>
+          Add
+          </button>
+</div>
+<div 
+className="dr2">
+        <Droppable 
+        id="dr2" >
         </Droppable>
+        </div>
+        <div 
+        className="techList">
         {this.props.techItems.map(techItem => {
           return <div
-            className={techItem.imgURL !== "" ? "techItem" : 'off'}
+            className={techItem.imgURL !== ""  ? "techItem" : 'off'}
             key={techItem.id}>
             <Droppable id="dr1">
               <Draggable id={techItem.id}
                 className="draggable">
                 <Link
                   id={techItem.id} to={`/protected/${techItem.title}`}>
-                  <img id={techItem.model} src={techItem.imgURL} alt={techItem.id} />
+                  <img 
+                  id={techItem.model} 
+                  src={techItem.imgURL} 
+                  alt={techItem.id} />
                 </Link>
               </Draggable>
             </Droppable>
             <Link
-              id={techItem.id} to={`/protected/${techItem.title}`}>
+              id={techItem.id} 
+              to={`/protected/${techItem.title}`}>
               <h1>{techItem.brand}</h1>
             </Link>
             <p>{techItem.type}</p>
             <p>{techItem.model}</p>
-            <p>{techItem.availability ? 'still to have' : null}</p>
+            <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? 'still to have' : 'SOLD'}</p>
             <p>{techItem.description}</p>
             <p>{techItem.price}$</p>
             <button
@@ -238,99 +323,78 @@ class TechList extends React.Component {
               onClick={() => this.showInput(techItem.id)}>
               Update
 </button>
+<button 
+onClick={() => this.props.buy(techItem.id)} >
+  Buy
+  </button>
           </div>
         })}
         <div className="hiddenInput">
           <div
-            className={this.state.input === 'off' ? 'off' : 'on'}>
-            <input
-              onChange={this.handleChange}
-              name="nameUpdate"
-              type="text"
-              value={this.state.nameUpdate} />
-            <input
-              onChange={this.handleChange}
-              name="ageUpdate"
-              type="number"
-              value={this.state.ageUpdate} />
-            <input
-              onChange={this.handleChange}
-              name="emailUpdate"
-              type="text"
-              value={this.state.emailUpdate} />
-            <button onClick={this.updateIt}>
-              update
-</button>
-          </div>
-        </div>
-        {/* // owner < --Required(Foreign Key)(References user id)
-// title < --Required(string)
-// description < --Required(string)
-// type < --Required(string)
-// description < --Required(string)
-// price < --Required(integer)
-// availibility < --Required(boolean)
-// brand(string)
-// model(string)
-// imgURL(string)
-// renter(integer)(Foreign Key)(References user id) */}
-        <input
+            className={this.state.showInput === 'off' ? 'off' : 'on'}
+            >
+               <input
           onChange={this.handleChange}
           name="owner"
           type="number"
           value={this.state.owner}
           placeholder="owner" />
-        <input
-          onChange={this.handleChange}
-          name="title"
-          type="text"
-          value={this.state.title}
-          placeholder="title" />
-        <input
-          onChange={this.handleChange}
-          name="description"
-          type="text"
-          value={this.state.description}
-          placeholder="description" />
-        <input
-          onChange={this.handleChange}
-          name="price"
-          type="number"
-          value={this.state.price}
-          placeholder="price" />
-        <input
-          onChange={this.handleChange}
-          name="availability"
-          type="text"
-          value={this.state.avail}
-          placeholder="true or false" />
-        <input
-          onChange={this.handleChange}
-          name="brand"
-          type="text"
-          value={this.state.brand}
-          placeholder="brand" />
-        <input
-          onChange={this.handleChange}
-          name="model"
-          type="text"
-          value={this.state.model}
-          placeholder="model" />
-        <input
-          onChange={this.handleChange}
-          name="imageURL"
-          type="text"
-          value={this.state.imageURL}
-          placeholder="image url" />
-        <input
-          onChange={this.handleChange}
-          name="renter"
-          type="number"
-          value={this.state.renter}
-          placeholder="renter" />
-        <button onClick={this.adder} >
-          Add
+          <input
+              onChange={this.handleChange}
+              name="title"
+              type="text"
+              value={this.state.title}
+              placeholder="title" />
+              <input
+              onChange={this.handleChange}
+              name="type"
+              type="text"
+              value={this.state.type}
+              placeholder="type" />
+            <input
+              onChange={this.handleChange}
+              name="price"
+              type="number"
+              value={this.state.price}
+              placeholder="price" />
+            <input
+              onChange={this.handleChange}
+              name="description"
+              type="text"
+              value={this.state.description}
+              placeholder="description" />
+            <input
+              onChange={this.handleChange}
+              name="brand"
+              type="text"
+              value={this.state.brand}
+              placeholder="brand" />
+            <input
+              onChange={this.handleChange}
+              name="model"
+              type="text"
+              value={this.state.model}
+              placeholder="model" />
+            <input
+              onChange={this.handleChange}
+              name="imgURL"
+              type="text"
+              value={this.state.imgURL}
+              placeholder="image url" />
+            <input
+              onChange={this.handleChange}
+              name="renter"
+              type="number"
+              value={this.state.renter}
+              placeholder="renter" />
+        <button onClick={
+          this.state.input === 'on' ? this.updateIt : this.adder
+          }>
+         {this.state.input === 'on' ? 'update' : 'add'}
 </button>
+          </div>
+        </div>
+        </div>
       </StyledDiv>
     );
   }
@@ -344,4 +408,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, { fetch, deleter, add, update, search, back })(TechList);
+export default connect(mapStateToProps, { deleter, add, update, search, back, buy })(TechList);

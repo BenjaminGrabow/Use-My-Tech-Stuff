@@ -4,6 +4,7 @@ import { axiosWithAuth } from './axiosWithAuth';
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const REGISTER = 'REGISTER';
 export const LOADING = 'LOADING';
 export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
@@ -13,6 +14,7 @@ export const ADD = 'ADD';
 export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
 export const SEARCH = 'SEARCH';
 export const BACK = 'BACK';
+export const BUY = 'BUY';
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -26,14 +28,22 @@ export const login = creds => dispatch => {
     .catch(err => console.log(err));
 };
 
+export const register = creds => dispatch => {
+  return axios.post('https://usemytechstuffapp.herokuapp.com/api/register', creds)
+    .then(res => {
+      dispatch({ type: REGISTER })
+    })
+}
+
 export const fetch = () => dispatch => {
   dispatch({ type: LOADING })
 
   axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
     dispatch({ type: SUCCESS, payload: res.data })
-  }).catch(err => {
-    dispatch({ type: ERROR })
-  });
+  })
+    .catch(err => {
+      dispatch({ type: ERROR })
+    });
 };
 
 export const deleter = (id) => dispatch => {
@@ -42,7 +52,6 @@ export const deleter = (id) => dispatch => {
     .then(res => {
 
       return axiosWithAuth().get("https://usemytechstuffapp.herokuapp.com/api/items").then(res => {
-
         dispatch({ type: DELETE, payload: res.data })
       });
     });
@@ -51,73 +60,65 @@ export const deleter = (id) => dispatch => {
 export const update = (id, owner, title, description, type,
   price, availability, brand, model, imageURL,
   renter) => dispatch => {
-    const updateFriend = {
-      owner: owner,
+    const numOwner2 = Number(owner);
+    const numPrice2 = Number(price);
+    const numRenter2 = Number(renter)
+
+    const updateItem = {
+      owner: numOwner2,
       title: title,
       description: description,
       type: type,
-      price: price,
+      price: numPrice2,
       availability: availability,
       brand: brand,
       model: model,
-      imageURL: imageURL,
-      renter: renter,
-      messages: [{
-        message: '',
-        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
-      },]
+      // imageURL: imageURL,
+      renter: numRenter2,
     };
 
-    axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateFriend)
-      .then(res => {
-        return axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items`).then(res => {
-          dispatch({ type: UPDATE, payload: res.data })
-
-        })
-      }).catch(err => {
-
-      });
-  };
-
-// owner < --Required(Foreign Key)(References user id)
-// title < --Required(string)
-// description < --Required(string)
-// type < --Required(string)
-// description < --Required(string)
-// price < --Required(integer)
-// availibility < --Required(boolean)
-// brand(string)
-// model(string)
-// imgURL(string)
-// renter(integer)(Foreign Key)(References user id)
-
-export const add = (owner, title, description, type,
-  price, availability, brand, model, imageURL,
-  renter) => (dispatch) => {
-    const newItem = {
-      owner: owner,
-      title: title,
-      description: description,
-      type: type,
-      price: price,
-      availability: availability,
-      brand: brand,
-      model: model,
-      imageURL: imageURL,
-      renter: renter,
-      messages: [{
-        message: '',
-        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
-      },]
-    };
-
-    axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)
+    axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateItem)
       .then(res => {
 
         return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items')
           .then(res => {
-            dispatch({ type: ADD, payload: res.data })
+            dispatch({ type: UPDATE, payload: res.data })
           })
+      }).catch(err => {
+      });
+  };
+
+
+export const add = (owner, title, type, description,
+  price, availability, brand, model, imgURL,
+  renter) => (dispatch) => {
+
+    const numOwner = Number(owner);
+    const numPrice = Number(price);
+    const numRenter = Number(renter)
+    const newItem = {
+      owner: numOwner,
+      title: title,
+      type: type,
+      description: description,
+      price: numPrice,
+      availability: availability,
+      brand: brand,
+      model: model,
+      imgURL: imgURL,
+      renter: numRenter,
+      // messages: [{
+      //   message: '',
+      //   img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+      // },]
+      // dont work because server don't accept messages
+    };
+
+    axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)
+      .then(res => {
+        dispatch({ type: ADD, payload: res.data.item })
+      })
+      .catch(err => {
       });
   };
 
@@ -127,26 +128,35 @@ export const addRating = (id, message) => (dispatch) => {
     img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
   };
 
-  axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items`)
-    .then(res => {
-      const theFriend = res.data[id];
+  dispatch({ type: UPDATE_MESSAGES, message: newMessage, id: id })
 
-      const updateFriend = theFriend.messages.push(newMessage);
+  // axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items`)
+  //   .then(res => {
+  //     const theFriend = res.data[id];
 
-      return axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, theFriend).then(res => {
+  //     const updateFriend = theFriend.messages.push(newMessage);
 
-        return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
-          dispatch({ type: UPDATE_MESSAGES, payload: res.data })
+  //     return axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, theFriend).then(res => {
 
-        })
-      });
-    });
+  //       return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
+  //         dispatch({ type: UPDATE_MESSAGES, payload: res.data })
+  //       })
+  //     });
+  //   });
 };
 
-export const search = (brand) => dispatch => {
-  dispatch({ type: SEARCH, payload: brand })
+export const search = (brand) => {
+  return { type: SEARCH, payload: brand }
 };
 
-export const back = () => dispatch => {
-  dispatch({ type: BACK })[]
+export const back = () => {
+  return { type: BACK }
 };
+
+export const buy = id => dispatch => {
+ 
+  axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`)
+  .then(res => {
+dispatch({ type: BUY, payload: res.data })
+  })
+}

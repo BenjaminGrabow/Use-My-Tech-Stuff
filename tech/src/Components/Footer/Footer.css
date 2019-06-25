@@ -1,0 +1,95 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+.icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#wrapper {
+    width     : 20%;
+    height    : 5rem;
+    display   : flex;
+    justify-content: space-between;
+    margin: 0 15rem 1rem 15rem;
+}
+
+@media (max-width:900px) {
+    #wrapper {
+        width: 60%;
+    }
+}
+
+@media (max-width:800px) {
+    #wrapper {
+        width: 70%;
+    }
+}
+
+@media (max-width:700px) {
+    #wrapper {
+        width: 80%;
+    }
+}
+
+@media(max-width:630px) {
+    #wrapper {
+        margin: 1.5rem 0 1.5rem 0;
+        width : 100%;
+    }
+}
+
+.box {
+    width        : 25%;
+    height       : 4rem;
+    border-radius: 5rem;
+    font-family  : entypo;
+    color        : 212121;
+    background   : white;
+    text-align   : center;
+    line-height  : 5rem;
+    font-size    : 2rem;
+    cursor       : pointer;
+    margin       : 1rem 3rem 0 4rem;
+    transition   : 1s;
+}
+
+.box:hover {
+    color     : white;
+    transform : scale(1.15);
+    transition: 1s;
+
+}
+
+@media(max-width:630px) {
+    .box {
+        margin: 0;
+    }
+}
+
+#facebook:hover {
+    background-color: rgb(59, 89, 152);
+    box-shadow      : inset 0 0 0 2.2rem #3A5795;
+    transform       : rotate(360deg) scale(1.15);
+    transition      : 1s;
+}
+
+#twitter:hover {
+    background-color: rgb(85, 172, 238);
+    box-shadow      : inset 0 0 0 2.2rem #3A5795;
+    transform       : rotate(360deg) scale(1.15);
+    transition      : 1s;
+}
+
+#google:hover {
+    background-color: rgb(221, 75, 57);
+    box-shadow      : inset 0 0 0 22px #3A5795;
+    transform       : rotate(360deg) scale(1.15);
+    transition      : 1s;
+}
+
+#linkedin:hover {
+    background-color: rgb(0, 123, 181);
+    box-shadow      : inset 0 0 0 2.2rem #3A5795;
+    transform       : rotate(360deg) scale(1.15);
+    transition      : 1s;
+}
