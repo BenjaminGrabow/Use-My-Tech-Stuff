@@ -3,6 +3,7 @@ import loginPic from './loginPic.jpg';
 import { connect } from 'react-redux'
 import { login } from '../../store/actions';
 import Loader from 'react-loader-spinner';
+import { Animated } from "react-animated-css";
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -80,26 +81,40 @@ class LoginPage extends React.Component {
         render() {
                 return (
                         <StyledDiv>
-                                <img src={loginPic} alt="logo" />
+                                <Animated
+                                        animationIn="rollIn"
+                                        animationOut="slideOutDown"
+                                        animationInDuration={1800}
+                                        animationOutDuration={1800}
+                                        isVisible={true}>
+                                        <img src={loginPic} alt="logo" />
+                                </Animated>
                                 <form
                                         onSubmit={this.login}>
-                                        <div
-                                                className="inputs">
-                                                <input
-                                                        name="username"
-                                                        onChange={this.handleChange}
-                                                        value={this.state.username}
-                                                        placeholder="Username"
-                                                        type="text"
-                                                />
-                                                <input
-                                                        name="password"
-                                                        type="password"
-                                                        onChange={this.handleChange}
-                                                        value={this.state.password}
-                                                        placeholder="Password"
-                                                />
-                                        </div>
+                                        <Animated
+                                                animationIn="rollIn"
+                                                animationOut="slideOutDown"
+                                                animationInDuration={1800}
+                                                animationOutDuration={1800}
+                                                isVisible={true}>
+                                                <div
+                                                        className="inputs">
+                                                        <input
+                                                                name="username"
+                                                                onChange={this.handleChange}
+                                                                value={this.state.username}
+                                                                placeholder="Username"
+                                                                type="text"
+                                                        />
+                                                        <input
+                                                                name="password"
+                                                                type="password"
+                                                                onChange={this.handleChange}
+                                                                value={this.state.password}
+                                                                placeholder="Password"
+                                                        />
+                                                </div>
+                                        </Animated>
                                         <button
                                                 type="submit">
                                                 {this.props.isLoggingIn ? (<Loader

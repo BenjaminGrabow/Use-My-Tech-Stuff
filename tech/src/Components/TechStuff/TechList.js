@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Draggable from './DragDrop/Draggable';
 import Droppable from './DragDrop/Droppable';
+import {Animated} from "react-animated-css";
 
 const StyledDiv = styled.div`
 
@@ -151,6 +152,7 @@ font-weight: bold;
 font-size: 5rem;
 color: red;
 }
+
 `;
 
 class TechList extends React.Component {
@@ -258,35 +260,35 @@ class TechList extends React.Component {
     return (
       <StyledDiv>
         <div className="functionality">
-          <button 
-          className="topButton"
-          onClick={this.logout}>
-          <Link 
-        to="/"
-        className="navLink">
-          Logout
+          <button
+            className="topButton"
+            onClick={this.logout}>
+            <Link
+              to="/"
+              className="navLink">
+              Logout
             </Link>
           </button>
           <button
-          className="topButton"
+            className="topButton"
             onClick={this.props.back}>
             Back
 </button>
           <input
-          placeholder="Search"
-          className="topInput"
+            placeholder="Search"
+            className="topInput"
             name="searchBrand"
             onChange={this.handleChange}
             value={this.state.searchBrand}
             type="text"
           />
-          <button 
-          onClick={this.searchIt}
-          className="topButton">
+          <button
+            onClick={this.searchIt}
+            className="topButton">
             Search
 </button>
           <button
-          className="topButton"
+            className="topButton"
             onClick={this.showAddInput}>
             Add
           </button>
@@ -294,126 +296,132 @@ class TechList extends React.Component {
         <div
           className="techList">
           {this.props.techItems.map(techItem => {
-            return <div
-              className={techItem.imgURL !== "" ? "techItem" : 'off'}
-              key={techItem.id}>
-              <Droppable id="dr1">
-                <Draggable id={techItem.id}
-                  className="draggable">
-                  <Link
-                    id={techItem.id} to={`/protected/${techItem.title}`}>
-                    <img
-                      id={techItem.model}
-                      src={techItem.imgURL}
-                      alt={techItem.id} />
-                  </Link>
-                </Draggable>
-              </Droppable>
-              <Link
-                id={techItem.id}
-                to={`/protected/${techItem.title}`}>
-                <h1>{techItem.brand}</h1>
-              </Link>
-              <p>{techItem.type}</p>
-              <p>{techItem.model}</p>
-              <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? 'still to have' : 'SOLD'}</p>
-              <p>{techItem.description}</p>
-              <p>{techItem.price}$</p>
-              <button
-                className="itemButton"
-                onClick={() =>
-                  this.props.deleter(techItem.id)}>
-                Delete
+            return <Animated
+              animationIn="rollIn"
+              animationOut="slideOutDown"
+              animationInDuration={1800}
+              animationOutDuration={1800}
+              isVisible={true}
+                className={techItem.imgURL !== "" ? "techItem" : 'off'}
+                key={techItem.id}>
+                <Droppable id="dr1">
+                  <Draggable id={techItem.id}
+                    className="draggable">
+                    <Link
+                      id={techItem.id} to={`/protected/${techItem.title}`}>
+                      <img
+                        id={techItem.model}
+                        src={techItem.imgURL}
+                        alt={techItem.id} />
+                    </Link>
+                  </Draggable>
+                </Droppable>
+                <Link
+                  id={techItem.id}
+                  to={`/protected/${techItem.title}`}>
+                  <h1>{techItem.brand}</h1>
+                </Link>
+                <p>{techItem.type}</p>
+                <p>{techItem.model}</p>
+                <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? 'still to have' : 'SOLD'}</p>
+                <p>{techItem.description}</p>
+                <p>{techItem.price}$</p>
+                <button
+                  className="itemButton"
+                  onClick={() =>
+                    this.props.deleter(techItem.id)}>
+                  Delete
 </button>
-              <button
-                className="itemButton"
-                onClick={() => this.showInput(techItem.id)}>
-                Update
+                <button
+                  className="itemButton"
+                  onClick={() => this.showInput(techItem.id)}>
+                  Update
 </button>
-              <button
-              className="itemButton"
-                onClick={() => this.props.buy(techItem.id)} >
-                Buy
+                <button
+                  className="itemButton"
+                  onClick={() => this.props.buy(techItem.id)} >
+                  Buy
   </button>
-            </div>
-          })}
+             
+              </Animated>
+              })}
           <div className="hiddenInput">
-            <div
-              className={this.state.showInput === 'off' ? 'off' : 'on'}
-            >
-              <input
-                onChange={this.handleChange}
-                name="owner"
-                type="number"
-                value={this.state.owner}
-                placeholder="owner" />
-              <input
-                onChange={this.handleChange}
-                name="title"
-                type="text"
-                value={this.state.title}
-                placeholder="title" />
-              <input
-                onChange={this.handleChange}
-                name="type"
-                type="text"
-                value={this.state.type}
-                placeholder="type" />
-              <input
-                onChange={this.handleChange}
-                name="price"
-                type="number"
-                value={this.state.price}
-                placeholder="price" />
-              <input
-                onChange={this.handleChange}
-                name="description"
-                type="text"
-                value={this.state.description}
-                placeholder="description" />
-              <input
-                onChange={this.handleChange}
-                name="brand"
-                type="text"
-                value={this.state.brand}
-                placeholder="brand" />
-              <input
-                onChange={this.handleChange}
-                name="model"
-                type="text"
-                value={this.state.model}
-                placeholder="model" />
-              <input
-                onChange={this.handleChange}
-                name="imgURL"
-                type="text"
-                value={this.state.imgURL}
-                placeholder="image url" />
-              <input
-                onChange={this.handleChange}
-                name="renter"
-                type="number"
-                value={this.state.renter}
-                placeholder="renter" />
-              <button onClick={
-                this.state.input === 'on' ? this.updateIt : this.adder
-              }>
-                {this.state.input === 'on' ? 'update' : 'add'}
-              </button>
-            </div>
-          </div>
+                <div
+                  className={this.state.showInput === 'off' ? 'off' : 'on'}
+                >
+                  <input
+                    onChange={this.handleChange}
+                    name="owner"
+                    type="number"
+                    value={this.state.owner}
+                    placeholder="owner" />
+                  <input
+                    onChange={this.handleChange}
+                    name="title"
+                    type="text"
+                    value={this.state.title}
+                    placeholder="title" />
+                  <input
+                    onChange={this.handleChange}
+                    name="type"
+                    type="text"
+                    value={this.state.type}
+                    placeholder="type" />
+                  <input
+                    onChange={this.handleChange}
+                    name="price"
+                    type="number"
+                    value={this.state.price}
+                    placeholder="price" />
+                  <input
+                    onChange={this.handleChange}
+                    name="description"
+                    type="text"
+                    value={this.state.description}
+                    placeholder="description" />
+                  <input
+                    onChange={this.handleChange}
+                    name="brand"
+                    type="text"
+                    value={this.state.brand}
+                    placeholder="brand" />
+                  <input
+                    onChange={this.handleChange}
+                    name="model"
+                    type="text"
+                    value={this.state.model}
+                    placeholder="model" />
+                  <input
+                    onChange={this.handleChange}
+                    name="imgURL"
+                    type="text"
+                    value={this.state.imgURL}
+                    placeholder="image url" />
+                  <input
+                    onChange={this.handleChange}
+                    name="renter"
+                    type="number"
+                    value={this.state.renter}
+                    placeholder="renter" />
+                  <button onClick={
+                    this.state.input === 'on' ? this.updateIt : this.adder
+                  }>
+                    {this.state.input === 'on' ? 'update' : 'add'}
+                  </button>
+                </div>
+              </div>
         </div>
       </StyledDiv>
-    );
-  }
-}
-
+        );
+      }
+    }
+    
 const mapStateToProps = state => {
   return {
-    techItems: state.techItems,
-    loading: state.loading,
-    error: state.error
-  }
-};
-
-export default connect(mapStateToProps, { deleter, add, update, search, back, buy })(TechList);
+            techItems: state.techItems,
+          loading: state.loading,
+          error: state.error
+        }
+      };
+      
+export default connect(mapStateToProps, {deleter, add, update, search, back, buy })(TechList);

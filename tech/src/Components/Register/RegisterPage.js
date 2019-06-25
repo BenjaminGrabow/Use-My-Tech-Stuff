@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { register } from '../../store/actions';
 import loginPic from '../Login/loginPic.jpg';
-
+import {Animated} from "react-animated-css";
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -44,6 +44,10 @@ margin: 0 0 1rem 1.5rem;
 font-size: 1.5rem;
 font-weight: bold;
 }
+
+.animate {
+        width: 50%
+}
 `;
 
 class RegisterPage extends React.Component {
@@ -80,9 +84,23 @@ class RegisterPage extends React.Component {
         render() {
                 return (
                         <StyledDiv>
+                        <Animated
+                        animationIn="rollIn"
+                         animationOut="slideOutDown"
+                          animationInDuration={1800} 
+                          animationOutDuration={1800} 
+                          isVisible={true}>
                                 <img src={loginPic} alt="logo" />
+                                </Animated>
                                 <form
                                         onSubmit={this.register}>
+                                                  <Animated
+                        animationIn="rollIn"
+                         animationOut="slideOutDown"
+                          animationInDuration={1800} 
+                          animationOutDuration={1800} 
+                          isVisible={true}>
+                                
                                                  <div
                                                 className="inputs">
                                         <input
@@ -100,10 +118,12 @@ class RegisterPage extends React.Component {
                                                 placeholder="Password"
                                         />
                                         </div>
+                                </Animated>
                                         <button
                                                 type="submit">
                                                 Register
                                         </button>
+    
                                 </form>
                         </StyledDiv>
                 );
