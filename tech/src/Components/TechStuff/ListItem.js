@@ -16,7 +16,7 @@ const StyledDiv = styled.div`
 
         img {
         width: 50%;
-        height: 35rem;     
+        height: 30rem;     
         }
         
         p {
@@ -71,105 +71,110 @@ font-size: 1.5rem;
         height: 5rem;
 }
 
+a {
+        text-decoration: none;
+}
+
 `;
 
 class List extends React.Component {
-        constructor(props) {
-                super(props);
-                this.state = {
-                        rating: '',
-                        ratingStar: '',
-                }
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      rating: '',
+      ratingStar: '',
+    }
+  }
 
-        handleChange = (e) => {
-                e.preventDefault();
+  handleChange = (e) => {
+    e.preventDefault();
 
-                this.setState({
-                        [e.target.name]: e.target.value
-                });
-        };
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    // add reference onSubmit use reference to set the state
+  };
 
-        addRating = (id) => {
-                this.props.addRating(id, this.state.rating, this.state.ratingStar);
+  addRating = (id) => {
+    this.props.addRating(id, this.state.rating, this.state.ratingStar);
 
-                this.setState({
-                        rating: '',
-                        ratingStar: '',
-                });
-        };
+    this.setState({
+      rating: '',
+      ratingStar: '',
+    });
+  };
 
-        handleToken(token, adresses) {
-                console.log({ token, adresses })
-        };
+  handleToken(token, adresses) {
+    console.log({ token, adresses })
+  };
 
-        render() {
-                return (
-                        <StyledDiv>
-                                <div className="article">
+  render() {
+    return (
+      <StyledDiv>
+        <div className="article">
 
-                                        <img src={this.props.techItem.imgURL}
-                                                alt={this.props.model} />
+          <img src={this.props.techItem.imgURL}
+            alt={this.props.model} />
 
-                                        <div className="text">
-                                                <h1>Owner: {this.props.techItem.owner}</h1>
-                                                <h1>Title: {this.props.techItem.title}</h1>
-                                                <p>Type: {this.props.techItem.type}</p>
-                                                <p>Price: {this.props.techItem.price}</p>
-                                                <p>Brand: {this.props.techItem.brand}</p>
-                                                <p>Model: {this.props.techItem.model}</p>
-                                                <p>Renter: {this.props.techItem.renter}</p>
-                                                <StripeCheckout
-                                                        className="buy"
-                                                        stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa'
-                                                        token={this.handleToken}
-                                                        billingAddress
-                                                        shippingAddress
-                                                        amount={this.props.techItem.price * 100}
-                                                        name={this.props.techItem.title}
-                                                />
-                                        </div>
-                                </div>
-                                {this.props.techItem.messages.map(message =>
-                                        <div
-                                                key={uuid()}
-                                                className="ratings">
-                                                <img
-                                                        src={message.img}
-                                                        alt={this.props.id}
-                                                        className="rating-pic" />
-                                                <p>{message.message}</p>
-                                                <span className={message.star1}></span>
-                                                <span className={message.star2}></span>
-                                                <span className={message.star3}></span>
-                                                <span className={message.star4}></span>
-                                                <span className={message.star5}></span>
-                                        </div>)}
-                                <div
-                                        className="adder">
-                                        <button><Link to="/protected">Back</Link></button>
-                                        <input
-                                                type="text"
-                                                value={this.state.rating}
-                                                onChange={this.handleChange}
-                                                placeholder="message"
-                                                name="rating" />
-                                        <input
-                                        max="5"
-                                        min="0"
-                                                type="number"
-                                                value={this.state.ratingStar}
-                                                onChange={this.handleChange}
-                                                placeholder="stars 1 - 5"
-                                                name="ratingStar" />
-                                        <button onClick={() =>
-                                                this.addRating(this.props.techItem.id)} >
-                                                Add
+          <div className="text">
+            <h1>Owner: {this.props.techItem.owner}</h1>
+            <h1>Title: {this.props.techItem.title}</h1>
+            <p>Type: {this.props.techItem.type}</p>
+            <p>Price: {this.props.techItem.price}</p>
+            <p>Brand: {this.props.techItem.brand}</p>
+            <p>Model: {this.props.techItem.model}</p>
+            <p>Renter: {this.props.techItem.renter}</p>
+            <StripeCheckout
+              className="buy"
+              stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa'
+              token={this.handleToken}
+              billingAddress
+              shippingAddress
+              amount={this.props.techItem.price * 100}
+              name={this.props.techItem.title}
+            />
+          </div>
+        </div>
+        {this.props.techItem.messages.map(message =>
+          <div
+            key={uuid()}
+            className="ratings">
+            <img
+              src={message.img}
+              alt={this.props.id}
+              className="rating-pic" />
+            <p>{message.message}</p>
+            <span className={message.star1}></span>
+            <span className={message.star2}></span>
+            <span className={message.star3}></span>
+            <span className={message.star4}></span>
+            <span className={message.star5}></span>
+          </div>)}
+        <div
+          className="adder">
+          <button><Link to="/protected">Back</Link></button>
+          <input
+            type="text"
+            value={this.state.rating}
+            onChange={this.handleChange}
+            placeholder="message"
+            name="rating" />
+          <input
+            max="5"
+            min="0"
+            type="number"
+            value={this.state.ratingStar}
+            onChange={this.handleChange}
+            placeholder="stars 1 - 5"
+            name="ratingStar" />
+          <button onClick={() =>
+            this.addRating(this.props.techItem.id)} >
+            Add
                                                 </button>
-                                </div>
-                        </StyledDiv>
-                );
-        }
+        </div>
+      </StyledDiv>
+    );
+  }
 }
 
 export default connect(null, { addRating })(List);
