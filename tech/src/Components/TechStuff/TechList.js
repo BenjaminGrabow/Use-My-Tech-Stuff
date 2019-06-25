@@ -3,14 +3,40 @@ import { connect } from 'react-redux';
 import { buy, deleter, add, update, search, back } from '../../store/actions';
 import 'react-animated-slider/build/horizontal.css';
 import styled from 'styled-components';
-import { Link, NavLink } from 'react-router-dom';
+import { Link,  NavLink } from 'react-router-dom';
 import Draggable from './DragDrop/Draggable';
 import Droppable from './DragDrop/Droppable';
 
 const StyledDiv = styled.div`
 
-.functionaility {
- 
+.functionality {
+height: 3rem;
+background: #0f0c29; /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.navLink {
+  text-decoration: none;
+  /* font-size: ; */
+}
+
+.topButton {
+background-color: red;
+border-radius: 50%;
+width: 15%;
+height: 3rem;
+box-shadow: 1rem .5rem .5rem black;
+}
+
+.topInput {
+border-radius: 3rem;
+/* margin-top: .5rem; */
+box-shadow: 1rem .5rem .5rem black;
+width: 25%;
+height: 2rem;
+text-align: center;
+font-size: 1.5rem;
 }
 
 .techList {
@@ -52,9 +78,9 @@ display:none;
 }
 
 .hiddenInput2 {
-  position: fixed;
-  top: 0;
-  right: 0%;
+position: fixed;
+top: 0;
+right: 0%;
 }
 
 .hiddenInput {
@@ -72,6 +98,7 @@ width: 100%;
 display: flex;
 justify-content: space-around;
 }
+
 input {
 border-radius: 3rem;
 margin-top: .5rem;
@@ -90,21 +117,21 @@ box-shadow: 1rem .5rem .5rem black;
 }
  
 img {
-  width: 10rem;
-  height: 6rem;
-  box-shadow: 1rem .5rem .5rem black;
+width: 10rem;
+height: 6rem;
+box-shadow: 1rem .5rem .5rem black;
 }
 
 .draggable {
-  font-size: 3rem;
-  color: black;
-  height: 6rem;
+font-size: 3rem;
+color: black;
+height: 6rem;
 }
 
 #dr1 {
-  height: 6rem;
-  display: flex;
-  justify-content: center;
+height: 6rem;
+display: flex;
+justify-content: center;
 }
 
  
@@ -115,15 +142,14 @@ width: 50%;
 height: 2.5rem;
 background: #00b09b; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #96c93d, #00b09b); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
- 
+background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
 box-shadow: 1rem .5rem .5rem black;
 font-weight: bold;
 }
 
 .sold {
-  font-size: 5rem;
-  color: red;
+font-size: 5rem;
+color: red;
 }
 `;
 
@@ -224,24 +250,43 @@ class TechList extends React.Component {
     });
   };
 
+  logout = () => {
+    localStorage.removeItem('token');
+  };
+
   render() {
     return (
       <StyledDiv>
         <div className="functionality">
+          <button 
+          className="topButton"
+          onClick={this.logout}>
+          <Link 
+        to="/login"
+        className="navLink">
+          Logout
+            </Link>
+          </button>
           <button
+          className="topButton"
             onClick={this.props.back}>
             Back
 </button>
           <input
+          placeholder="Search"
+          className="topInput"
             name="searchBrand"
             onChange={this.handleChange}
             value={this.state.searchBrand}
             type="text"
           />
-          <button onClick={this.searchIt}>
+          <button 
+          onClick={this.searchIt}
+          className="topButton">
             Search
 </button>
           <button
+          className="topButton"
             onClick={this.showAddInput}>
             Add
           </button>
@@ -286,6 +331,7 @@ class TechList extends React.Component {
                 Update
 </button>
               <button
+              className="itemButton"
                 onClick={() => this.props.buy(techItem.id)} >
                 Buy
   </button>
