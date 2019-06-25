@@ -40,7 +40,7 @@ const reducer = (state = initialState, action) => {
                                 ];
                                 return copyOfData;
                         });
-                        return { ...state, techItems: result, loading: false, error: null };
+                        return { ...state, techItems: result, loading: false, error: null, copyOfList: result };
 
                 case types.ERROR:
                         return { techItems: [], loading: false, error: 'ERROR NETWORK' };
