@@ -14,6 +14,13 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 
 .footer-left {
 
+        h1 {
+                font-size: 3rem;
+        }
+
+        p {
+                font-size: 1.5rem;    
+        }
 
 }
 
@@ -27,11 +34,11 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
         }
 
         h4 {
-                font-size: 1rem;
+                font-size: 1.7rem;
         }
         
         p{
-                font-size: .7rem;
+                font-size: 1.3rem;
                 color: black;
                 font-weight: bold;
         }
@@ -65,7 +72,6 @@ const Footer = () => {
                                                 <h4>Company</h4>
                                                 <p>About us</p>
                                                 <p>Customers</p>
-                                                <p>Careesr</p>
                                                 <p>Press</p>
                                                 <p>Legal</p>
                                         </div>

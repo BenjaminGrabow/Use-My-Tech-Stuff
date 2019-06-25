@@ -15,7 +15,7 @@ background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-2
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 img {
-height: 25rem;
+height: 45rem;
 width: 100%;
 }
 
@@ -32,7 +32,9 @@ border-radius: 3rem;
 box-shadow: 1rem .5rem .5rem black;
 width: 100%;
 margin-bottom: 1rem;
-height: 2rem;
+height: 4rem;
+font-size: 1.5rem;
+text-align: center;
 }
  
 button {

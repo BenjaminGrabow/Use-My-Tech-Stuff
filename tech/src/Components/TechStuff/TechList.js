@@ -6,15 +6,17 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Draggable from './DragDrop/Draggable';
 import Droppable from './DragDrop/Droppable';
-import {Animated} from "react-animated-css";
+import { Animated } from "react-animated-css";
 
 const StyledDiv = styled.div`
+position: relative;
 
 .functionality {
 height: 3rem;
 background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+padding-bottom: 2rem;
 }
 
 .navLink {
@@ -23,11 +25,17 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 }
 
 .topButton {
-background-color: red;
+background: #c31432;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
 border-radius: 50%;
 width: 15%;
-height: 3rem;
+height: 5rem;
 box-shadow: 1rem .5rem .5rem black;
+}
+
+.pButton {
+font-size: 1.5rem;
 }
 
 .topInput {
@@ -55,7 +63,7 @@ background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 width: 22%;
 border: .08rem solid black;
-margin: .5rem;
+margin: 1rem;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -76,44 +84,48 @@ margin: 0;
  
 .off {
 display:none;
-}
-
-.hiddenInput2 {
-position: fixed;
-top: 0;
-right: 0%;
+top          : 50%;
+left         : 50%;
+position     : fixed;
+transform    : translate(-250%, -50%);
 }
 
 .hiddenInput {
-position: fixed;
-bottom: 0;
-left: 0;
+background: #bdc3c7; /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 width: 100%;
 height: 4rem;
-margin-bottom: 3rem;
-display: flex;
-flex-wrap: wrap;
- 
+transition: all 1s ease-in;
+
 .on {
-width: 100%;
-display: flex;
-justify-content: space-around;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  top          : 50%;
+  left         : 50%;
+  position     : fixed;
+  transform    : translate(-20%, -50%);
 }
 
 input {
 border-radius: 3rem;
-margin-top: .5rem;
+margin: .5rem 0 0 0;
 box-shadow: 1rem .5rem .5rem black;
-width: 10%;
+width: 40%;
+height: 4rem;
+text-align: center;
+font-size: 3rem;
 }
  
 button {
-margin-top: .5rem;
+
 background-color: red;
 border-radius: 50%;
-width: 15%;
-height: 3rem;
+width: 40%;
+height: 6rem;
 box-shadow: 1rem .5rem .5rem black;
+font-size: 2.5rem;
 }
 }
  
@@ -148,9 +160,13 @@ box-shadow: 1rem .5rem .5rem black;
 font-weight: bold;
 }
 
+.soldItem {
+background: red;
+}
+
 .sold {
 font-size: 5rem;
-color: red;
+color: black;
 }
 
 `;
@@ -266,14 +282,20 @@ class TechList extends React.Component {
             <Link
               to="/"
               className="navLink">
-              Logout
+              <p
+                className="pButton">
+                Logout
+                </p>
             </Link>
           </button>
           <button
             className="topButton"
             onClick={this.props.back}>
-            Back
-</button>
+            <p
+              className="pButton">
+              Back
+             </p>
+          </button>
           <input
             placeholder="Search"
             className="topInput"
@@ -285,12 +307,18 @@ class TechList extends React.Component {
           <button
             onClick={this.searchIt}
             className="topButton">
-            Search
-</button>
+            <p
+              className="pButton">
+              Search
+              </p>
+          </button>
           <button
             className="topButton"
             onClick={this.showAddInput}>
-            Add
+            <p
+              className="pButton">
+              Add
+              </p>
           </button>
         </div>
         <div
@@ -302,126 +330,126 @@ class TechList extends React.Component {
               animationInDuration={1800}
               animationOutDuration={1800}
               isVisible={true}
-                className={techItem.imgURL !== "" ? "techItem" : 'off'}
-                key={techItem.id}>
-                <Droppable id="dr1">
-                  <Draggable id={techItem.id}
-                    className="draggable">
-                    <Link
-                      id={techItem.id} to={`/protected/${techItem.title}`}>
-                      <img
-                        id={techItem.model}
-                        src={techItem.imgURL}
-                        alt={techItem.id} />
-                    </Link>
-                  </Draggable>
-                </Droppable>
-                <Link
-                  id={techItem.id}
-                  to={`/protected/${techItem.title}`}>
-                  <h1>{techItem.brand}</h1>
-                </Link>
-                <p>{techItem.type}</p>
-                <p>{techItem.model}</p>
-                <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? 'still to have' : 'SOLD'}</p>
-                <p>{techItem.description}</p>
-                <p>{techItem.price}$</p>
-                <button
-                  className="itemButton"
-                  onClick={() =>
-                    this.props.deleter(techItem.id)}>
-                  Delete
+              className={techItem.availability ? 'techItem' : 'soldItem techItem'}
+              key={techItem.id}>
+              <Droppable id="dr1">
+                <Draggable id={techItem.id}
+                  className="draggable">
+                  <Link
+                    id={techItem.id} to={`/protected/${techItem.title}`}>
+                    <img
+                      id={techItem.model}
+                      src={techItem.imgURL}
+                      alt={techItem.id} />
+                  </Link>
+                </Draggable>
+              </Droppable>
+              <Link
+                id={techItem.id}
+                to={`/protected/${techItem.title}`}>
+                <h1>{techItem.brand}</h1>
+              </Link>
+              <p>{techItem.type}</p>
+              <p>{techItem.model}</p>
+              <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? 'still to have' : 'SOLD'}</p>
+              <p>{techItem.description}</p>
+              <p>{techItem.price}$</p>
+              <button
+                className="itemButton"
+                onClick={() =>
+                  this.props.deleter(techItem.id)}>
+                Delete
 </button>
-                <button
-                  className="itemButton"
-                  onClick={() => this.showInput(techItem.id)}>
-                  Update
+              <button
+                className="itemButton"
+                onClick={() => this.showInput(techItem.id)}>
+                Update
 </button>
-                <button
-                  className="itemButton"
-                  onClick={() => this.props.buy(techItem.id)} >
-                  Buy
+              <button
+                className="itemButton"
+                onClick={() => this.props.buy(techItem.id)} >
+                Buy
   </button>
-             
-              </Animated>
-              })}
-          <div className="hiddenInput">
-                <div
-                  className={this.state.showInput === 'off' ? 'off' : 'on'}
-                >
-                  <input
-                    onChange={this.handleChange}
-                    name="owner"
-                    type="number"
-                    value={this.state.owner}
-                    placeholder="owner" />
-                  <input
-                    onChange={this.handleChange}
-                    name="title"
-                    type="text"
-                    value={this.state.title}
-                    placeholder="title" />
-                  <input
-                    onChange={this.handleChange}
-                    name="type"
-                    type="text"
-                    value={this.state.type}
-                    placeholder="type" />
-                  <input
-                    onChange={this.handleChange}
-                    name="price"
-                    type="number"
-                    value={this.state.price}
-                    placeholder="price" />
-                  <input
-                    onChange={this.handleChange}
-                    name="description"
-                    type="text"
-                    value={this.state.description}
-                    placeholder="description" />
-                  <input
-                    onChange={this.handleChange}
-                    name="brand"
-                    type="text"
-                    value={this.state.brand}
-                    placeholder="brand" />
-                  <input
-                    onChange={this.handleChange}
-                    name="model"
-                    type="text"
-                    value={this.state.model}
-                    placeholder="model" />
-                  <input
-                    onChange={this.handleChange}
-                    name="imgURL"
-                    type="text"
-                    value={this.state.imgURL}
-                    placeholder="image url" />
-                  <input
-                    onChange={this.handleChange}
-                    name="renter"
-                    type="number"
-                    value={this.state.renter}
-                    placeholder="renter" />
-                  <button onClick={
-                    this.state.input === 'on' ? this.updateIt : this.adder
-                  }>
-                    {this.state.input === 'on' ? 'update' : 'add'}
-                  </button>
-                </div>
-              </div>
+
+            </Animated>
+          })}
+        </div>
+        <div className="hiddenInput">
+          <div
+            className={this.state.showInput === 'off' ? 'off' : 'on'}
+          >
+            <input
+              onChange={this.handleChange}
+              name="owner"
+              type="number"
+              value={this.state.owner}
+              placeholder="owner" />
+            <input
+              onChange={this.handleChange}
+              name="title"
+              type="text"
+              value={this.state.title}
+              placeholder="title" />
+            <input
+              onChange={this.handleChange}
+              name="type"
+              type="text"
+              value={this.state.type}
+              placeholder="type" />
+            <input
+              onChange={this.handleChange}
+              name="price"
+              type="number"
+              value={this.state.price}
+              placeholder="price" />
+            <input
+              onChange={this.handleChange}
+              name="description"
+              type="text"
+              value={this.state.description}
+              placeholder="description" />
+            <input
+              onChange={this.handleChange}
+              name="brand"
+              type="text"
+              value={this.state.brand}
+              placeholder="brand" />
+            <input
+              onChange={this.handleChange}
+              name="model"
+              type="text"
+              value={this.state.model}
+              placeholder="model" />
+            <input
+              onChange={this.handleChange}
+              name="imgURL"
+              type="text"
+              value={this.state.imgURL}
+              placeholder="image url" />
+            <input
+              onChange={this.handleChange}
+              name="renter"
+              type="number"
+              value={this.state.renter}
+              placeholder="renter" />
+            <button onClick={
+              this.state.input === 'on' ? this.updateIt : this.adder
+            }>
+              {this.state.input === 'on' ? 'update' : 'add'}
+            </button>
+          </div>
         </div>
       </StyledDiv>
-        );
-      }
-    }
-    
+    );
+  }
+}
+
 const mapStateToProps = state => {
   return {
-            techItems: state.techItems,
-          loading: state.loading,
-          error: state.error
-        }
-      };
-      
-export default connect(mapStateToProps, {deleter, add, update, search, back, buy })(TechList);
+    techItems: state.techItems,
+    loading: state.loading,
+    error: state.error
+  }
+};
+
+export default connect(mapStateToProps, { deleter, add, update, search, back, buy })(TechList);
