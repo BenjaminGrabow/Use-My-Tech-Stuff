@@ -262,7 +262,7 @@ class TechList extends React.Component {
           className="topButton"
           onClick={this.logout}>
           <Link 
-        to="/login"
+        to="/"
         className="navLink">
           Logout
             </Link>
