@@ -31,15 +31,26 @@ const reducer = (state = initialState, action) => {
                                 copyOfData.messages = [
                                         {
                                                 message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+                                                star1: 'fa fa-star checked',
+                                                star2: 'fa fa-star checked',
+                                                star3: 'fa fa-star checked',
+                                                star4: 'fa fa-star checked',
+                                                star5: 'fa fa-star'
                                         },
                                         {
                                                 message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+                                                star1: 'fa fa-star checked',
+                                                star2: 'fa fa-star checked',
+                                                star3: 'fa fa-star checked',
+                                                star4: 'fa fa-star checked',
+                                                star5: 'fa fa-star'
                                         },
                                 ];
                                 return copyOfData;
                         });
+
                         return { ...state, techItems: result, loading: false, error: null, copyOfList: result };
 
                 case types.ERROR:
@@ -60,15 +71,26 @@ const reducer = (state = initialState, action) => {
                                 copyOfData.messages = [
                                         {
                                                 message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+                                                star1: 'fa fa-star checked',
+                                                star2: 'fa fa-star checked',
+                                                star3: 'fa fa-star checked',
+                                                star4: 'fa fa-star checked',
+                                                star5: 'fa fa-star'
                                         },
                                         {
                                                 message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+                                                star1: 'fa fa-star checked',
+                                                star2: 'fa fa-star checked',
+                                                star3: 'fa fa-star checked',
+                                                star4: 'fa fa-star checked',
+                                                star5: 'fa fa-star'
                                         },
                                 ];
                                 return copyOfData;
                         });
+
                         return { ...state, techItems: addTheMessages };
 
                 case types.ADD:
@@ -81,16 +103,25 @@ const reducer = (state = initialState, action) => {
                                 copyOfData.messages = [
                                         {
                                                 message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+                                                star1: 'fa fa-star checked',
+                                                star2: 'fa fa-star checked',
+                                                star3: 'fa fa-star checked',
+                                                star4: 'fa fa-star checked',
+                                                star5: 'fa fa-star'
                                         },
                                         {
                                                 message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
+                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+                                                star1: 'fa fa-star checked',
+                                                star2: 'fa fa-star checked',
+                                                star3: 'fa fa-star checked',
+                                                star4: 'fa fa-star checked',
+                                                star5: 'fa fa-star'
                                         },
                                 ];
                                 return copyOfData;
                         });
-
 
                         return { ...state, techItems: addMessagesToNewPost }
 
@@ -100,6 +131,7 @@ const reducer = (state = initialState, action) => {
                                         item.messages.push(action.message)
                                 } return item
                         });
+
                         return { ...state, techItems: addMessage }
 
                 case types.SEARCH:

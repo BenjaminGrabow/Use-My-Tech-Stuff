@@ -15,11 +15,12 @@ const StyledDiv = styled.div`
         justify-content: space-around;
 
         img {
-        width: 50%;      
+        width: 50%;
+        height: 35rem;     
         }
         
         p {
-                font-size: 2rem;
+                font-size: 1.5rem;
                 font-weight: bold;
         }
 }
@@ -39,13 +40,45 @@ const StyledDiv = styled.div`
 .checked {
   color: orange;
 } 
+
+.adder {
+height: 3rem;
+background: #bdc3c7; /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+Button {
+background-color: red;
+border-radius: 50%;
+width: 15%;
+height: 3rem;
+box-shadow: 1rem .5rem .5rem black;
+}
+
+Input {
+border-radius: 3rem;
+/* margin-top: .5rem; */
+box-shadow: 1rem .5rem .5rem black;
+width: 25%;
+height: 2rem;
+text-align: center;
+font-size: 1.5rem;
+}
+
+.buy {
+        width: 100%;
+        height: 5rem;
+}
+
 `;
 
 class List extends React.Component {
         constructor(props) {
                 super(props);
                 this.state = {
-                        rating: ''
+                        rating: '',
+                        ratingStar: '',
                 }
         }
 
@@ -58,10 +91,11 @@ class List extends React.Component {
         };
 
         addRating = (id) => {
-                this.props.addRating(id, this.state.rating);
+                this.props.addRating(id, this.state.rating, this.state.ratingStar);
 
                 this.setState({
-                        rating: ''
+                        rating: '',
+                        ratingStar: '',
                 });
         };
 
@@ -86,12 +120,13 @@ class List extends React.Component {
                                                 <p>Model: {this.props.techItem.model}</p>
                                                 <p>Renter: {this.props.techItem.renter}</p>
                                                 <StripeCheckout
-                                                stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa'
-                                                token={this.handleToken}
-                                                billingAddress
-                                                shippingAddress
-                                                amount={this.props.techItem.price * 100}
-                                                name={this.props.techItem.title}
+                                                        className="buy"
+                                                        stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa'
+                                                        token={this.handleToken}
+                                                        billingAddress
+                                                        shippingAddress
+                                                        amount={this.props.techItem.price * 100}
+                                                        name={this.props.techItem.title}
                                                 />
                                         </div>
                                 </div>
@@ -104,21 +139,32 @@ class List extends React.Component {
                                                         alt={this.props.id}
                                                         className="rating-pic" />
                                                 <p>{message.message}</p>
-                                                <span className="fa fa-star checked"></span>
-                                                <span className="fa fa-star checked"></span>
-                                                <span className="fa fa-star checked"></span>
-                                                <span className="fa fa-star"></span>
-                                                <span className="fa fa-star"></span>
+                                                <span className={message.star1}></span>
+                                                <span className={message.star2}></span>
+                                                <span className={message.star3}></span>
+                                                <span className={message.star4}></span>
+                                                <span className={message.star5}></span>
                                         </div>)}
-                                <button onClick={() =>
-                                        this.addRating(this.props.techItem.id)} >
-                                        Add
+                                <div
+                                        className="adder">
+                                        <button><Link to="/protected">Back</Link></button>
+                                        <input
+                                                type="text"
+                                                value={this.state.rating}
+                                                onChange={this.handleChange}
+                                                placeholder="message"
+                                                name="rating" />
+                                        <input
+                                                type="number"
+                                                value={this.state.ratingStar}
+                                                onChange={this.handleChange}
+                                                placeholder="stars 1 - 5"
+                                                name="ratingStar" />
+                                        <button onClick={() =>
+                                                this.addRating(this.props.techItem.id)} >
+                                                Add
                                                 </button>
-                                <input
-                                        value={this.state.rating}
-                                        onChange={this.handleChange}
-                                        name="rating" />
-                                <Link to="/protected">Back</Link>
+                                </div>
                         </StyledDiv>
                 );
         }

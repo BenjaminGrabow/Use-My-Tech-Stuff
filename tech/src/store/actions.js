@@ -81,9 +81,9 @@ export const update = (id, owner, title, description, type,
 
     axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateItem)
       .then(res => {
-            dispatch({ type: UPDATE, payload: res.data.changes })
-     
-          }).catch(err => {
+        dispatch({ type: UPDATE, payload: res.data.changes })
+
+      }).catch(err => {
       });
   };
 
@@ -123,11 +123,28 @@ export const add = (owner, title, type, description,
       });
   };
 
-export const addRating = (id, message) => (dispatch) => {
-  const newMessage = {
-    message: message,
-    img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
-  };
+export const addRating = (id, message, stars) => (dispatch) => {
+  
+  const orangeStars = 'fa fa-star checked'.repeat(stars);
+  
+  const blackStars = 'fa fa-star'.repeat(5 - stars);
+  
+  const arrayOrange = orangeStars.match(/.{1,18}/g);
+  const arrayBlack = blackStars.match(/.{1,10}/g);
+  
+  const mergeArrays = arrayOrange.concat(arrayBlack);
+  
+        const newMessage = {
+          message: message,
+          img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+          star1: mergeArrays[0],
+          star2: mergeArrays[1],
+          star3: mergeArrays[2],
+          star4: mergeArrays[3],
+          star5: mergeArrays[4]
+        };
+        
+  debugger
 
   dispatch({ type: UPDATE_MESSAGES, message: newMessage, id: id })
 
