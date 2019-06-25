@@ -81,13 +81,9 @@ export const update = (id, owner, title, description, type,
 
     axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateItem)
       .then(res => {
- debugger
-        // return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items')
-        //   .then(res => {
-            
             dispatch({ type: UPDATE, payload: res.data.changes })
-          // })
-      }).catch(err => {
+     
+          }).catch(err => {
       });
   };
 

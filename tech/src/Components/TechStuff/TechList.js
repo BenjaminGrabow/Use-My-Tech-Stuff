@@ -107,17 +107,6 @@ img {
   justify-content: center;
 }
 
-.dr2 {
-  height: 6rem;
-  width: 100%;
-  display: flex;
-}
-
-#dr2 {
-  width: 100%;
-  margin: 0;
-  height: 6rem;
-}
  
 .itemButton {
 border-radius: 50%;
@@ -235,14 +224,9 @@ class TechList extends React.Component {
     });
   };
 
-  logout = () => {
-    localStorage.removeItem('token');
-  };
-
   render() {
     return (
       <StyledDiv>
-        <NavLink to="/login"><p onClick={this.logout}>Logout</p></NavLink>
         <div className="functionality">
           <button
             onClick={this.props.back}>
@@ -261,12 +245,6 @@ class TechList extends React.Component {
             onClick={this.showAddInput}>
             Add
           </button>
-        </div>
-        <div
-          className="dr2">
-          <Droppable
-            id="dr2" >
-          </Droppable>
         </div>
         <div
           className="techList">

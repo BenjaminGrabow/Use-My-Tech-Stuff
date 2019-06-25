@@ -49,13 +49,12 @@ const reducer = (state = initialState, action) => {
                         return { ...state, techItems: action.payload };
 
                 case types.UPDATE:
+                        const changeItem = state.techItems.map(item => {
+                                if (item.id === action.payload.id) {
+                                        item = action.payload;
+                                } return item
+                        });
 
-                const changeItem = state.techItems.map(item => {
-                        if(item.id === action.payload.id) {
-                                item = action.payload;
-                        } return item
-                });
-                
                         const addTheMessages = changeItem.map(el => {
                                 const copyOfData = Object.assign({}, el);
                                 copyOfData.messages = [

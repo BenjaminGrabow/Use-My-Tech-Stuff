@@ -3,7 +3,7 @@ import HomePage from './Components/HomePage/HomePage'
 import LoginPage from "./Components/Login/LoginPage";
 import RegisterPage from "./Components/Register/RegisterPage";
 import ListItem from './Components/TechStuff/ListItem';
-import TechList from './Components/TechStuff/TechList';
+import TechContainer from './Components/TechStuff/TechContainer';
 import Footer from "./Components/Footer/Footer";
 import { Route } from 'react-router-dom';
 import PrivateRoute from './Components/Login/PrivateRoute';
@@ -44,7 +44,7 @@ class App extends React.Component {
         <Route exact path="/register" component={RegisterPage} />
         <PrivateRoute
           exact path="/protected"
-          component={TechList}
+          component={TechContainer}
         />
         {this.props.techItems.map((techItem) => <Route
           key={techItem.id}
