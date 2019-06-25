@@ -143,8 +143,7 @@ export const addRating = (id, message, stars) => (dispatch) => {
           star4: mergeArrays[3],
           star5: mergeArrays[4]
         };
-        
-  debugger
+
 
   dispatch({ type: UPDATE_MESSAGES, message: newMessage, id: id })
 

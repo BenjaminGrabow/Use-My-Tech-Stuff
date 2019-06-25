@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { addRating } from '../../store/actions'
 import '../../App.css'
-import uuid from 'uuid';
 import StripeCheckout from 'react-stripe-checkout';
 
 const StyledDiv = styled.div`
@@ -92,16 +91,21 @@ class List extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    // add reference onSubmit use reference to set the state
   };
 
-  addRating = (id) => {
-    this.props.addRating(id, this.state.rating, this.state.ratingStar);
+  submit = (event) => {
+    event.preventDefault();
 
-    this.setState({
-      rating: '',
-      ratingStar: '',
-    });
+    if (this.state.ratingStar !== '' && this.state.rating !== '') {
+
+      this.props.addRating(this.props.techItem.id, this.state.rating, this.state.ratingStar);
+
+      this.setState({
+        rating: '',
+        ratingStar: '',
+      });
+    }
+
   };
 
   handleToken(token, adresses) {
@@ -135,13 +139,13 @@ class List extends React.Component {
             />
           </div>
         </div>
-        {this.props.techItem.messages.map(message =>
+        {this.props.techItem.messages.map((message, index) =>
           <div
-            key={uuid()}
+            key={index}
             className="ratings">
             <img
               src={message.img}
-              alt={this.props.id}
+              alt={message.star5}
               className="rating-pic" />
             <p>{message.message}</p>
             <span className={message.star1}></span>
@@ -149,28 +153,31 @@ class List extends React.Component {
             <span className={message.star3}></span>
             <span className={message.star4}></span>
             <span className={message.star5}></span>
-          </div>)}
+          </div>
+        )}
         <div
           className="adder">
-          <button><Link to="/protected">Back</Link></button>
-          <input
-            type="text"
-            value={this.state.rating}
-            onChange={this.handleChange}
-            placeholder="message"
-            name="rating" />
-          <input
-            max="5"
-            min="0"
-            type="number"
-            value={this.state.ratingStar}
-            onChange={this.handleChange}
-            placeholder="stars 1 - 5"
-            name="ratingStar" />
-          <button onClick={() =>
-            this.addRating(this.props.techItem.id)} >
-            Add
+          <form onSubmit={this.submit}>
+            <button><Link to="/protected">Back</Link></button>
+            <input
+              type="text"
+              value={this.state.rating}
+              onChange={this.handleChange}
+              placeholder="message"
+              name="rating" />
+            <input
+              max="5"
+              min="1"
+              type="number"
+              value={this.state.ratingStar}
+              onChange={this.handleChange}
+              placeholder="stars 1 - 5"
+              name="ratingStar" />
+            <button
+              type="submit" >
+              Add
                                                 </button>
+          </form>
         </div>
       </StyledDiv>
     );
