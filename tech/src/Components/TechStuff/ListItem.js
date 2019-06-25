@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { addRating } from '../../store/actions'
 import '../../App.css'
 import uuid from 'uuid';
+import StripeCheckout from 'react-stripe-checkout';
 
 const StyledDiv = styled.div`
 
@@ -64,6 +65,10 @@ class List extends React.Component {
                 });
         };
 
+        handleToken(token, adresses) {
+                console.log({ token, adresses })
+        };
+
         render() {
                 return (
                         <StyledDiv>
@@ -80,6 +85,14 @@ class List extends React.Component {
                                                 <p>Brand: {this.props.techItem.brand}</p>
                                                 <p>Model: {this.props.techItem.model}</p>
                                                 <p>Renter: {this.props.techItem.renter}</p>
+                                                <StripeCheckout
+                                                stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa'
+                                                token={this.handleToken}
+                                                billingAddress
+                                                shippingAddress
+                                                amount={this.props.techItem.price * 100}
+                                                name={this.props.techItem.title}
+                                                />
                                         </div>
                                 </div>
                                 {this.props.techItem.messages.map(message =>
