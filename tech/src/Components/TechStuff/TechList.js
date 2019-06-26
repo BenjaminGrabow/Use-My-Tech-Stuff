@@ -64,18 +64,25 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 width: 29%;
 border: .08rem solid black;
 margin: 1rem;
-
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 flex-wrap: wrap;
 box-shadow: 1rem .5rem .5rem black;
+
+@media (max-width:1000px) {
+        width: 40%;
+}
+
+@media (max-width:800px) {
+        width: 80%;
+}
+
 }
  
 a {
 text-decoration: none;
-/* margin-top: 1rem; */
 }
  
 p {
@@ -136,7 +143,43 @@ img {
 width: 20rem;
 height: 12rem;
 box-shadow: 1rem .5rem .5rem black;
+
+@media (max-width:1200px) {
+        width: 17rem; 
 }
+
+@media (max-width:1100px) {
+        width: 15rem;
+}
+
+@media (max-width:1000px) {
+        width: 17rem;
+}
+
+@media(max-width:800px) {
+        width : 23rem;
+} 
+
+
+@media(max-width:550px) {
+        width : 20rem;
+}
+
+@media(max-width:480px) {
+        width : 17rem;
+}
+
+@media(max-width:400px) {
+        width : 14rem;
+}
+
+@media(max-width:330px) {
+        width : 11rem;
+}
+
+}
+
+
 
 .draggable {
 font-size: 3rem;
