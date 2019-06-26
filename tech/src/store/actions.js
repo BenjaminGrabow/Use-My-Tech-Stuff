@@ -26,23 +26,22 @@ export const login = creds => dispatch => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data })
     })
     .catch(err => {
-      dispatch({ type: LOGIN_FAIL, payload: err.response.data.message })
-      debugger
+      dispatch({ type: LOGIN_FAIL, payload: err.response.data.message });
     });
 };
 
 export const register = creds => dispatch => {
   return axios.post('https://usemytechstuffapp.herokuapp.com/api/register', creds)
     .then(res => {
-      dispatch({ type: REGISTER })
+      dispatch({ type: REGISTER });
     })
-}
+};
 
 export const fetch = () => dispatch => {
   dispatch({ type: LOADING })
 
   axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
-    dispatch({ type: SUCCESS, payload: res.data })
+    dispatch({ type: SUCCESS, payload: res.data });
   })
     .catch(err => {
       dispatch({ type: ERROR })
@@ -57,7 +56,7 @@ export const deleter = (id) => dispatch => {
       return axiosWithAuth().get("https://usemytechstuffapp.herokuapp.com/api/items")
       .then(res => {
       
-        dispatch({ type: DELETE, payload: res.data })
+        dispatch({ type: DELETE, payload: res.data });
       });
     });
 };
@@ -86,7 +85,7 @@ export const update = (id, owner, title, description, type,
 
     axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateItem)
       .then(res => {
-        dispatch({ type: UPDATE, payload: res.data.changes })
+        dispatch({ type: UPDATE, payload: res.data.changes });
 
       }).catch(err => {
       });
@@ -152,8 +151,8 @@ export const addRating = (id, message, stars) => {
   return { type: UPDATE_MESSAGES, message: newMessage, id: id }
 };
 
-export const search = (brand) => {
-  return { type: SEARCH, payload: brand }
+export const search = (brand) => dispatch => {
+  dispatch({ type: SEARCH, payload: brand })
 };
 
 export const back = () => {

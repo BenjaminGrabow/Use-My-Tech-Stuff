@@ -1,7 +1,7 @@
 import React from 'react';
 import loginPic from './loginPic.jpg';
 import { connect } from 'react-redux'
-import { login } from '../../store/actions';
+import { login, fetch } from '../../store/actions';
 import Loader from 'react-loader-spinner';
 import { Animated } from "react-animated-css";
 import styled from 'styled-components';
@@ -72,7 +72,11 @@ class LoginPage extends React.Component {
 
   login = e => {
     e.preventDefault();
-
+    
+    if(JSON.parse(localStorage.getItem("state")).techItems[0].messages[2] === undefined) {
+      this.props.fetch();
+    }
+    
     this.props.login(this.state.credentials)
       .then(() => {
         this.props.history.push('/protected')
@@ -138,4 +142,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { login })(LoginPage);
+export default connect(mapStateToProps, { login, fetch })(LoginPage);

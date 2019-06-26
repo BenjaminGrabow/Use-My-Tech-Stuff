@@ -27,7 +27,8 @@ const reducer = (state = initialState, action) => {
                         return { techItems: [], loading: true, error: null };
 
                 case types.SUCCESS:
-                        const result = action.payload.map(el => {
+       
+                const result = action.payload.map(el => {
                                 const copyOfData = Object.assign({}, el);
                                 copyOfData.messages = [
                                         {
@@ -161,11 +162,13 @@ const reducer = (state = initialState, action) => {
                         return { ...state, techItems: addMessage }
 
                 case types.SEARCH:
-                        const search = state.techItems.filter(item => item.brand === action.payload);
+                        const search = state.techItems.filter(item => item.brand.toLowerCase().startsWith(action.payload.toLowerCase()));
 
                         const copyOftechItems = state.techItems;
 
-                        return { ...state, techItems: search, copyOfList: copyOftechItems }
+                        return { ...state, techItems: search, 
+                                copyOfList: copyOftechItems 
+                        }
 
                 case types.BACK:
                         return { ...state, techItems: state.copyOfList }

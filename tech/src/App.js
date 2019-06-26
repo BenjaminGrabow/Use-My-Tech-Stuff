@@ -9,7 +9,6 @@ import TechContainer from './Components/TechStuff/TechContainer';
 import Footer from "./Components/Footer/Footer";
 import { Route } from 'react-router-dom';
 import PrivateRoute from './Components/Login/PrivateRoute';
-import { fetch } from './store/actions';
 import { connect } from 'react-redux';
 import './App.css';
 
@@ -21,12 +20,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchData();
+    console.log(JSON.parse(localStorage.getItem("state")).techItems[0].messages[2]);
+    // this.fetchData();
   };
 
-  fetchData = () => {
-    this.props.fetch();
-  };
+  // fetchData = () => {
+  //   this.props.fetch();
+  // };
 
 
   render() {
@@ -57,4 +57,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, { fetch })(App);
+export default connect(mapStateToProps)(App);
