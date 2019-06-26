@@ -61,7 +61,9 @@ export const update = (id, owner, title, description, type,
   price, availability, brand, model, imageURL,
   renter) => dispatch => {
     const numOwner2 = Number(owner);
+
     const numPrice2 = Number(price);
+
     const numRenter2 = Number(renter)
 
     const updateItem = {
@@ -79,12 +81,9 @@ export const update = (id, owner, title, description, type,
 
     axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateItem)
       .then(res => {
-
-        return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items')
-          .then(res => {
-            dispatch({ type: UPDATE, payload: res.data })
-          })
-      }).catch(err => {
+            dispatch({ type: UPDATE, payload: res.data.changes })
+     
+          }).catch(err => {
       });
   };
 
@@ -92,10 +91,12 @@ export const update = (id, owner, title, description, type,
 export const add = (owner, title, type, description,
   price, availability, brand, model, imgURL,
   renter) => (dispatch) => {
-
     const numOwner = Number(owner);
+
     const numPrice = Number(price);
+
     const numRenter = Number(renter)
+
     const newItem = {
       owner: numOwner,
       title: title,
@@ -154,9 +155,9 @@ export const back = () => {
 };
 
 export const buy = id => dispatch => {
- 
+
   axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`)
-  .then(res => {
-dispatch({ type: BUY, payload: res.data })
-  })
+    .then(res => {
+      dispatch({ type: BUY, payload: res.data })
+    })
 }

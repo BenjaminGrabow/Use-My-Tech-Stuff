@@ -9,13 +9,43 @@ import Droppable from './DragDrop/Droppable';
 
 const StyledDiv = styled.div`
 
+.functionality {
+height: 3rem;
+background: #bdc3c7; /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.navLink {
+  text-decoration: none;
+  /* font-size: ; */
+}
+
+.topButton {
+background-color: red;
+border-radius: 50%;
+width: 15%;
+height: 3rem;
+box-shadow: 1rem .5rem .5rem black;
+}
+
+.topInput {
+border-radius: 3rem;
+/* margin-top: .5rem; */
+box-shadow: 1rem .5rem .5rem black;
+width: 25%;
+height: 2rem;
+text-align: center;
+font-size: 1.5rem;
+}
+
 .techList {
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
-background: #0f0c29; /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: #bdc3c7; /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .techItem {
@@ -48,9 +78,9 @@ display:none;
 }
 
 .hiddenInput2 {
-  position: fixed;
-  top: 0;
-  right: 0%;
+position: fixed;
+top: 0;
+right: 0%;
 }
 
 .hiddenInput {
@@ -68,6 +98,7 @@ width: 100%;
 display: flex;
 justify-content: space-around;
 }
+
 input {
 border-radius: 3rem;
 margin-top: .5rem;
@@ -90,7 +121,7 @@ width: 10rem;
 height: 6rem;
 box-shadow: 1rem .5rem .5rem black;
 }
- 
+
 .draggable {
 font-size: 3rem;
 color: black;
@@ -98,20 +129,11 @@ height: 6rem;
 }
 
 #dr1 {
-  height: 6rem;
-  display: flex;
-  justify-content: center;
+height: 6rem;
+display: flex;
+justify-content: center;
 }
 
-.dr2 {
-  max-width: 100%;
-  height: 6rem;
-}
-
-#dr2 {
-  width: 100%;
-  height: 6rem;
-}
  
 .itemButton {
 border-radius: 50%;
@@ -120,30 +142,17 @@ width: 50%;
 height: 2.5rem;
 background: #00b09b; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #96c93d, #00b09b); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
- 
+background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
 box-shadow: 1rem .5rem .5rem black;
 font-weight: bold;
 }
 
 .sold {
-  font-size: 5rem;
-  color: red;
+font-size: 5rem;
+color: red;
 }
-
- 
 `;
 
-  // componentDidMount() {
-  //   localStorage.getItem('techItems') && this.setState({
-  //     techItems: JSON.parse(localStorage.getItem('techItems'))
-  //   })
-  // };
-  
-  // componentWillUpdate(nextProps, nextState) {
-  //   localStorage.setItem('techItems', JSON.stringify(nextState.techItems));
-  // }
-  
 class TechList extends React.Component {
   constructor(props) {
     super(props);
@@ -167,15 +176,6 @@ class TechList extends React.Component {
       inputAdd: 'off',
     }
   }
-  
-  // componentDidMount() {
-  //   this.fetchData() && localStorage.getItem('techItems') && this.setState({
-  //     techItems: JSON.parse(localStorage.getItem('techItems'))
-  //   })
-  // };
-  //             fetchData = () => {
-  //               this.props.fetch();
-  //             };
 
   handleChange = (e) => {
     this.setState({
@@ -198,7 +198,7 @@ class TechList extends React.Component {
   };
 
   updateIt = () => {
-    this.props.update(this.state.idForUpdate,this.state.owner, this.state.title,
+    this.props.update(this.state.idForUpdate, this.state.owner, this.state.title,
       this.state.type, this.state.description, this.state.price, this.state.availability, this.state.brand,
       this.state.model,
       this.state.imgURL, this.state.renter);
@@ -250,150 +250,158 @@ class TechList extends React.Component {
     });
   };
 
-  
-  // componentDidUpdate(nextProps, nextState) {
-  //   localStorage.setItem('techItems', JSON.stringify(this.props.techItems));
-  // };
-
+  logout = () => {
+    localStorage.removeItem('token');
+  };
 
   render() {
     return (
-<StyledDiv>
-      <div className="functionality">
-        <button 
-        onClick={this.props.back}>
-          Back
-</button>
-        <input
-          name="searchBrand"
-          onChange={this.handleChange}
-          value={this.state.searchBrand}
-          type="text"
-        />
-        <button onClick={this.searchIt}>
-          Search
-</button>
-        <button 
-        onClick={this.showAddInput}>
-          Add
-          </button>
-</div>
-<div 
-className="dr2">
-        <Droppable 
-        id="dr2" >
-        </Droppable>
-        </div>
-        <div 
-        className="techList">
-        {this.props.techItems.map(techItem => {
-          return <div
-            className={techItem.imgURL !== ""  ? "techItem" : 'off'}
-            key={techItem.id}>
-            <Droppable id="dr1">
-              <Draggable id={techItem.id}
-                className="draggable">
-                <Link
-                  id={techItem.id} to={`/protected/${techItem.title}`}>
-                  <img 
-                  id={techItem.model} 
-                  src={techItem.imgURL} 
-                  alt={techItem.id} />
-                </Link>
-              </Draggable>
-            </Droppable>
-            <Link
-              id={techItem.id} 
-              to={`/protected/${techItem.title}`}>
-              <h1>{techItem.brand}</h1>
+      <StyledDiv>
+        <div className="functionality">
+          <button 
+          className="topButton"
+          onClick={this.logout}>
+          <Link 
+        to="/login"
+        className="navLink">
+          Logout
             </Link>
-            <p>{techItem.type}</p>
-            <p>{techItem.model}</p>
-            <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? 'still to have' : 'SOLD'}</p>
-            <p>{techItem.description}</p>
-            <p>{techItem.price}$</p>
-            <button
-              className="itemButton"
-              onClick={() =>
-                this.props.deleter(techItem.id)}>
-              Delete
+          </button>
+          <button
+          className="topButton"
+            onClick={this.props.back}>
+            Back
 </button>
-            <button
-              className="itemButton"
-              onClick={() => this.showInput(techItem.id)}>
-              Update
-</button>
-<button 
-onClick={() => this.props.buy(techItem.id)} >
-  Buy
-  </button>
-          </div>
-        })}
-        <div className="hiddenInput">
-          <div
-            className={this.state.showInput === 'off' ? 'off' : 'on'}
-            >
-               <input
-          onChange={this.handleChange}
-          name="owner"
-          type="number"
-          value={this.state.owner}
-          placeholder="owner" />
           <input
-              onChange={this.handleChange}
-              name="title"
-              type="text"
-              value={this.state.title}
-              placeholder="title" />
-              <input
-              onChange={this.handleChange}
-              name="type"
-              type="text"
-              value={this.state.type}
-              placeholder="type" />
-            <input
-              onChange={this.handleChange}
-              name="price"
-              type="number"
-              value={this.state.price}
-              placeholder="price" />
-            <input
-              onChange={this.handleChange}
-              name="description"
-              type="text"
-              value={this.state.description}
-              placeholder="description" />
-            <input
-              onChange={this.handleChange}
-              name="brand"
-              type="text"
-              value={this.state.brand}
-              placeholder="brand" />
-            <input
-              onChange={this.handleChange}
-              name="model"
-              type="text"
-              value={this.state.model}
-              placeholder="model" />
-            <input
-              onChange={this.handleChange}
-              name="imgURL"
-              type="text"
-              value={this.state.imgURL}
-              placeholder="image url" />
-            <input
-              onChange={this.handleChange}
-              name="renter"
-              type="number"
-              value={this.state.renter}
-              placeholder="renter" />
-        <button onClick={
-          this.state.input === 'on' ? this.updateIt : this.adder
-          }>
-         {this.state.input === 'on' ? 'update' : 'add'}
+          placeholder="Search"
+          className="topInput"
+            name="searchBrand"
+            onChange={this.handleChange}
+            value={this.state.searchBrand}
+            type="text"
+          />
+          <button 
+          onClick={this.searchIt}
+          className="topButton">
+            Search
 </button>
-          </div>
+          <button
+          className="topButton"
+            onClick={this.showAddInput}>
+            Add
+          </button>
         </div>
+        <div
+          className="techList">
+          {this.props.techItems.map(techItem => {
+            return <div
+              className={techItem.imgURL !== "" ? "techItem" : 'off'}
+              key={techItem.id}>
+              <Droppable id="dr1">
+                <Draggable id={techItem.id}
+                  className="draggable">
+                  <Link
+                    id={techItem.id} to={`/protected/${techItem.title}`}>
+                    <img
+                      id={techItem.model}
+                      src={techItem.imgURL}
+                      alt={techItem.id} />
+                  </Link>
+                </Draggable>
+              </Droppable>
+              <Link
+                id={techItem.id}
+                to={`/protected/${techItem.title}`}>
+                <h1>{techItem.brand}</h1>
+              </Link>
+              <p>{techItem.type}</p>
+              <p>{techItem.model}</p>
+              <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? 'still to have' : 'SOLD'}</p>
+              <p>{techItem.description}</p>
+              <p>{techItem.price}$</p>
+              <button
+                className="itemButton"
+                onClick={() =>
+                  this.props.deleter(techItem.id)}>
+                Delete
+</button>
+              <button
+                className="itemButton"
+                onClick={() => this.showInput(techItem.id)}>
+                Update
+</button>
+              <button
+              className="itemButton"
+                onClick={() => this.props.buy(techItem.id)} >
+                Buy
+  </button>
+            </div>
+          })}
+          <div className="hiddenInput">
+            <div
+              className={this.state.showInput === 'off' ? 'off' : 'on'}
+            >
+              <input
+                onChange={this.handleChange}
+                name="owner"
+                type="number"
+                value={this.state.owner}
+                placeholder="owner" />
+              <input
+                onChange={this.handleChange}
+                name="title"
+                type="text"
+                value={this.state.title}
+                placeholder="title" />
+              <input
+                onChange={this.handleChange}
+                name="type"
+                type="text"
+                value={this.state.type}
+                placeholder="type" />
+              <input
+                onChange={this.handleChange}
+                name="price"
+                type="number"
+                value={this.state.price}
+                placeholder="price" />
+              <input
+                onChange={this.handleChange}
+                name="description"
+                type="text"
+                value={this.state.description}
+                placeholder="description" />
+              <input
+                onChange={this.handleChange}
+                name="brand"
+                type="text"
+                value={this.state.brand}
+                placeholder="brand" />
+              <input
+                onChange={this.handleChange}
+                name="model"
+                type="text"
+                value={this.state.model}
+                placeholder="model" />
+              <input
+                onChange={this.handleChange}
+                name="imgURL"
+                type="text"
+                value={this.state.imgURL}
+                placeholder="image url" />
+              <input
+                onChange={this.handleChange}
+                name="renter"
+                type="number"
+                value={this.state.renter}
+                placeholder="renter" />
+              <button onClick={
+                this.state.input === 'on' ? this.updateIt : this.adder
+              }>
+                {this.state.input === 'on' ? 'update' : 'add'}
+              </button>
+            </div>
+          </div>
         </div>
       </StyledDiv>
     );
