@@ -164,4 +164,4 @@ export const buy = id => dispatch => {
     .then(res => {
       dispatch({ type: BUY, payload: res.data })
     })
-}
+};

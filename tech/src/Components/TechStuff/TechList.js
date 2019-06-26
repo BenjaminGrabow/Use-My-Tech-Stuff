@@ -25,7 +25,6 @@ padding-bottom: 2rem;
         align-items: center;
         padding-bottom: 10rem;
 }
-
 }
 
 .navLink {
@@ -100,7 +99,6 @@ box-shadow: 1rem .5rem .5rem black;
 @media (max-width:800px) {
         width: 80%;
 }
-
 }
  
 a {
@@ -198,10 +196,7 @@ box-shadow: 1rem .5rem .5rem black;
 @media(max-width:330px) {
         width : 11rem;
 }
-
 }
-
-
 
 .draggable {
 font-size: 3rem;

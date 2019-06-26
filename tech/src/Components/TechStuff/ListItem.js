@@ -9,44 +9,87 @@ import StripeCheckout from 'react-stripe-checkout';
 const StyledDiv = styled.div`
 
 .article {
-        display: flex;
-        width:100%;
-        justify-content: space-around;
+display: flex;
+width:100%;
+justify-content: space-around;
 
-        img {
-        width: 100%;
-        height: 50rem;     
-        }
-        
+@media(max-width:750px) {
+flex-direction: column;
 }
-        p {
-                font-size: 1.5rem;
-                font-weight: bold;
-        }
 
-        .text {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-around;
-          align-items: center;
-          width: 100%;
-        }
+img {
+width: 100%;
+height: 50rem; 
+
+@media(max-width:750px) {
+height: 40rem;
+}
+}        
+}
+
+p {
+font-size: 1.5rem;
+font-weight: bold;
+}
+
+.text {
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+width: 100%;
+}
 
 .ratings {
-        display: flex;
-        margin: 1rem;
-        justify-content: space-around;
+display: flex;
+justify-content: space-around;
+align-items: center;
+border: .5rem solid #f7ff56;
+
+@media(max-width:650px) {
+flex-direction: column;
+}
 }
 
 .rating-pic {
-        width: 10%;
-        height: 6rem;
-        border-radius: 50%
+width: 20%;
+height: 9rem;
+border-radius: 50%;
+
+@media(max-width:1100px) {
+width : 20%;
+} 
+
+@media(max-width:650px) {
+width: 35%;
+}
+
+@media(max-width:650px) {
+width: 45%;
+}
+}
+
+.message {
+@media(max-width:650px) {
+order: 2;
+}
 }
 
 .checked {
-  color: orange;
+color: orange;
 } 
+
+span {
+font-size: 1.5rem;
+}
+
+.star {
+@media(max-width:650px) {
+display: flex;
+order: 1;
+margin: 1rem;
+}
+}
 
 .adder {
 height: 3rem;
@@ -56,7 +99,7 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 padding: 1.5rem 0 5rem 0;;
 }
 
-Button {
+button {
 background-color: white;
 border-radius: 20%;
 width: 15%;
@@ -64,11 +107,18 @@ height: 5rem;
 box-shadow: 1rem .5rem .5rem black;
 font-weight: bold;
 font-size: 1.5rem;
+border: .1rem solid #3498db;
+color: black;
+transition: 0.8s;
+cursor: pointer;
+}
+
+button:hover {
+color: red;
 }
 
 Input {
 border-radius: 3rem;
-/* margin-top: .5rem; */
 box-shadow: 1rem .5rem .5rem black;
 width: 25%;
 height: 4rem;
@@ -77,12 +127,12 @@ font-size: 1.5rem;
 }
 
 .buy {
-        width: 50%;
-        height: 5rem;
+width: 50%;
+height: 5rem;
 }
 
 a {
-        text-decoration: none;
+text-decoration: none;
 }
 
 `;
@@ -158,12 +208,16 @@ class List extends React.Component {
               src={message.img}
               alt={message.star5}
               className="rating-pic" />
-            <p>{message.message}</p>
-            <span className={message.star1}></span>
-            <span className={message.star2}></span>
-            <span className={message.star3}></span>
-            <span className={message.star4}></span>
-            <span className={message.star5}></span>
+            <p
+              className="message">
+              {message.message}</p>
+            <div className="star">
+              <span className={message.star1}></span>
+              <span className={message.star2}></span>
+              <span className={message.star3}></span>
+              <span className={message.star4}></span>
+              <span className={message.star5}></span>
+            </div>
           </div>
         )}
         <div
