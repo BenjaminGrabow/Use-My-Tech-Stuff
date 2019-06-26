@@ -158,7 +158,7 @@ width: 85%;
 height: 4rem;
 background-color: white;
 box-shadow: 1rem .5rem .5rem black;
-font-size: 1rem;
+font-size: 1.5rem;
 font-weight: bold;
 cursor: pointer;
 }
@@ -170,6 +170,18 @@ background: red;
 .sold {
 font-size: 3rem;
 color: black;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  width: 80%;
+}
+
+span {
+  font-weight: bold;
 }
 
 `;
@@ -350,13 +362,15 @@ class TechList extends React.Component {
               <Link
                 id={techItem.id}
                 to={`/protected/${techItem.title}`}>
-                <h1>{techItem.brand}</h1>
+                <h1>Title: {techItem.brand}</h1>
               </Link>
-              <p>{techItem.type}</p>
-              <p>{techItem.model}</p>
-              <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? 'still to have' : 'SOLD'}</p>
-              <p>{techItem.description}</p>
-              <p>{techItem.price}$</p>
+              <div className="text">
+              <p><span>Type:</span> {techItem.type}</p>
+              <p><span>Model:</span> {techItem.model}</p>
+              <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
+              <p><span>Description:</span> {techItem.description}</p>
+              <p><span>Price:</span> {techItem.price}$</p>
+              </div>
               <button
                 className="itemButton"
                 onClick={() =>

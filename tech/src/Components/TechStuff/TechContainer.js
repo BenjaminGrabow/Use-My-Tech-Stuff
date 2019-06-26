@@ -25,6 +25,17 @@ height: 12rem;
 img {
 height: 12rem;
 }
+
+button {
+  border: .1rem solid #3498db;
+  color: black;
+  transition: 0.8s;
+}
+
+  button:hover {
+   color: red;
+  }
+
 `;
 
 class TechContainer extends React.Component {

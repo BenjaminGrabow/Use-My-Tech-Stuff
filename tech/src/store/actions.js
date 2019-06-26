@@ -25,7 +25,10 @@ export const login = creds => dispatch => {
       localStorage.setItem('token', res.data.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data })
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({ type: LOGIN_FAIL, payload: err.response.data.message })
+      debugger
+    });
 };
 
 export const register = creds => dispatch => {
@@ -123,7 +126,7 @@ export const add = (owner, title, type, description,
       });
   };
 
-export const addRating = (id, message, stars) => (dispatch) => {
+export const addRating = (id, message, stars) => {
   
   const orangeStars = 'fa fa-star checked'.repeat(stars);
   
@@ -144,7 +147,7 @@ export const addRating = (id, message, stars) => (dispatch) => {
           star5: mergeArrays[4]
         };
 
-  dispatch({ type: UPDATE_MESSAGES, message: newMessage, id: id })
+  return { type: UPDATE_MESSAGES, message: newMessage, id: id }
 };
 
 export const search = (brand) => {

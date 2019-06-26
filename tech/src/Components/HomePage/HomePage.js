@@ -15,6 +15,7 @@ const StyledDiv = styled.div`
         background-image: url('https://images.pexels.com/photos/1656579/pexels-photo-1656579.jpeg?cs=srgb&dl=australia-beach-free-wallpaper-1656579.jpg&fm=jpg');
 
         p {
+                color: white;
 font-size: 1.5rem;
 
         }
@@ -54,17 +55,19 @@ a {
 
 
 button {
-        background-color: #28a745;
-        color: white;
-        border-radius: 2rem;
+        background-color: white;
+        border-radius: 20%;
+        width: 30%;
+        height: 3rem;
         box-shadow: 1rem .5rem .5rem black;
+        font-size: 1.5rem;
 }
 
 .left {
         margin: 1rem;
 }
 .trust {
-        color: #dedede;
+        color: white;
         font-weight: bold;
         font-size: .8rem;
 }
@@ -80,7 +83,7 @@ display: flex;
 align-items: center;
         img {
                 width: 40%;
-                height: 10rem;
+                height: 15rem;
         }
 }
 `;
@@ -114,7 +117,7 @@ class HomePage extends React.Component {
                                 count++;
                                 index = 0;
                         }
-                        setTimeout(type, 200);
+                        setTimeout(type, 300);
                 }());
         };
 
@@ -143,7 +146,7 @@ class HomePage extends React.Component {
                                                          Bypass the middleman and rent from a real person!
 </p>
                                                 <button>Get a demo</button>
-                                                <p className="trust">Trusted by finance teams at all stages</p>
+                                                <p className="trust">Trusted by technology companies at all stages</p>
                                         </Animated>
                                         <Animated animationIn="bounceInLeft"
                                                 animationOut="bounce"

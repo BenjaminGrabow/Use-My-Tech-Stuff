@@ -10,6 +10,9 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
         switch (action.type) {
+                case types.REGISTER:
+                        return { ...state };
+
                 case types.LOGIN_START:
                         return { ...state, loggingIn: true };
 
@@ -17,10 +20,8 @@ const reducer = (state = initialState, action) => {
                         return { ...state, logginIn: false };
 
                 case types.LOGIN_FAIL:
-                        return {}
+                        return { ...state, loggingIn: false, error: action.payload}
 
-                case types.REGISTER:
-                        return { ...state }
 
                 case types.LOADING:
                         return { techItems: [], loading: true, error: null };
