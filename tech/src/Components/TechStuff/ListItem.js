@@ -18,11 +18,12 @@ flex-direction: column;
 }
 
 img {
-width: 100%;
+width: 50%;
 height: 50rem; 
 
 @media(max-width:750px) {
 height: 40rem;
+width: 100%;
 }
 }        
 }
@@ -96,7 +97,20 @@ height: 3rem;
 background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-padding: 1.5rem 0 5rem 0;;
+padding: 1.5rem 0 5rem 0;
+
+@media(max-width:650px) {
+padding-bottom: 18rem;
+}
+}
+
+form {
+  @media(max-width:650px) {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
 }
 
 button {
@@ -111,6 +125,10 @@ border: .1rem solid #3498db;
 color: black;
 transition: 0.8s;
 cursor: pointer;
+
+@media(max-width:650px) {
+width: 90%;
+}
 }
 
 button:hover {
@@ -124,6 +142,11 @@ width: 25%;
 height: 4rem;
 text-align: center;
 font-size: 1.5rem;
+
+
+@media(max-width:650px) {
+width: 90%;
+}
 }
 
 .buy {
