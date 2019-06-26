@@ -8,7 +8,7 @@ import styled from 'styled-components';
 const StyledContainer = styled.div`
 
 .dr2 {
-height: 6rem;
+height: 12rem;
 width: 100%;
 display: flex;
 background: #bdc3c7;  /* fallback for old browsers */
@@ -23,7 +23,7 @@ height: 6rem;
 }
 
 img {
-height: 6rem;
+height: 12rem;
 }
 `;
 

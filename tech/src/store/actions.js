@@ -144,22 +144,7 @@ export const addRating = (id, message, stars) => (dispatch) => {
           star5: mergeArrays[4]
         };
 
-
   dispatch({ type: UPDATE_MESSAGES, message: newMessage, id: id })
-
-  // axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items`)
-  //   .then(res => {
-  //     const theFriend = res.data[id];
-
-  //     const updateFriend = theFriend.messages.push(newMessage);
-
-  //     return axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, theFriend).then(res => {
-
-  //       return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
-  //         dispatch({ type: UPDATE_MESSAGES, payload: res.data })
-  //       })
-  //     });
-  //   });
 };
 
 export const search = (brand) => {

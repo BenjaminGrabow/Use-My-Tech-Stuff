@@ -25,17 +25,17 @@ padding-bottom: 2rem;
 }
 
 .topButton {
-background: #c31432;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
-border-radius: 50%;
+background-color: white;
+border-radius: 20%;
 width: 15%;
 height: 5rem;
 box-shadow: 1rem .5rem .5rem black;
+cursor: pointer;
 }
 
 .pButton {
 font-size: 1.5rem;
+font-weight: bold;
 }
 
 .topInput {
@@ -43,7 +43,7 @@ border-radius: 3rem;
 /* margin-top: .5rem; */
 box-shadow: 1rem .5rem .5rem black;
 width: 25%;
-height: 2rem;
+height: 100%;
 text-align: center;
 font-size: 1.5rem;
 }
@@ -61,9 +61,10 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-width: 22%;
+width: 29%;
 border: .08rem solid black;
 margin: 1rem;
+
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -79,6 +80,7 @@ text-decoration: none;
  
 p {
 color: black;
+font-size: 1.5rem;
 margin: 0;
 }
  
@@ -120,44 +122,45 @@ font-size: 3rem;
  
 button {
 
-background-color: red;
-border-radius: 50%;
+background-color: white;
+border-radius: 20%;
 width: 40%;
 height: 6rem;
 box-shadow: 1rem .5rem .5rem black;
 font-size: 2.5rem;
+cursor: pointer;
 }
 }
  
 img {
-width: 10rem;
-height: 6rem;
+width: 20rem;
+height: 12rem;
 box-shadow: 1rem .5rem .5rem black;
 }
 
 .draggable {
 font-size: 3rem;
 color: black;
-height: 6rem;
+height: 12rem;
 }
 
 #dr1 {
-height: 6rem;
+height: 12rem;
 display: flex;
 justify-content: center;
 }
 
  
 .itemButton {
-border-radius: 50%;
+border-radius: 20%;
 margin: .3rem;
-width: 50%;
-height: 2.5rem;
-background: #00b09b; /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #96c93d, #00b09b); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
+width: 85%;
+height: 4rem;
+background-color: white;
 box-shadow: 1rem .5rem .5rem black;
+font-size: 1rem;
 font-weight: bold;
+cursor: pointer;
 }
 
 .soldItem {
@@ -165,7 +168,7 @@ background: red;
 }
 
 .sold {
-font-size: 5rem;
+font-size: 3rem;
 color: black;
 }
 
