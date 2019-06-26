@@ -58,7 +58,32 @@ const reducer = (state = initialState, action) => {
                         return { techItems: [], loading: false, error: 'ERROR NETWORK' };
 
                 case types.DELETE:
-                        return { ...state, techItems: action.payload };
+                        const addMessageSection = action.payload.map(el => {
+                                const copyOfData = Object.assign({}, el);
+                                copyOfData.messages = [
+                                        {
+                                                message: 'Very good work, next time again !',
+                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+                                                star1: 'fa fa-star checked',
+                                                star2: 'fa fa-star checked',
+                                                star3: 'fa fa-star checked',
+                                                star4: 'fa fa-star checked',
+                                                star5: 'fa fa-star'
+                                        },
+                                        {
+                                                message: 'Very good work, next time again !',
+                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+                                                star1: 'fa fa-star checked',
+                                                star2: 'fa fa-star checked',
+                                                star3: 'fa fa-star checked',
+                                                star4: 'fa fa-star checked',
+                                                star5: 'fa fa-star'
+                                        },
+                                ];
+                                return copyOfData;
+                        });
+
+                        return { ...state, techItems: addMessageSection };
 
                 case types.UPDATE:
                         const changeItem = state.techItems.map(item => {

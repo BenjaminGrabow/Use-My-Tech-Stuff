@@ -9,7 +9,6 @@ import Droppable from './DragDrop/Droppable';
 import { Animated } from "react-animated-css";
 
 const StyledDiv = styled.div`
-position: relative;
 
 .functionality {
 height: 3rem;
@@ -25,10 +24,6 @@ padding-bottom: 2rem;
         align-items: center;
         padding-bottom: 10rem;
 }
-}
-
-.navLink {
-  text-decoration: none;
 }
 
 .topButton {

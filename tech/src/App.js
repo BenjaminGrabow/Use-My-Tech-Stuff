@@ -3,6 +3,7 @@ import HomePage from './Components/HomePage/HomePage'
 import LoginPage from "./Components/Login/LoginPage";
 import RegisterPage from "./Components/Register/RegisterPage";
 import ListItem from './Components/TechStuff/ListItem';
+import User from './Components/TechStuff/User';
 import SliderMode from './Components/TechStuff/SliderMode';
 import TechContainer from './Components/TechStuff/TechContainer';
 import Footer from "./Components/Footer/Footer";
@@ -39,6 +40,7 @@ class App extends React.Component {
           component={TechContainer}
         />
         <Route path="/protected/slide_mode" component={SliderMode} />
+        <Route path="/protected/user" component={User} />
         {this.props.techItems.map((techItem) => <Route
           key={techItem.id}
           path={`/protected/${techItem.title}`}

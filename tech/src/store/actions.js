@@ -53,8 +53,10 @@ export const deleter = (id) => dispatch => {
 
   axiosWithAuth().delete(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`)
     .then(res => {
-
-      return axiosWithAuth().get("https://usemytechstuffapp.herokuapp.com/api/items").then(res => {
+      
+      return axiosWithAuth().get("https://usemytechstuffapp.herokuapp.com/api/items")
+      .then(res => {
+      
         dispatch({ type: DELETE, payload: res.data })
       });
     });

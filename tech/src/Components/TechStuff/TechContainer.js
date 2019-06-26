@@ -7,6 +7,11 @@ import styled from 'styled-components';
 
 const StyledContainer = styled.div`
 
+nav {
+  display: flex;
+  justify-content: space-around;
+}
+
 .navLink {
 text-decoration: none;
 font-size: 2rem;
@@ -52,11 +57,18 @@ class TechContainer extends React.Component {
   render() {
     return (
       <StyledContainer>
+        <nav>
         <NavLink
           className="navLink"
           to="/protected/slide_mode" >
           Slide Mode
            </NavLink>
+           <NavLink
+          className="navLink"
+          to="/protected/user" >
+          User
+           </NavLink>
+           </nav>
         <div
           className="dr2">
           <Droppable

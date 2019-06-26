@@ -3,12 +3,22 @@ import { connect } from 'react-redux';
 import { buy, deleter, add, update, search, back } from '../../store/actions';
 import 'react-animated-slider/build/horizontal.css';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Animated } from "react-animated-css";
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
 
 const StyledDiv = styled.div`
+
+nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navLink {
+text-decoration: none;
+font-size: 2rem;
+}
 
 .functionality {
 height: 3rem;
@@ -308,6 +318,18 @@ class SliderMode extends React.Component {
   render() {
     return (
       <StyledDiv>
+        <nav>
+        <NavLink
+          to="/protected"
+          className="navLink">
+          Normal View
+         </NavLink>
+         <NavLink
+          className="navLink"
+          to="/protected/user" >
+          User
+           </NavLink>
+           </nav>
         <div className="functionality">
           <button
             className="topButton"
@@ -357,55 +379,55 @@ class SliderMode extends React.Component {
 
         <div
           className="techList">
-            <Slider
+          <Slider
             className="slider">
-          {this.props.techItems.map(techItem => {
-            return <Animated
-              animationIn="rollIn"
-              animationOut="slideOutDown"
-              animationInDuration={1800}
-              animationOutDuration={1800}
-              isVisible={true}
-              className={techItem.availability ? 'techItem' : 'soldItem techItem'}
-              key={techItem.id}>
-                  <Link
-                    id={techItem.id} to={`/protected/${techItem.title}`}>
-                    <img
-                      id={techItem.model}
-                      src={techItem.imgURL}
-                      alt={techItem.id} />
-                  </Link>
-              <Link
-                id={techItem.id}
-                to={`/protected/${techItem.title}`}>
-                <h1>Title: {techItem.brand}</h1>
-              </Link>
-              <div className="text">
-              <p><span>Type:</span> {techItem.type}</p>
-              <p><span>Model:</span> {techItem.model}</p>
-              <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
-              <p><span>Description:</span> {techItem.description}</p>
-              <p><span>Price:</span> {techItem.price}$</p>
-              </div>
-              <button
-                className="itemButton"
-                onClick={() =>
-                  this.props.deleter(techItem.id)}>
-                Delete
+            {this.props.techItems.map(techItem => {
+              return <Animated
+                animationIn="rollIn"
+                animationOut="slideOutDown"
+                animationInDuration={1800}
+                animationOutDuration={1800}
+                isVisible={true}
+                className={techItem.availability ? 'techItem' : 'soldItem techItem'}
+                key={techItem.id}>
+                <Link
+                  id={techItem.id} to={`/protected/${techItem.title}`}>
+                  <img
+                    id={techItem.model}
+                    src={techItem.imgURL}
+                    alt={techItem.id} />
+                </Link>
+                <Link
+                  id={techItem.id}
+                  to={`/protected/${techItem.title}`}>
+                  <h1>Title: {techItem.brand}</h1>
+                </Link>
+                <div className="text">
+                  <p><span>Type:</span> {techItem.type}</p>
+                  <p><span>Model:</span> {techItem.model}</p>
+                  <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
+                  <p><span>Description:</span> {techItem.description}</p>
+                  <p><span>Price:</span> {techItem.price}$</p>
+                </div>
+                <button
+                  className="itemButton"
+                  onClick={() =>
+                    this.props.deleter(techItem.id)}>
+                  Delete
 </button>
-              <button
-                className="itemButton"
-                onClick={() => this.showInput(techItem.id)}>
-                Update
+                <button
+                  className="itemButton"
+                  onClick={() => this.showInput(techItem.id)}>
+                  Update
 </button>
-              <button
-                className="itemButton"
-                onClick={() => this.props.buy(techItem.id)} >
-                Buy
+                <button
+                  className="itemButton"
+                  onClick={() => this.props.buy(techItem.id)} >
+                  Buy
   </button>
 
-            </Animated>
-          })}
+              </Animated>
+            })}
           </Slider>
         </div>
         <div className="hiddenInput">
