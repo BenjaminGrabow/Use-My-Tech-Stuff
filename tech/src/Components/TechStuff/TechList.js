@@ -331,11 +331,13 @@ class TechList extends React.Component {
   };
 
   searchIt = () => {
-    this.props.search(this.state.searchBrand);
 
-    this.setState({
-      searchBrand: '',
-    });
+      this.props.search(this.state.searchBrand);
+
+      this.setState({
+        searchBrand: '',
+      });
+
   };
 
   logout = () => {
@@ -420,11 +422,11 @@ class TechList extends React.Component {
                 <h1>Title: {techItem.brand}</h1>
               </Link>
               <div className="text">
-              <p><span>Type:</span> {techItem.type}</p>
-              <p><span>Model:</span> {techItem.model}</p>
-              <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
-              <p><span>Description:</span> {techItem.description}</p>
-              <p><span>Price:</span> {techItem.price}$</p>
+                <p><span>Type:</span> {techItem.type}</p>
+                <p><span>Model:</span> {techItem.model}</p>
+                <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
+                <p><span>Description:</span> {techItem.description}</p>
+                <p><span>Price:</span> {techItem.price}$</p>
               </div>
               <button
                 className="itemButton"

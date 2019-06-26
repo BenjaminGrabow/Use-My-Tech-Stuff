@@ -125,22 +125,20 @@ const reducer = (state = initialState, action) => {
                                 return copyOfData;
                         });
 
-                        addTheMessages.map(newItem => state.techItems.map(oldItem => {
+                        addTheMessages.map(newItem => 
+                                state.techItems.map(oldItem => {
                                 if(newItem.id === oldItem.id){
                                         newItem.messages = oldItem.messages
                                 } return newItem
                         }));
 
                         return { ...state, techItems: addTheMessages };
+                        
+                        case types.ADD:
 
-                case types.ADD:
-
-                        const copyArray = state.techItems;
-                        copyArray.unshift(action.payload);
-
-                        const addMessagesToNewPost = copyArray.map(el => {
-                                const copyOfData = Object.assign({}, el);
-                                copyOfData.messages = [
+                                const copyArray = state.techItems;
+                                
+                                action.payload.messages =  [
                                         {
                                                 message: 'Very good work, next time again !',
                                                 img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
@@ -160,14 +158,14 @@ const reducer = (state = initialState, action) => {
                                                 star5: 'fa fa-star'
                                         },
                                 ];
+                                
+                        copyArray.unshift(action.payload);
+
+                        const addMessagesToNewPost = copyArray.map(el => {
+                                const copyOfData = Object.assign({}, el);
+                        
                                 return copyOfData;
                         });
-
-                        addMessagesToNewPost.map(newItem => state.techItems.map(oldItem => {
-                                if(newItem.id === oldItem.id){
-                                        newItem.messages = oldItem.messages
-                                } return newItem
-                        }));
 
                         return { ...state, techItems: addMessagesToNewPost }
 
