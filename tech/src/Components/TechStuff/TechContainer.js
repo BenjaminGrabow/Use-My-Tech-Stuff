@@ -48,6 +48,7 @@ class TechContainer extends React.Component {
   render() {
     return (
       <StyledContainer>
+        <NavLink to="/protected/slide_mode" >Slider</NavLink>
         <div
           className="dr2">
           <Droppable

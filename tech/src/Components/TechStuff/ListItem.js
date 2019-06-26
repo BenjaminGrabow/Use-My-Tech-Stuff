@@ -45,7 +45,7 @@ width: 100%;
 display: flex;
 justify-content: space-around;
 align-items: center;
-border: .5rem solid #f7ff56;
+border: .5rem solid #facf5a;
 
 @media(max-width:650px) {
 flex-direction: column;
