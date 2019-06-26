@@ -4,8 +4,6 @@ import { buy, deleter, add, update, search, back } from '../../store/actions';
 import 'react-animated-slider/build/horizontal.css';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Draggable from './DragDrop/Draggable';
-import Droppable from './DragDrop/Droppable';
 import { Animated } from "react-animated-css";
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
@@ -18,10 +16,14 @@ background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 padding-bottom: 2rem;
-}
 
-.navLink {
-  text-decoration: none;
+@media (max-width:610px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 10rem;
+}
 }
 
 .topButton {
@@ -31,11 +33,27 @@ width: 15%;
 height: 5rem;
 box-shadow: 1rem .5rem .5rem black;
 cursor: pointer;
+border: .1rem solid #3498db;
+  color: black;
+
+  @media (max-width:610px) {
+        width: 90%;
+        margin: .5rem;
+}
 }
 
 .pButton {
 font-size: 1.5rem;
 font-weight: bold;
+transition: 0.8s;
+
+@media (max-width:610px) {
+font-size: 2.5rem
+}
+
+&:hover {
+color: red;
+}
 }
 
 .topInput {
@@ -45,12 +63,22 @@ width: 25%;
 height: 100%;
 text-align: center;
 font-size: 1.5rem;
+
+@media (max-width:610px) {
+        width: 90%;
+        margin: .5rem;
+        font-size: 2.5rem
+}
 }
 
 .techList {
 background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+@media (max-width:610px) {
+        padding-top: 10rem;
+}
 }
 
 .techItem {
@@ -58,13 +86,11 @@ background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 width: 100%;
-border: .08rem solid black;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 flex-wrap: wrap;
-box-shadow: 1rem .5rem .5rem black;
 height: 45rem;
 }
  
@@ -74,7 +100,7 @@ text-decoration: none;
  
 p {
 color: black;
-font-size: 1rem;
+font-size: 2rem;
 margin: 0;
 }
  
@@ -86,46 +112,7 @@ position     : fixed;
 transform    : translate(-250%, -50%);
 }
 
-.hiddenInput {
-background: #bdc3c7; /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-width: 100%;
-height: 4rem;
-transition: all 1s ease-in;
 
-.on {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  top          : 50%;
-  left         : 50%;
-  position     : fixed;
-  transform    : translate(-20%, -50%);
-}
-
-input {
-border-radius: 3rem;
-margin: .5rem 0 0 0;
-box-shadow: 1rem .5rem .5rem black;
-width: 40%;
-height: 4rem;
-text-align: center;
-font-size: 3rem;
-}
- 
-button {
-
-background-color: white;
-border-radius: 20%;
-width: 40%;
-height: 6rem;
-box-shadow: 1rem .5rem .5rem black;
-font-size: 2.5rem;
-cursor: pointer;
-}
-}
- 
 img {
 width: 20rem;
 height: 12rem;
@@ -133,15 +120,22 @@ box-shadow: 1rem .5rem .5rem black;
 }
 
 .itemButton {
-border-radius: 20%;
-margin: .3rem;
-width: 85%;
-height: 4rem;
-background-color: white;
-box-shadow: 1rem .5rem .5rem black;
-font-size: 1.5rem;
-font-weight: bold;
-cursor: pointer;
+  border-radius: 20%;
+  margin: .3rem;
+  width: 85%;
+  height: 4rem;
+  background-color: white;
+  box-shadow: 1rem .5rem .5rem black;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: .1rem solid #3498db;
+  color: black;
+  transition: 0.8s;
+}
+
+button:hover {
+color: red;
 }
 
 .soldItem {
@@ -154,21 +148,60 @@ color: black;
 }
 
 .text {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: left;
-  width: 80%;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+text-align: left;
+width: 80%;
 }
 
 span {
-  font-weight: bold;
+font-weight: bold;
 }
 
 .slider {
-  height: 45rem;
+height: 45rem;
 }
 
+.hiddenInput {
+background: #bdc3c7; /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+width: 100%;
+height: 4rem;
+transition: all 1s ease-in;
+
+.on {
+width: 100%;
+display: flex;
+flex-direction: column;
+top          : 50%;
+left         : 50%;
+position     : fixed;
+transform    : translate(-20%, -50%);
+}
+
+input {
+border-radius: 3rem;
+margin: .5rem 0 0 0;
+box-shadow: 1rem .5rem .5rem black;
+width: 40%;
+height: 4rem;
+text-align: center;
+font-size: 3rem;
+}
+
+button {
+
+background-color: white;
+border-radius: 20%;
+width: 40%;
+height: 6rem;
+box-shadow: 1rem .5rem .5rem black;
+font-size: 2.5rem;
+cursor: pointer;
+}
+}
 `;
 
 class SliderMode extends React.Component {
@@ -335,9 +368,6 @@ class SliderMode extends React.Component {
               isVisible={true}
               className={techItem.availability ? 'techItem' : 'soldItem techItem'}
               key={techItem.id}>
-              <Droppable id="dr1">
-                <Draggable id={techItem.id}
-                  className="draggable">
                   <Link
                     id={techItem.id} to={`/protected/${techItem.title}`}>
                     <img
@@ -345,8 +375,6 @@ class SliderMode extends React.Component {
                       src={techItem.imgURL}
                       alt={techItem.id} />
                   </Link>
-                </Draggable>
-              </Droppable>
               <Link
                 id={techItem.id}
                 to={`/protected/${techItem.title}`}>
