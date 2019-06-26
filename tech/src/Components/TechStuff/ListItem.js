@@ -14,15 +14,23 @@ const StyledDiv = styled.div`
         justify-content: space-around;
 
         img {
-        width: 50%;
-        height: 30rem;     
+        width: 100%;
+        height: 50rem;     
         }
         
+}
         p {
                 font-size: 1.5rem;
                 font-weight: bold;
         }
-}
+
+        .text {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: center;
+          width: 100%;
+        }
 
 .ratings {
         display: flex;
@@ -32,7 +40,7 @@ const StyledDiv = styled.div`
 
 .rating-pic {
         width: 10%;
-        height: 4rem;
+        height: 6rem;
         border-radius: 50%
 }
 
@@ -45,14 +53,17 @@ height: 3rem;
 background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+padding: 1.5rem 0 5rem 0;;
 }
 
 Button {
-background-color: red;
-border-radius: 50%;
+background-color: white;
+border-radius: 20%;
 width: 15%;
-height: 3rem;
+height: 5rem;
 box-shadow: 1rem .5rem .5rem black;
+font-weight: bold;
+font-size: 1.5rem;
 }
 
 Input {
@@ -60,13 +71,13 @@ border-radius: 3rem;
 /* margin-top: .5rem; */
 box-shadow: 1rem .5rem .5rem black;
 width: 25%;
-height: 2rem;
+height: 4rem;
 text-align: center;
 font-size: 1.5rem;
 }
 
 .buy {
-        width: 100%;
+        width: 50%;
         height: 5rem;
 }
 

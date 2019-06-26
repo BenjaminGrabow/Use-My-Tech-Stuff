@@ -19,7 +19,7 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 #dr2 {
 width: 100%;
 margin: 0;
-height: 6rem;
+height: 12rem;
 }
 
 img {

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { register } from '../../store/actions';
 import loginPic from '../Login/loginPic.jpg';
-import {Animated} from "react-animated-css";
+import { Animated } from "react-animated-css";
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -14,7 +14,7 @@ background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-2
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 img {
-height: 25rem;
+height: 40rem;
 width: 100%;
 }
 
@@ -31,13 +31,15 @@ border-radius: 3rem;
 box-shadow: 1rem .5rem .5rem black;
 width: 100%;
 margin-bottom: 1rem;
-height: 2rem;
+height: 5rem;
+font-size: 1.5rem;
+text-align: center;
 }
  
 button {
-background-color: red;
-border-radius: 50%;
-width: 15%;
+        background-color: white;
+border-radius: 20%;
+width: 25%;
 height: 5rem;
 box-shadow: 1rem .5rem .5rem black;
 margin: 0 0 1rem 1.5rem;
@@ -45,9 +47,6 @@ font-size: 1.5rem;
 font-weight: bold;
 }
 
-.animate {
-        width: 50%
-}
 `;
 
 class RegisterPage extends React.Component {
@@ -84,46 +83,46 @@ class RegisterPage extends React.Component {
         render() {
                 return (
                         <StyledDiv>
-                        <Animated
-                        animationIn="rollIn"
-                         animationOut="slideOutDown"
-                          animationInDuration={1800} 
-                          animationOutDuration={1800} 
-                          isVisible={true}>
-                                <img src={loginPic} alt="logo" />
+                                <Animated
+                                        animationIn="rollIn"
+                                        animationOut="slideOutDown"
+                                        animationInDuration={1800}
+                                        animationOutDuration={1800}
+                                        isVisible={true}>
+                                        <img src={loginPic} alt="logo" />
                                 </Animated>
                                 <form
                                         onSubmit={this.register}>
-                                                  <Animated
-                        animationIn="rollIn"
-                         animationOut="slideOutDown"
-                          animationInDuration={1800} 
-                          animationOutDuration={1800} 
-                          isVisible={true}>
-                                
-                                                 <div
-                                                className="inputs">
-                                        <input
-                                                name="username"
-                                                onChange={this.handleChange}
-                                                value={this.state.username}
-                                                placeholder="Username"
-                                                type="text"
-                                        />
-                                        <input
-                                                name="password"
-                                                type="password"
-                                                onChange={this.handleChange}
-                                                value={this.state.password}
-                                                placeholder="Password"
-                                        />
-                                        </div>
-                                </Animated>
+                                        <Animated
+                                                animationIn="rollIn"
+                                                animationOut="slideOutDown"
+                                                animationInDuration={1800}
+                                                animationOutDuration={1800}
+                                                isVisible={true}>
+
+                                                <div
+                                                        className="inputs">
+                                                        <input
+                                                                name="username"
+                                                                onChange={this.handleChange}
+                                                                value={this.state.username}
+                                                                placeholder="Username"
+                                                                type="text"
+                                                        />
+                                                        <input
+                                                                name="password"
+                                                                type="password"
+                                                                onChange={this.handleChange}
+                                                                value={this.state.password}
+                                                                placeholder="Password"
+                                                        />
+                                                </div>
+                                        </Animated>
                                         <button
                                                 type="submit">
                                                 Register
                                         </button>
-    
+
                                 </form>
                         </StyledDiv>
                 );
