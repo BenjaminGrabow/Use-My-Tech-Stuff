@@ -55,7 +55,7 @@ export const deleter = (id) => dispatch => {
       
       return axiosWithAuth().get("https://usemytechstuffapp.herokuapp.com/api/items")
       .then(res => {
-      
+      debugger
         dispatch({ type: DELETE, payload: res.data });
       });
     });

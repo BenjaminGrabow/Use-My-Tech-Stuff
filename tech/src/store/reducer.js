@@ -20,15 +20,15 @@ const reducer = (state = initialState, action) => {
                         return { ...state, logginIn: false };
 
                 case types.LOGIN_FAIL:
-                        return { ...state, loggingIn: false, error: action.payload}
+                        return { ...state, loggingIn: false, error: action.payload }
 
 
                 case types.LOADING:
                         return { techItems: [], loading: true, error: null };
 
                 case types.SUCCESS:
-       
-                const result = action.payload.map(el => {
+
+                        const result = action.payload.map(el => {
                                 const copyOfData = Object.assign({}, el);
                                 copyOfData.messages = [
                                         {
@@ -81,10 +81,17 @@ const reducer = (state = initialState, action) => {
                                                 star5: 'fa fa-star'
                                         },
                                 ];
-                                return copyOfData;
+
+                               return copyOfData
                         });
 
-                        return { ...state, techItems: addMessageSection };
+                        addMessageSection.map(newItem => state.techItems.map(oldItem => {
+                                if(newItem.id === oldItem.id){
+                                        newItem.messages = oldItem.messages
+                                } return newItem
+                        }));
+
+                        return { ...state, techItems:  addMessageSection};
 
                 case types.UPDATE:
                         const changeItem = state.techItems.map(item => {
@@ -118,6 +125,12 @@ const reducer = (state = initialState, action) => {
                                 return copyOfData;
                         });
 
+                        addTheMessages.map(newItem => state.techItems.map(oldItem => {
+                                if(newItem.id === oldItem.id){
+                                        newItem.messages = oldItem.messages
+                                } return newItem
+                        }));
+
                         return { ...state, techItems: addTheMessages };
 
                 case types.ADD:
@@ -150,6 +163,12 @@ const reducer = (state = initialState, action) => {
                                 return copyOfData;
                         });
 
+                        addMessagesToNewPost.map(newItem => state.techItems.map(oldItem => {
+                                if(newItem.id === oldItem.id){
+                                        newItem.messages = oldItem.messages
+                                } return newItem
+                        }));
+
                         return { ...state, techItems: addMessagesToNewPost }
 
                 case types.UPDATE_MESSAGES:
@@ -162,12 +181,13 @@ const reducer = (state = initialState, action) => {
                         return { ...state, techItems: addMessage }
 
                 case types.SEARCH:
-                        const search = state.techItems.filter(item => item.brand.toLowerCase().startsWith(action.payload.toLowerCase()));
+                        const search = state.techItems.filter(item => item.brand === action.payload);
 
                         const copyOftechItems = state.techItems;
 
-                        return { ...state, techItems: search, 
-                                copyOfList: copyOftechItems 
+                        return {
+                                ...state, techItems: search,
+                                copyOfList: copyOftechItems
                         }
 
                 case types.BACK:

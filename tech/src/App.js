@@ -19,16 +19,6 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
-    console.log(JSON.parse(localStorage.getItem("state")).techItems[0].messages[2]);
-    // this.fetchData();
-  };
-
-  // fetchData = () => {
-  //   this.props.fetch();
-  // };
-
-
   render() {
     return (
       <div className="App">

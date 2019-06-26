@@ -73,10 +73,10 @@ class LoginPage extends React.Component {
   login = e => {
     e.preventDefault();
     
-    if(JSON.parse(localStorage.getItem("state")).techItems[0].messages[2] === undefined) {
-      this.props.fetch();
+    if(JSON.parse(localStorage.getItem('state') === null )) {
+      this.props.fetch()
     }
-    
+ 
     this.props.login(this.state.credentials)
       .then(() => {
         this.props.history.push('/protected')
