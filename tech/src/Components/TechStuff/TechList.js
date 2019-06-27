@@ -43,7 +43,7 @@ padding: 0;
 }
 
 &:hover {
-color: red;
+color: black;
 }
 }
 
@@ -176,23 +176,6 @@ box-shadow: 1rem .5rem .5rem black;
 @media(max-width:800px) {
         width : 23rem;
 } 
-
-
-@media(max-width:550px) {
-        width : 20rem;
-}
-
-@media(max-width:480px) {
-        width : 17rem;
-}
-
-@media(max-width:400px) {
-        width : 14rem;
-}
-
-@media(max-width:330px) {
-        width : 11rem;
-}
 }
 
 .draggable {
@@ -237,7 +220,8 @@ width: 70%;
 } 
 
 &:hover {
-  border: .2rem solid red;
+  border: .2rem solid white;
+  color: white;
 }
 
 .fa {
@@ -247,7 +231,7 @@ cursor: pointer;
 color: black;
 
 &:hover {
-  color: red;
+  color: white;
 }
 }
 }

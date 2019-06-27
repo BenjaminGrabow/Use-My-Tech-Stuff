@@ -13,6 +13,10 @@ const StyledDiv = styled.div`
 nav {
   display: flex;
   justify-content: space-around;
+
+  @media (max-width:500px) {
+flex-direction: column;
+}
 }
 
 .navLink {
@@ -29,7 +33,7 @@ font-size: 2.5rem;
 color: black;
 filter: brightness(150%);
 text-decoration: underline;
-  }
+}
 }
 }
 
@@ -45,12 +49,14 @@ box-shadow: 2rem 2rem 2rem black;
 padding: 2rem 0;
 
 @media (max-width:610px) {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-top: 10rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 15rem;
+
 }
+
 .fa {
 cursor: pointer;
 color: white;
@@ -59,15 +65,14 @@ font-weight: bold;
 transition: 0.8s;
 
 @media (max-width:610px) {
-font-size: 3rem
+font-size: 6;
 }
 
 &:hover {
-color: red;
+color: black;
 }
 }
 }
-
 
 .topInput {
 border-radius: 3rem;
@@ -90,8 +95,8 @@ background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-@media (max-width:610px) {
-        padding-top: 10rem;
+@media (max-width:800px) {
+        height: 70rem;
 }
 }
 
@@ -102,9 +107,12 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 width: 100%;
 display: flex;
 flex-direction: column;
-justify-content: center;
 align-items: center;
 height: 55rem;
+
+@media (max-width:800px) {
+        height: 70rem;
+}
 
 h1 {
 font-size: 2.5rem;
@@ -141,9 +149,13 @@ width: 60%;
 height: 25rem;
 object-fit: cover;
 
+@media (max-width:610px) {
+width: 80%;
+}
+
 img {
-  width: 100%;
-  height: 100%;
+width: 100%;
+height: 100%;
 box-shadow: 1rem .5rem .5rem black;
 }
 }
@@ -155,9 +167,16 @@ height: 6.5rem;
 justify-content: space-around;
 margin: 1rem;
 
+@media (max-width:800px) {
+flex-direction: column;
+height: 20rem;
+margin: 1rem;
+align-items: center;
+}
+
 .buttonIcon {
-  box-shadow: 1rem .5rem .5rem black;
-  background: #bdc3c7; /* fallback for old browsers */
+box-shadow: 1rem .5rem .5rem black;
+background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 font-size: 2rem;
@@ -170,23 +189,28 @@ transition: .8s;
 border: .3rem solid black;
 height: 8rem;
 
+@media (max-width:800px) {
+width: 70%;
+margin: .2rem;
+}
+
 &:hover {
-  border: .3rem solid red;
-  color: red;
+border: .3rem solid white;
+color: white;
 }
 }
 
 .fa {
-  color: black;
-  font-size: 6rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.8s;
-  height: 6rem;
+color: black;
+font-size: 6rem;
+font-weight: bold;
+cursor: pointer;
+transition: 0.8s;
+height: 6rem;
 }
 
 .fa:hover {
-color: red;
+color: white;
 }
 }
 
@@ -420,7 +444,6 @@ class SliderMode extends React.Component {
                   <p><span>Type:</span> {techItem.type}</p>
                   <p><span>Model:</span> {techItem.model}</p>
                   <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
-                  <p><span>Description:</span> {techItem.description}</p>
                   <p><span>Price:</span> {techItem.price}$</p>
                 </div>
                 <div

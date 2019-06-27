@@ -11,6 +11,10 @@ nav {
   display: flex;
   justify-content: space-around;
 
+  @media (max-width:500px) {
+flex-direction: column;
+}
+
   p {
   font-size: 2.5rem;
   font-weight: bold;
@@ -23,7 +27,7 @@ filter: brightness(150%);
 text-decoration: underline;
   }
 }
-
+}
 .navLink {
 text-decoration: none;
 font-size: 2rem;
@@ -46,6 +50,10 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 width: 100%;
 margin: 0;
 height: 12rem;
+
+@media (max-width:610px) {
+        display: none;
+}
 }
 
 img {
