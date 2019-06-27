@@ -1,53 +1,9 @@
 import React from 'react';
+import StyledDiv from './StyledDiv';
 import { connect } from 'react-redux'
 import { register } from '../../store/actions';
 import loginPic from '../Login/loginPic.jpg';
 import { Animated } from "react-animated-css";
-import styled from 'styled-components';
-
-const StyledDiv = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-background: #bdc3c7;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-img {
-height: 40rem;
-width: 100%;
-}
-
-form {
-display: flex;
- margin: 1rem;
-justify-content: center;
-align-items: center;
-width: 100%;
-}
-
-input {
-border-radius: 3rem;
-box-shadow: 1rem .5rem .5rem black;
-width: 100%;
-margin-bottom: 1rem;
-height: 5rem;
-font-size: 1.5rem;
-text-align: center;
-}
- 
-button {
-        background-color: white;
-border-radius: 20%;
-width: 25%;
-height: 5rem;
-box-shadow: 1rem .5rem .5rem black;
-margin: 0 0 1rem 1.5rem;
-font-size: 1.5rem;
-font-weight: bold;
-}
-
-`;
 
 class RegisterPage extends React.Component {
         constructor(props) {
@@ -91,6 +47,7 @@ class RegisterPage extends React.Component {
                                         isVisible={true}>
                                         <img src={loginPic} alt="logo" />
                                 </Animated>
+                                        <div className="row">
                                 <form
                                         onSubmit={this.register}>
                                         <Animated
@@ -120,10 +77,10 @@ class RegisterPage extends React.Component {
                                         </Animated>
                                         <button
                                                 type="submit">
-                                                Register
+                                             <i className="fa fa-user-plus"></i>
                                         </button>
-
                                 </form>
+                                        </div>
                         </StyledDiv>
                 );
         }

@@ -1,9 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const StyledDiv = styled.div`
-
-`;
 
 class Draggable extends React.Component {
 
@@ -17,14 +12,14 @@ class Draggable extends React.Component {
             
         render() { 
                 return ( 
-                        <StyledDiv 
+                        <div
                         id={this.props.id}
                         draggable='true'
                         onDragStart={this.drag}
                         onDragOver={this.dontAllowDrop}
                         >
                         {this.props.children}
-                </StyledDiv>
+                </div>
                  );
         }
 }

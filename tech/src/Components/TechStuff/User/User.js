@@ -1,15 +1,87 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { safeUser } from '../../store/actions';
+import { safeUser } from '../../../store/actions';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-
+import uuid from 'uuid';
 const StyledDiv = styled.div`
+background: #bdc3c7;
+background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
+background: linear-gradient(to right, #eaeaea, #deecff);
+
+p {
+margin: 0;
+}
+
+.off {
+display:none;
+}
+
+.startScreen {
+display: flex;
+flex-direction: column;
+align-items: center;
+background: #bdc3c7;
+background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
+background: linear-gradient(to right, #eaeaea, #deecff); 
+}
+
+.fa-play {
+font-size: 20rem;
+transition: .8s;
+
+&:hover {
+color: red;
+}
+}
+
+.startH1 {
+font-size: 2.5rem;
+}
+
+.form {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding-bottom: .5rem;
+
+
+
+input {
+width: 70%;
+border-radius: .5rem;
+font-size: 2rem;
+margin-bottom: .9rem;
+}
+
+button {
+width: 25%;
+height: 4rem;
+border-radius: .5rem;
+background: #bdc3c7;
+background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
+background: linear-gradient(to right, #eaeaea, #deecff);
+border: .3rem solid black;
+transition: .8s;
+
+&:hover {
+border: .3rem solid red;
+}
+
+&:hover, i:hover {
+color: red;
+}
+}
+
+i {
+font-size: 3rem;
+}
+}
 
 img {
-        border-radius: 50%;
-        width: 20%;
-        height: 7rem;
+border-radius: 50%;
+width: 30%;
+height: 12rem;
 }
 `;
 
@@ -23,8 +95,15 @@ class User extends React.Component {
                         adress: '',
                         picture: '',
                         mobilephonenumber: '',
+                        inputForStart: false,
                 }
         }
+
+        startUserPreference = () => {
+                this.setState({
+                        inputForStart: true
+                });
+        };
 
         handleChange = event => {
                 this.setState({
@@ -33,25 +112,34 @@ class User extends React.Component {
         };
 
         safePreferences = () => {
-                const user = [{
-                        firstname: this.state.firstname,
-                        lastname: this.state.lastname,
-                        age: this.state.age,
-                        adress: this.state.adress,
-                        picture: this.state.picture,
-                        mobilephonenumber: this.state.mobilephonenumber,
-                }];
+                if (this.state.firstname === "" &&
+                        this.state.lastname === "" &&
+                        this.state.age === "" &&
+                        this.state.adress === "" &&
+                        this.state.picture === "" &&
+                        this.state.mobilephonenumber === "") {
 
-                this.sendUserData(user);
+                        const user = [{
+                                firstname: this.state.firstname,
+                                lastname: this.state.lastname,
+                                age: this.state.age,
+                                adress: this.state.adress,
+                                picture: this.state.picture,
+                                mobilephonenumber: this.state.mobilephonenumber,
+                        }];
 
-                this.setState({
-                        firstname: '',
-                        lastname: '',
-                        age: '',
-                        adress: '',
-                        picture: '',
-                        mobilephonenumber: '',
-                });
+                        this.sendUserData(user);
+
+                        this.setState({
+                                firstname: '',
+                                lastname: '',
+                                age: '',
+                                adress: '',
+                                picture: '',
+                                mobilephonenumber: '',
+                                inputForStart: false,
+                        });
+                }
         };
 
         sendUserData = (user) => {
@@ -61,7 +149,8 @@ class User extends React.Component {
         render() {
                 if (this.props.userData) {
                         return this.props.userData.map(user => {
-                                return <StyledDiv>
+                                return <StyledDiv
+                                        key={uuid()}>
                                         <NavLink to="/protected">
                                                 <p>Home</p>
                                         </NavLink>
@@ -118,7 +207,21 @@ class User extends React.Component {
                 }
                 return (
                         <StyledDiv>
-                                <div>
+                                <NavLink to="/protected">
+                                        <p>Home</p>
+                                </NavLink>
+                                <div
+                                        className={!this.state.inputForStart ? 'startScreen' : 'off'}>
+                                        <h1
+                                                className="startH1">
+                                                Click on the button to start filling out your user preferences
+                                        </h1>
+                                        <i
+                                                onClick={this.startUserPreference}
+                                                className="fa fa-play"></i>
+                                </div>
+                                <div
+                                        className={this.state.inputForStart === false ? 'off' : 'form'}>
                                         <input
                                                 type="text"
                                                 name="firstname"
@@ -152,8 +255,8 @@ class User extends React.Component {
                                                 onChange={this.handleChange} />
                                         <button
                                                 onClick={this.safePreferences}>
-                                                Upload
-                                                </button>
+                                                <i className="fa fa-upload"></i>
+                                        </button>
                                 </div>
                         </StyledDiv>
                 );

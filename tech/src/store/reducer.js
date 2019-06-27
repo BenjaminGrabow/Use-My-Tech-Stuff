@@ -65,7 +65,7 @@ const reducer = (state = initialState, action) => {
                 case types.DELETE:
                         const addMessageSection = action.payload.map(el => {
                                 const copyOfData = Object.assign({}, el);
-                                
+
                                 copyOfData.messages = messages;
 
                                 return copyOfData
@@ -89,7 +89,7 @@ const reducer = (state = initialState, action) => {
 
                         const addTheMessages = changeItem.map(el => {
                                 const copyOfData = Object.assign({}, el);
-                                
+
                                 copyOfData.messages = messages;
 
                                 return copyOfData;
@@ -153,10 +153,10 @@ const reducer = (state = initialState, action) => {
 
                 case types.SAFE_USER:
                         return { ...state, userData: action.payload };
-                
+
                 case types.DELETE_USER:
                         return { ...state, userData: null };
-                        default: return state;
+                default: return state;
         };
 };
 

@@ -2,8 +2,8 @@ import React from 'react';
 import HomePage from './Components/HomePage/HomePage'
 import LoginPage from "./Components/Login/LoginPage";
 import RegisterPage from "./Components/Register/RegisterPage";
-import ListItem from './Components/TechStuff/ListItem';
-import User from './Components/TechStuff/User';
+import ListItem from './Components/TechStuff/ListItem/ListItem';
+import User from './Components/TechStuff/User/User';
 import SliderMode from './Components/TechStuff/SliderMode';
 import TechContainer from './Components/TechStuff/TechContainer';
 import Footer from "./Components/Footer/Footer";
