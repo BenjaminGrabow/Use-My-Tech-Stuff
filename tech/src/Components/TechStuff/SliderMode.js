@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { buy, deleter, add, update, search, back } from '../../store/actions';
+import { buy, deleter, add, update, search, back, deleteUser } from '../../store/actions';
 import 'react-animated-slider/build/horizontal.css';
 import styled from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
@@ -372,6 +372,8 @@ class SliderMode extends React.Component {
 
   logout = () => {
     localStorage.removeItem('token');
+
+    this.props.deleteUser();
   };
 
   render() {
@@ -545,4 +547,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, { deleter, add, update, search, back, buy })(SliderMode);
+export default connect(mapStateToProps, { deleter, add, update, search, back, buy, deleteUser })(SliderMode);

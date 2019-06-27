@@ -16,6 +16,7 @@ export const SEARCH = 'SEARCH';
 export const BACK = 'BACK';
 export const BUY = 'BUY';
 export const SAFE_USER = 'SAFE_USER';
+export const DELETE_USER = 'DELETE_USER';
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -167,11 +168,15 @@ export const buy = id => dispatch => {
 
   axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`)
     .then(res => {
-      
+
       dispatch({ type: BUY, payload: res.data })
     })
 };
 
 export const safeUser = (user) => {
   return { type: SAFE_USER, payload: user};
+};
+
+export const deleteUser = () => {
+  return { type: DELETE_USER }
 };

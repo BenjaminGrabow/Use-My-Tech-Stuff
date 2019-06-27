@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
+import { deleteUser } from '../../store/actions';
 
 
 const StyledContainer = styled.div`
@@ -82,6 +83,8 @@ class TechContainer extends React.Component {
 
   logout = () => {
     localStorage.removeItem('token');
+
+    this.props.deleteUser();
   };
 
 
@@ -138,4 +141,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps)(TechContainer);
+export default connect(mapStateToProps, { deleteUser })(TechContainer);

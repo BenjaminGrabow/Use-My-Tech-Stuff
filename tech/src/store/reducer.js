@@ -53,7 +53,7 @@ const reducer = (state = initialState, action) => {
                         const result = action.payload.map(el => {
                                 const copyOfData = Object.assign({}, el);
                                 copyOfData.messages = messages;
-                                
+
                                 return copyOfData;
                         });
 
@@ -118,7 +118,7 @@ const reducer = (state = initialState, action) => {
                                 return copyOfData;
                         });
 
-                        return { ...state, techItems: addMessagesToNewPost }
+                        return { ...state, techItems: addMessagesToNewPost };
 
                 case types.UPDATE_MESSAGES:
                         const addMessage = state.techItems.map(item => {
@@ -127,7 +127,7 @@ const reducer = (state = initialState, action) => {
                                 } return item
                         });
 
-                        return { ...state, techItems: addMessage }
+                        return { ...state, techItems: addMessage };
 
                 case types.SEARCH:
                         const search = state.techItems.filter(item => item.brand === action.payload);
@@ -140,7 +140,7 @@ const reducer = (state = initialState, action) => {
                         }
 
                 case types.BACK:
-                        return { ...state, techItems: state.copyOfList }
+                        return { ...state, techItems: state.copyOfList };
 
                 case types.BUY:
                         const bought = state.techItems.map(item => {
@@ -149,11 +149,14 @@ const reducer = (state = initialState, action) => {
                                 } return item;
                         });
 
-                        return { ...state, techItems: bought }
+                        return { ...state, techItems: bought };
 
                 case types.SAFE_USER:
-                        return { ...state, userData: action.payload }
-                default: return state;
+                        return { ...state, userData: action.payload };
+                
+                case types.DELETE_USER:
+                        return { ...state, userData: null };
+                        default: return state;
         };
 };
 
