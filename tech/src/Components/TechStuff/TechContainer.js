@@ -10,6 +10,18 @@ const StyledContainer = styled.div`
 nav {
   display: flex;
   justify-content: space-around;
+
+  p {
+  font-size: 2.5rem;
+  font-weight: bold;
+ transition: .8s;
+ color: #bdc3c7;
+
+  &:hover {
+color: black;
+filter: brightness(150%);
+text-decoration: underline;
+  }
 }
 
 .navLink {
@@ -24,6 +36,10 @@ display: flex;
 background: #bdc3c7;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+@media (max-width:610px) {
+        display: none;
+}
 }
       
 #dr2 {

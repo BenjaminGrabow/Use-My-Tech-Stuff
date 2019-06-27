@@ -17,7 +17,20 @@ nav {
 
 .navLink {
 text-decoration: none;
-font-size: 2rem;
+
+
+p {
+font-size: 2.5rem;
+  font-weight: bold;
+ transition: .8s;
+ color: #bdc3c7;
+
+  &:hover {
+color: black;
+filter: brightness(150%);
+text-decoration: underline;
+  }
+}
 }
 
 .functionality {
@@ -28,7 +41,8 @@ justify-content: space-around;
 background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-padding: 2rem;
+box-shadow: 2rem 2rem 2rem black;
+padding: 2rem 0;
 
 @media (max-width:610px) {
         display: flex;
@@ -71,7 +85,7 @@ font-size: 1.5rem;
 }
 
 .slider {
-height: 45rem;
+height: 55rem;
 background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -90,18 +104,28 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-height: 45rem;
+height: 55rem;
+
+h1 {
+font-size: 2.5rem;
+}
+
+p {
+color: black;
+font-size: 2.5rem;
+margin: 0;
+}
+
+span {
+font-size: 3;
+font-weight: bold;
+}
 }
  
 a {
 text-decoration: none;
 }
  
-p {
-color: black;
-font-size: 2rem;
-margin: 0;
-}
  
 .off {
 display:none;
@@ -111,11 +135,17 @@ position     : fixed;
 transform    : translate(-250%, -50%);
 }
 
+.pictureWrapper {
+border: .3rem solid black;
+width: 60%;
+height: 25rem;
+object-fit: cover;
 
 img {
-width: 25rem;
-height: 15rem;
+  width: 100%;
+  height: 100%;
 box-shadow: 1rem .5rem .5rem black;
+}
 }
 
 .icons {
@@ -125,8 +155,29 @@ height: 6.5rem;
 justify-content: space-around;
 margin: 1rem;
 
+.buttonIcon {
+  box-shadow: 1rem .5rem .5rem black;
+  background: #bdc3c7; /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+font-size: 2rem;
+border-radius: 2rem;
+width: 25%;
+display: flex;
+justify-content: center;
+align-items: center;
+transition: .8s;
+border: .3rem solid black;
+height: 8rem;
+
+&:hover {
+  border: .3rem solid red;
+  color: red;
+}
+}
+
 .fa {
-  color: white;
+  color: black;
   font-size: 6rem;
   font-weight: bold;
   cursor: pointer;
@@ -151,14 +202,11 @@ color: black;
 .text {
 display: flex;
 flex-direction: column;
-justify-content: flex-start;
-text-align: left;
+align-items: baseline;
+text-align: center;
 width: 80%;
 }
 
-span {
-font-weight: bold;
-}
 
 
 .hiddenInput {
@@ -327,7 +375,7 @@ class SliderMode extends React.Component {
           </NavLink>
         </nav>
         <div className="functionality">
-            <i class="fa fa-backward"
+            <i className="fa fa-backward"
             onClick={this.props.back} />
           <input
             placeholder="Search"
@@ -337,12 +385,12 @@ class SliderMode extends React.Component {
             value={this.state.searchBrand}
             type="text"
           />
-      <i class="fa fa-search"
+      <i className="fa fa-search"
       onClick={this.searchIt}
       />
             <i 
              onClick={this.showAddInput}
-            class="fa fa-plus-circle"/>
+            className="fa fa-plus-circle"/>
         </div>
           <Slider
             className="slider">
@@ -356,6 +404,7 @@ class SliderMode extends React.Component {
                 className={techItem.availability ? 'techItem' : 'soldItem techItem'}
                 key={techItem.id}>
                 <Link
+                className="pictureWrapper"
                   id={techItem.id} to={`/protected/${techItem.title}`}>
                   <img
                     id={techItem.model}
@@ -376,15 +425,22 @@ class SliderMode extends React.Component {
                 </div>
                 <div
                 className="icons">
-              <i class="fa fa-user-times"
-               onClick={() =>
-                this.props.deleter(techItem.id)}></i>
+                  <button 
+                  className="buttonIcon"
+                  onClick={() =>
+                    this.props.deleter(techItem.id)}>
+              <i className="fa fa-user-times"/> &nbsp; Delete 
+               </button>
+                 <button
+                   className="buttonIcon"
+                   onClick={() => this.showInput(techItem.id)}>
+                 <i
+                 className="fa fa-wrench" /> &nbsp; Update</button>
+                 <button  
+                 className="buttonIcon"
+                 onClick={() => this.props.buy(techItem.id)}>
                  <i 
-                 onClick={() => this.showInput(techItem.id)}
-                 class="fa fa-wrench"></i>
-                 <i 
-                 onClick={() => this.props.buy(techItem.id)}
-                 class="fa fa-shopping-cart"></i>
+                 className="fa fa-shopping-cart" /> &nbsp; Buy </button>
                  </div>
               </Animated>
             })}

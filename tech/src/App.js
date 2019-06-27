@@ -29,7 +29,7 @@ class App extends React.Component {
           exact path="/protected"
           component={TechContainer}
         />
-        <Route path="/protected/slide_mode" component={SliderMode} />
+        <Route exact path="/protected/slide_mode" component={SliderMode} />
         <Route path="/protected/user" component={User} />
         {this.props.techItems.map((techItem) => <Route
           key={techItem.id}

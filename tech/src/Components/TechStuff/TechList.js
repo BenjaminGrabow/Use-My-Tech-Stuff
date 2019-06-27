@@ -18,24 +18,28 @@ justify-content: space-around;
 background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-padding: 2rem;
+padding: 2rem 0;
 
 @media (max-width:610px) {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-top: 10rem;
+        padding: 7rem 0 6rem 0;
+        height: 10rem;
 }
+
 .fa {
 cursor: pointer;
 color: white;
-font-size: 4rem;
+font-size: 4.5rem;
 font-weight: bold;
 transition: 0.8s;
+padding-right: 1.5rem;
 
 @media (max-width:610px) {
-font-size: 3rem
+font-size: 6rem;
+padding: 0;
 }
 
 &:hover {
@@ -47,15 +51,15 @@ color: red;
 .topInput {
 border-radius: 3rem;
 box-shadow: 1rem .5rem .5rem black;
-width: 25%;
-height: 100%;
+width: 40%;
+height: 4rem;
 text-align: center;
 font-size: 1.5rem;
 
 @media (max-width:610px) {
         width: 90%;
         margin: .5rem;
-        font-size: 2.5rem
+        font-size: 3rem
 }
 }
 }
@@ -73,19 +77,17 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-width: 29%;
+width: 45%;
 border: .08rem solid black;
 margin: 1rem;
 display: flex;
 flex-direction: column;
-justify-content: center;
+justify-content: space-around;
 align-items: center;
 flex-wrap: wrap;
 box-shadow: 1rem .5rem .5rem black;
+border-radius: .5rem;
 
-@media (max-width:1000px) {
-        width: 40%;
-}
 
 @media (max-width:800px) {
         width: 80%;
@@ -95,10 +97,14 @@ box-shadow: 1rem .5rem .5rem black;
 a {
 text-decoration: none;
 }
- 
+
+h1 {
+font-size: 3rem;
+}
+
 p {
 color: black;
-font-size: 1.5rem;
+font-size: 2rem;
 margin: 0;
 }
  
@@ -201,17 +207,50 @@ display: flex;
 justify-content: center;
 }
 
- 
-.itemButton {
-border-radius: 20%;
-margin: .3rem;
-width: 85%;
-height: 4rem;
+
+.icons {
+height: 6rem;
+width: 95%;
 background-color: white;
-box-shadow: 1rem .5rem .5rem black;
+display: flex;
+margin: 1rem 1rem 1rem 0;
+
+@media(max-width:610px) {
+        flex-direction: column;
+        align-items: center;
+        height: 15rem;
+        background: none;
+} 
+
+.buttonIcon {
+border: .2rem solid black;
+transition: .8s;
+border-radius: .5rem;
+width: 33%;
 font-size: 1.5rem;
+background: #bdc3c7; /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+@media(max-width:610px) {
+width: 70%;      
+} 
+
+&:hover {
+  border: .2rem solid red;
+}
+
+.fa {
+font-size: 3rem;
 font-weight: bold;
 cursor: pointer;
+color: black;
+
+&:hover {
+  color: red;
+}
+}
+}
 }
 
 .soldItem {
@@ -224,19 +263,15 @@ color: black;
 }
 
 .text {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: left;
-  width: 80%;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+text-align: left;
+width: 80%;
 }
 
 span {
   font-weight: bold;
-}
-
-.fa-backspace {
-  color: black;
   font-size: 2rem;
 }
 
@@ -345,7 +380,7 @@ class TechList extends React.Component {
     return (
       <StyledDiv>
         <div className="functionality">
-        <i class="fa fa-backward"
+        <i className="fa fa-backward"
             onClick={this.props.back} />
           <input
             placeholder="Search"
@@ -355,12 +390,12 @@ class TechList extends React.Component {
             value={this.state.searchBrand}
             type="text"
           />
-      <i class="fa fa-search"
+      <i className="fa fa-search"
       onClick={this.searchIt}
       />
             <i 
              onClick={this.showAddInput}
-            class="fa fa-plus-circle"/>
+            className="fa fa-plus-circle"/>
         </div>
         <div
           className="techList">
@@ -388,7 +423,7 @@ class TechList extends React.Component {
               <Link
                 id={techItem.id}
                 to={`/protected/${techItem.title}`}>
-                <h1>Title: {techItem.brand}</h1>
+                <h1>{techItem.brand}</h1>
               </Link>
               <div className="text">
                 <p><span>Type:</span> {techItem.type}</p>
@@ -397,23 +432,26 @@ class TechList extends React.Component {
                 <p><span>Description:</span> {techItem.description}</p>
                 <p><span>Price:</span> {techItem.price}$</p>
               </div>
-              <button
-                className="itemButton"
-                onClick={() =>
-                  this.props.deleter(techItem.id)}>
-                Delete
-</button>
-              <button
-                className="itemButton"
-                onClick={() => this.showInput(techItem.id)}>
-                Update
-</button>
-              <button
-                className="itemButton"
-                onClick={() => this.props.buy(techItem.id)} >
-                Buy
-  </button>
-
+              <div
+                className="icons">
+              <button 
+                  className="buttonIcon"
+                  onClick={() =>
+                    this.props.deleter(techItem.id)}>
+              <i className="fa fa-user-times"/>
+               Delete 
+               </button>
+                 <button
+                   className="buttonIcon"
+                   onClick={() => this.showInput(techItem.id)}>
+                 <i
+                 className="fa fa-wrench" /> Update </button>
+                 <button  
+                 className="buttonIcon"
+                 onClick={() => this.props.buy(techItem.id)}>
+                 <i 
+                 className="fa fa-shopping-cart" /> Buy </button>
+                 </div>
             </Animated>
           })}
         </div>
