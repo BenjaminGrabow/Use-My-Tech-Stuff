@@ -53,20 +53,32 @@ class TechContainer extends React.Component {
     this.state = {}
   }
 
+  logout = () => {
+    localStorage.removeItem('token');
+  };
+
 
   render() {
     return (
       <StyledContainer>
         <nav>
+            <NavLink
+              to="/"
+              className="navLink">
+              <p
+            onClick={this.logout}>
+                Logout
+                </p>
+            </NavLink>
         <NavLink
           className="navLink"
           to="/protected/slide_mode" >
-          Slide Mode
+          <p>Slide Mode</p>
            </NavLink>
            <NavLink
           className="navLink"
           to="/protected/user" >
-          User
+          <p>User</p>
            </NavLink>
            </nav>
         <div

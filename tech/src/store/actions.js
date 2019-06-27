@@ -79,7 +79,7 @@ export const update = (id, owner, title, description, type,
       availability: availability,
       brand: brand,
       model: model,
-      // imageURL: imageURL,
+      // imgURL: imageURL,
       renter: numRenter2,
     };
 
@@ -116,7 +116,7 @@ export const add = (owner, title, type, description,
       //   message: '',
       //   img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
       // },]
-      // dont work because server don't accept messages
+      // dont work because server don't accept other content
     };
 
     axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)

@@ -11,43 +11,38 @@ import { Animated } from "react-animated-css";
 const StyledDiv = styled.div`
 
 .functionality {
-height: 3rem;
+  height: 3rem;
+display: flex;
+width: 100%;
+justify-content: space-around;
 background: #bdc3c7; /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-padding-bottom: 2rem;
+padding: 2rem;
 
 @media (max-width:610px) {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding-bottom: 10rem;
+        padding-top: 10rem;
 }
-}
-
-.topButton {
-background-color: white;
-border-radius: 20%;
-width: 15%;
-height: 5rem;
-box-shadow: 1rem .5rem .5rem black;
+.fa {
 cursor: pointer;
-
-@media (max-width:610px) {
-        width: 90%;
-        margin: .5rem;
-}
-}
-
-.pButton {
-font-size: 1.5rem;
+color: white;
+font-size: 4rem;
 font-weight: bold;
+transition: 0.8s;
 
 @media (max-width:610px) {
-font-size: 2.5rem
+font-size: 3rem
+}
+
+&:hover {
+color: red;
 }
 }
+
 
 .topInput {
 border-radius: 3rem;
@@ -61,6 +56,7 @@ font-size: 1.5rem;
         width: 90%;
         margin: .5rem;
         font-size: 2.5rem
+}
 }
 }
 
@@ -239,6 +235,11 @@ span {
   font-weight: bold;
 }
 
+.fa-backspace {
+  color: black;
+  font-size: 2rem;
+}
+
 `;
 
 class TechList extends React.Component {
@@ -340,34 +341,12 @@ class TechList extends React.Component {
 
   };
 
-  logout = () => {
-    localStorage.removeItem('token');
-  };
-
   render() {
     return (
       <StyledDiv>
         <div className="functionality">
-          <button
-            className="topButton"
-            onClick={this.logout}>
-            <Link
-              to="/"
-              className="navLink">
-              <p
-                className="pButton">
-                Logout
-                </p>
-            </Link>
-          </button>
-          <button
-            className="topButton"
-            onClick={this.props.back}>
-            <p
-              className="pButton">
-              Back
-             </p>
-          </button>
+        <i class="fa fa-backward"
+            onClick={this.props.back} />
           <input
             placeholder="Search"
             className="topInput"
@@ -376,22 +355,12 @@ class TechList extends React.Component {
             value={this.state.searchBrand}
             type="text"
           />
-          <button
-            onClick={this.searchIt}
-            className="topButton">
-            <p
-              className="pButton">
-              Search
-              </p>
-          </button>
-          <button
-            className="topButton"
-            onClick={this.showAddInput}>
-            <p
-              className="pButton">
-              Add
-              </p>
-          </button>
+      <i class="fa fa-search"
+      onClick={this.searchIt}
+      />
+            <i 
+             onClick={this.showAddInput}
+            class="fa fa-plus-circle"/>
         </div>
         <div
           className="techList">
