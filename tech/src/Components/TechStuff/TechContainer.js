@@ -2,6 +2,8 @@ import React from 'react';
 import TechList from './TechList';
 import Droppable from './DragDrop/Droppable';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 
 
@@ -28,6 +30,7 @@ text-decoration: underline;
   }
 }
 }
+
 .navLink {
 text-decoration: none;
 font-size: 2rem;
@@ -83,6 +86,17 @@ class TechContainer extends React.Component {
 
 
   render() {
+    if(this.props.loading){
+return <Loader 
+type="Puff"
+color="#00BFFF"
+height="100"	
+width="100"
+/>   
+    }
+    if(this.props.error) {
+      return <h1>{this.props.error}</h1>
+    }
     return (
       <StyledContainer>
         <nav>
@@ -117,4 +131,11 @@ class TechContainer extends React.Component {
   }
 }
 
-export default TechContainer;
+const mapStateToProps = state => {
+  return {
+    loading: state.loading,
+    error: state.error
+  }
+};
+
+export default connect(mapStateToProps)(TechContainer);

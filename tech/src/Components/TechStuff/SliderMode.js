@@ -262,7 +262,6 @@ font-size: 3rem;
 }
 
 button {
-
 background-color: white;
 border-radius: 20%;
 width: 40%;

@@ -17,7 +17,7 @@ const reducer = (state = initialState, action) => {
                         return { ...state, loggingIn: true };
 
                 case types.LOGIN_SUCCESS:
-                        return { ...state, logginIn: false };
+                        return { ...state, loggingIn: false };
 
                 case types.LOGIN_FAIL:
                         return { ...state, loggingIn: false, error: action.payload }
