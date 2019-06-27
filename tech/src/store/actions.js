@@ -25,21 +25,23 @@ export const login = creds => dispatch => {
       localStorage.setItem('token', res.data.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data })
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({ type: LOGIN_FAIL, payload: err.response.data.message });
+    });
 };
 
 export const register = creds => dispatch => {
   return axios.post('https://usemytechstuffapp.herokuapp.com/api/register', creds)
     .then(res => {
-      dispatch({ type: REGISTER })
+      dispatch({ type: REGISTER });
     })
-}
+};
 
 export const fetch = () => dispatch => {
   dispatch({ type: LOADING })
 
   axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
-    dispatch({ type: SUCCESS, payload: res.data })
+    dispatch({ type: SUCCESS, payload: res.data });
   })
     .catch(err => {
       dispatch({ type: ERROR })
@@ -50,9 +52,11 @@ export const deleter = (id) => dispatch => {
 
   axiosWithAuth().delete(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`)
     .then(res => {
-
-      return axiosWithAuth().get("https://usemytechstuffapp.herokuapp.com/api/items").then(res => {
-        dispatch({ type: DELETE, payload: res.data })
+      
+      return axiosWithAuth().get("https://usemytechstuffapp.herokuapp.com/api/items")
+      .then(res => {
+      debugger
+        dispatch({ type: DELETE, payload: res.data });
       });
     });
 };
@@ -81,9 +85,9 @@ export const update = (id, owner, title, description, type,
 
     axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateItem)
       .then(res => {
-            dispatch({ type: UPDATE, payload: res.data.changes })
-     
-          }).catch(err => {
+        dispatch({ type: UPDATE, payload: res.data.changes });
+
+      }).catch(err => {
       });
   };
 
@@ -123,31 +127,32 @@ export const add = (owner, title, type, description,
       });
   };
 
-export const addRating = (id, message) => (dispatch) => {
-  const newMessage = {
-    message: message,
-    img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
-  };
+export const addRating = (id, message, stars) => {
+  
+  const orangeStars = 'fa fa-star checked'.repeat(stars);
+  
+  const blackStars = 'fa fa-star'.repeat(5 - stars);
+  
+  const arrayOrange = orangeStars.match(/.{1,18}/g);
+  const arrayBlack = blackStars.match(/.{1,10}/g);
+  
+  const mergeArrays = arrayOrange.concat(arrayBlack);
+  
+        const newMessage = {
+          message: message,
+          img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+          star1: mergeArrays[0],
+          star2: mergeArrays[1],
+          star3: mergeArrays[2],
+          star4: mergeArrays[3],
+          star5: mergeArrays[4]
+        };
 
-  dispatch({ type: UPDATE_MESSAGES, message: newMessage, id: id })
-
-  // axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items`)
-  //   .then(res => {
-  //     const theFriend = res.data[id];
-
-  //     const updateFriend = theFriend.messages.push(newMessage);
-
-  //     return axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, theFriend).then(res => {
-
-  //       return axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
-  //         dispatch({ type: UPDATE_MESSAGES, payload: res.data })
-  //       })
-  //     });
-  //   });
+  return { type: UPDATE_MESSAGES, message: newMessage, id: id }
 };
 
-export const search = (brand) => {
-  return { type: SEARCH, payload: brand }
+export const search = (brand) => dispatch => {
+  dispatch({ type: SEARCH, payload: brand })
 };
 
 export const back = () => {
@@ -160,4 +165,4 @@ export const buy = id => dispatch => {
     .then(res => {
       dispatch({ type: BUY, payload: res.data })
     })
-}
+};
