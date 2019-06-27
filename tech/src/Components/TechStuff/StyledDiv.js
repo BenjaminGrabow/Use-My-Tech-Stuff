@@ -35,7 +35,7 @@ padding: 0;
 }
 
 &:hover {
-color: red;
+color: blue;
 }
 }
 
@@ -220,12 +220,12 @@ width: 70%;
 } 
 
 &:hover {
-  border: .2rem solid #ff2e63;
-  color: #ff2e63;
+  border: .2rem solid blue;
+  color: blue;
 }
 
 &:hover .fa {
-  color: #ff2e63;
+  color: blue;
 }
 
 .fa {
@@ -258,6 +258,16 @@ width: 80%;
 span {
   font-weight: bold;
   font-size: 2rem;
+}
+
+.brandLink {
+  font-size: 2.5rem;
+  font-weight: bold;
+  transition: .8s;
+
+  &:hover {
+    color: blue;
+  }
 }
 `;
 

@@ -21,7 +21,7 @@ color: #bdc3c7;
 margin: 0;
 
 &:hover {
-color: black;
+color: blue;
 filter: brightness(150%);
 text-decoration: underline;
 }
@@ -67,7 +67,7 @@ transition: 0.8s;
 }
 
 button:hover {
-color: red;
+color: blue;
 }
 `;
 

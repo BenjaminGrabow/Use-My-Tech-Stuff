@@ -154,7 +154,11 @@ class TechList extends React.Component {
               <Link
                 id={techItem.id}
                 to={`/protected/${techItem.title}`}>
-                <h1>{techItem.brand}</h1>
+                <h1>
+                  <p className="brandLink">
+                {techItem.brand}
+                </p>
+                </h1>
               </Link>
               <div className="text">
                 <p><span>Type:</span> {techItem.type}</p>
