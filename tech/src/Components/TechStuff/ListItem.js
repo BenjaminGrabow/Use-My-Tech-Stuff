@@ -180,7 +180,17 @@ class List extends React.Component {
   submit = (event) => {
     event.preventDefault();
 
-    if (this.state.ratingStar !== '' && this.state.rating !== '') {
+    if (this.state.ratingStar !== '' && this.state.rating !== '' && this.props.userData) {
+
+      this.props.addRating(this.props.techItem.id, this.state.rating, this.state.ratingStar, this.props.userData[0].picture);
+
+      this.setState({
+        rating: '',
+        ratingStar: '',
+      });
+    }
+
+    if (this.state.ratingStar !== '' && this.state.rating !== '' && !this.props.userData) {
 
       this.props.addRating(this.props.techItem.id, this.state.rating, this.state.ratingStar);
 
@@ -272,4 +282,10 @@ class List extends React.Component {
   }
 }
 
-export default connect(null, { addRating })(List);
+const mapStateToProps = state => {
+  return {
+    userData: state.userData
+  }
+};
+
+export default connect(mapStateToProps, { addRating })(List);

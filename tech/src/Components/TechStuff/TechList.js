@@ -59,7 +59,7 @@ font-size: 1.5rem;
 @media (max-width:610px) {
         width: 90%;
         margin: .5rem;
-        font-size: 3rem
+        font-size: 3rem;
 }
 }
 }
@@ -91,6 +91,10 @@ border-radius: .5rem;
 
 @media (max-width:800px) {
         width: 80%;
+}
+
+@media (max-width:610px) {
+        width: 95;
 }
 }
  
@@ -176,6 +180,10 @@ box-shadow: 1rem .5rem .5rem black;
 @media(max-width:800px) {
         width : 23rem;
 } 
+
+@media(max-width:610px) {
+        width : 90%;
+} 
 }
 
 .draggable {
@@ -188,6 +196,7 @@ height: 12rem;
 height: 12rem;
 display: flex;
 justify-content: center;
+margin: 0;
 }
 
 

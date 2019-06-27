@@ -6,7 +6,29 @@ const initialState = {
         error: null,
         loggingIn: false,
         copyOfList: [],
+        userData: null,
 };
+
+const messages = [
+        {
+                message: 'great job, next time again !',
+                img: 'https://images.pexels.com/photos/2504837/pexels-photo-2504837.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+                star1: 'fa fa-star checked',
+                star2: 'fa fa-star checked',
+                star3: 'fa fa-star checked',
+                star4: 'fa fa-star checked',
+                star5: 'fa fa-star checked'
+        },
+        {
+                message: 'Very good work, everytime again !',
+                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+                star1: 'fa fa-star checked',
+                star2: 'fa fa-star checked',
+                star3: 'fa fa-star checked',
+                star4: 'fa fa-star checked',
+                star5: 'fa fa-star'
+        },
+];
 
 const reducer = (state = initialState, action) => {
         switch (action.type) {
@@ -30,26 +52,8 @@ const reducer = (state = initialState, action) => {
 
                         const result = action.payload.map(el => {
                                 const copyOfData = Object.assign({}, el);
-                                copyOfData.messages = [
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                ];
+                                copyOfData.messages = messages;
+                                
                                 return copyOfData;
                         });
 
@@ -61,26 +65,9 @@ const reducer = (state = initialState, action) => {
                 case types.DELETE:
                         const addMessageSection = action.payload.map(el => {
                                 const copyOfData = Object.assign({}, el);
-                                copyOfData.messages = [
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                ];
+                                
+                                copyOfData.messages = messages;
+
                                 return copyOfData
                         });
 
@@ -102,26 +89,9 @@ const reducer = (state = initialState, action) => {
 
                         const addTheMessages = changeItem.map(el => {
                                 const copyOfData = Object.assign({}, el);
-                                copyOfData.messages = [
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                ];
+                                
+                                copyOfData.messages = messages;
+
                                 return copyOfData;
                         });
 
@@ -138,26 +108,7 @@ const reducer = (state = initialState, action) => {
 
                         const copyArray = state.techItems;
 
-                        action.payload.messages = [
-                                {
-                                        message: 'Very good work, next time again !',
-                                        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                        star1: 'fa fa-star checked',
-                                        star2: 'fa fa-star checked',
-                                        star3: 'fa fa-star checked',
-                                        star4: 'fa fa-star checked',
-                                        star5: 'fa fa-star'
-                                },
-                                {
-                                        message: 'Very good work, next time again !',
-                                        img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                        star1: 'fa fa-star checked',
-                                        star2: 'fa fa-star checked',
-                                        star3: 'fa fa-star checked',
-                                        star4: 'fa fa-star checked',
-                                        star5: 'fa fa-star'
-                                },
-                        ];
+                        action.payload.messages = messages;
 
                         copyArray.unshift(action.payload);
 
@@ -199,6 +150,9 @@ const reducer = (state = initialState, action) => {
                         });
 
                         return { ...state, techItems: bought }
+
+                case types.SAFE_USER:
+                        return { ...state, userData: action.payload }
                 default: return state;
         };
 };
