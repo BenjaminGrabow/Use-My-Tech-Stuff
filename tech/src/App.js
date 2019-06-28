@@ -2,8 +2,8 @@ import React from 'react';
 import HomePage from './Components/HomePage/HomePage'
 import LoginPage from "./Components/Login/LoginPage";
 import RegisterPage from "./Components/Register/RegisterPage";
-import ListItem from './Components/TechStuff/ListItem';
-import User from './Components/TechStuff/User';
+import ListItem from './Components/TechStuff/ListItem/ListItem';
+import User from './Components/TechStuff/User/User';
 import SliderMode from './Components/TechStuff/SliderMode';
 import TechContainer from './Components/TechStuff/TechContainer';
 import Footer from "./Components/Footer/Footer";
@@ -29,8 +29,8 @@ class App extends React.Component {
           exact path="/protected"
           component={TechContainer}
         />
-        <Route path="/protected/slide_mode" component={SliderMode} />
-        <Route path="/protected/user" component={User} />
+        <PrivateRoute path="/protected/slide_mode" component={SliderMode} />
+        <PrivateRoute path="/protected/user" component={User} />
         {this.props.techItems.map((techItem) => <Route
           key={techItem.id}
           path={`/protected/${techItem.title}`}

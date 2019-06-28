@@ -6,7 +6,29 @@ const initialState = {
         error: null,
         loggingIn: false,
         copyOfList: [],
+        userData: null,
 };
+
+const messages = [
+        {
+                message: 'great job, next time again !',
+                img: 'https://images.pexels.com/photos/2504837/pexels-photo-2504837.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+                star1: 'fa fa-star checked',
+                star2: 'fa fa-star checked',
+                star3: 'fa fa-star checked',
+                star4: 'fa fa-star checked',
+                star5: 'fa fa-star checked'
+        },
+        {
+                message: 'Very good work, everytime again !',
+                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+                star1: 'fa fa-star checked',
+                star2: 'fa fa-star checked',
+                star3: 'fa fa-star checked',
+                star4: 'fa fa-star checked',
+                star5: 'fa fa-star'
+        },
+];
 
 const reducer = (state = initialState, action) => {
         switch (action.type) {
@@ -17,7 +39,7 @@ const reducer = (state = initialState, action) => {
                         return { ...state, loggingIn: true };
 
                 case types.LOGIN_SUCCESS:
-                        return { ...state, logginIn: false };
+                        return { ...state, loggingIn: false };
 
                 case types.LOGIN_FAIL:
                         return { ...state, loggingIn: false, error: action.payload }
@@ -30,26 +52,8 @@ const reducer = (state = initialState, action) => {
 
                         const result = action.payload.map(el => {
                                 const copyOfData = Object.assign({}, el);
-                                copyOfData.messages = [
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                ];
+                                copyOfData.messages = messages;
+
                                 return copyOfData;
                         });
 
@@ -61,37 +65,20 @@ const reducer = (state = initialState, action) => {
                 case types.DELETE:
                         const addMessageSection = action.payload.map(el => {
                                 const copyOfData = Object.assign({}, el);
-                                copyOfData.messages = [
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                ];
 
-                               return copyOfData
+                                copyOfData.messages = messages;
+
+                                return copyOfData
                         });
 
-                        addMessageSection.map(newItem => state.techItems.map(oldItem => {
-                                if(newItem.id === oldItem.id){
-                                        newItem.messages = oldItem.messages
-                                } return newItem
-                        }));
+                        addMessageSection.map(newItem =>
+                                state.techItems.map(oldItem => {
+                                        if (newItem.id === oldItem.id) {
+                                                newItem.messages = oldItem.messages
+                                        } return newItem
+                                }));
 
-                        return { ...state, techItems:  addMessageSection};
+                        return { ...state, techItems: addMessageSection };
 
                 case types.UPDATE:
                         const changeItem = state.techItems.map(item => {
@@ -102,72 +89,36 @@ const reducer = (state = initialState, action) => {
 
                         const addTheMessages = changeItem.map(el => {
                                 const copyOfData = Object.assign({}, el);
-                                copyOfData.messages = [
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                ];
+
+                                copyOfData.messages = messages;
+
                                 return copyOfData;
                         });
 
-                        addTheMessages.map(newItem => 
+                        addTheMessages.map(newItem =>
                                 state.techItems.map(oldItem => {
-                                if(newItem.id === oldItem.id){
-                                        newItem.messages = oldItem.messages
-                                } return newItem
-                        }));
+                                        if (newItem.id === oldItem.id) {
+                                                newItem.messages = oldItem.messages
+                                        } return newItem
+                                }));
 
                         return { ...state, techItems: addTheMessages };
-                        
-                        case types.ADD:
 
-                                const copyArray = state.techItems;
-                                
-                                action.payload.messages =  [
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                        {
-                                                message: 'Very good work, next time again !',
-                                                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                                                star1: 'fa fa-star checked',
-                                                star2: 'fa fa-star checked',
-                                                star3: 'fa fa-star checked',
-                                                star4: 'fa fa-star checked',
-                                                star5: 'fa fa-star'
-                                        },
-                                ];
-                                
+                case types.ADD:
+
+                        const copyArray = state.techItems;
+
+                        action.payload.messages = messages;
+
                         copyArray.unshift(action.payload);
 
                         const addMessagesToNewPost = copyArray.map(el => {
                                 const copyOfData = Object.assign({}, el);
-                        
+
                                 return copyOfData;
                         });
 
-                        return { ...state, techItems: addMessagesToNewPost }
+                        return { ...state, techItems: addMessagesToNewPost };
 
                 case types.UPDATE_MESSAGES:
                         const addMessage = state.techItems.map(item => {
@@ -176,7 +127,7 @@ const reducer = (state = initialState, action) => {
                                 } return item
                         });
 
-                        return { ...state, techItems: addMessage }
+                        return { ...state, techItems: addMessage };
 
                 case types.SEARCH:
                         const search = state.techItems.filter(item => item.brand === action.payload);
@@ -189,7 +140,7 @@ const reducer = (state = initialState, action) => {
                         }
 
                 case types.BACK:
-                        return { ...state, techItems: state.copyOfList }
+                        return { ...state, techItems: state.copyOfList };
 
                 case types.BUY:
                         const bought = state.techItems.map(item => {
@@ -198,7 +149,13 @@ const reducer = (state = initialState, action) => {
                                 } return item;
                         });
 
-                        return { ...state, techItems: bought }
+                        return { ...state, techItems: bought };
+
+                case types.SAFE_USER:
+                        return { ...state, userData: action.payload };
+
+                case types.DELETE_USER:
+                        return { ...state, userData: null };
                 default: return state;
         };
 };

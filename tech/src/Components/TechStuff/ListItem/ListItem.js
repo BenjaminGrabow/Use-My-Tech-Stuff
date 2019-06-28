@@ -1,164 +1,10 @@
 import React from 'react';
+import StyledDiv from './StyledDiv';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { addRating } from '../../store/actions'
-import '../../App.css'
+import { addRating } from '../../../store/actions';
+import '../../../App.css'
 import StripeCheckout from 'react-stripe-checkout';
-
-const StyledDiv = styled.div`
-
-.article {
-display: flex;
-width:100%;
-justify-content: space-around;
-
-@media(max-width:750px) {
-flex-direction: column;
-}
-
-img {
-width: 50%;
-height: 50rem; 
-
-@media(max-width:750px) {
-height: 40rem;
-width: 100%;
-}
-}        
-}
-
-p {
-font-size: 1.5rem;
-font-weight: bold;
-}
-
-.text {
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-align-items: center;
-width: 100%;
-}
-
-.ratings {
-display: flex;
-justify-content: space-around;
-align-items: center;
-border: .5rem solid #facf5a;
-
-@media(max-width:650px) {
-flex-direction: column;
-}
-}
-
-.rating-pic {
-width: 20%;
-height: 9rem;
-border-radius: 50%;
-
-@media(max-width:1100px) {
-width : 20%;
-} 
-
-@media(max-width:650px) {
-width: 35%;
-}
-
-@media(max-width:650px) {
-width: 45%;
-}
-}
-
-.message {
-@media(max-width:650px) {
-order: 2;
-}
-}
-
-.checked {
-color: orange;
-} 
-
-span {
-font-size: 1.5rem;
-}
-
-.star {
-@media(max-width:650px) {
-display: flex;
-order: 1;
-margin: 1rem;
-}
-}
-
-.adder {
-height: 3rem;
-background: #bdc3c7; /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-padding: 1.5rem 0 5rem 0;
-
-@media(max-width:650px) {
-padding-bottom: 18rem;
-}
-}
-
-form {
-  @media(max-width:650px) {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-}
-}
-
-button {
-background-color: white;
-border-radius: 20%;
-width: 15%;
-height: 5rem;
-box-shadow: 1rem .5rem .5rem black;
-font-weight: bold;
-font-size: 1.5rem;
-border: .1rem solid #3498db;
-color: black;
-transition: 0.8s;
-cursor: pointer;
-
-@media(max-width:650px) {
-width: 90%;
-}
-}
-
-button:hover {
-color: red;
-}
-
-Input {
-border-radius: 3rem;
-box-shadow: 1rem .5rem .5rem black;
-width: 25%;
-height: 4rem;
-text-align: center;
-font-size: 1.5rem;
-
-
-@media(max-width:650px) {
-width: 90%;
-}
-}
-
-.buy {
-width: 50%;
-height: 5rem;
-}
-
-a {
-text-decoration: none;
-}
-
-`;
 
 class List extends React.Component {
   constructor(props) {
@@ -180,7 +26,17 @@ class List extends React.Component {
   submit = (event) => {
     event.preventDefault();
 
-    if (this.state.ratingStar !== '' && this.state.rating !== '') {
+    if (this.state.ratingStar !== '' && this.state.rating !== '' && this.props.userData) {
+
+      this.props.addRating(this.props.techItem.id, this.state.rating, this.state.ratingStar, this.props.userData[0].picture);
+
+      this.setState({
+        rating: '',
+        ratingStar: '',
+      });
+    }
+
+    if (this.state.ratingStar !== '' && this.state.rating !== '' && !this.props.userData) {
 
       this.props.addRating(this.props.techItem.id, this.state.rating, this.state.ratingStar);
 
@@ -200,10 +56,8 @@ class List extends React.Component {
     return (
       <StyledDiv>
         <div className="article">
-
           <img src={this.props.techItem.imgURL}
             alt={this.props.model} />
-
           <div className="text">
             <h1>Owner: {this.props.techItem.owner}</h1>
             <h1>Title: {this.props.techItem.title}</h1>
@@ -246,7 +100,11 @@ class List extends React.Component {
         <div
           className="adder">
           <form onSubmit={this.submit}>
-            <button><Link to="/protected">Back</Link></button>
+            <button>
+              <Link to="/protected">
+                <i className="fa fa-backward" />
+            </Link>
+            </button>
             <input
               type="text"
               value={this.state.rating}
@@ -263,8 +121,9 @@ class List extends React.Component {
               name="ratingStar" />
             <button
               type="submit" >
-              Add
-                                                </button>
+              <i
+                className="fa fa-plus-circle" />
+            </button>
           </form>
         </div>
       </StyledDiv>
@@ -272,4 +131,10 @@ class List extends React.Component {
   }
 }
 
-export default connect(null, { addRating })(List);
+const mapStateToProps = state => {
+  return {
+    userData: state.userData
+  }
+};
+
+export default connect(mapStateToProps, { addRating })(List);

@@ -15,6 +15,8 @@ export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
 export const SEARCH = 'SEARCH';
 export const BACK = 'BACK';
 export const BUY = 'BUY';
+export const SAFE_USER = 'SAFE_USER';
+export const DELETE_USER = 'DELETE_USER';
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -23,9 +25,11 @@ export const login = creds => dispatch => {
     .then(res => {
 
       localStorage.setItem('token', res.data.token);
+      
       dispatch({ type: LOGIN_SUCCESS, payload: res.data })
     })
     .catch(err => {
+      
       dispatch({ type: LOGIN_FAIL, payload: err.response.data.message });
     });
 };
@@ -33,6 +37,7 @@ export const login = creds => dispatch => {
 export const register = creds => dispatch => {
   return axios.post('https://usemytechstuffapp.herokuapp.com/api/register', creds)
     .then(res => {
+      
       dispatch({ type: REGISTER });
     })
 };
@@ -41,9 +46,11 @@ export const fetch = () => dispatch => {
   dispatch({ type: LOADING })
 
   axiosWithAuth().get('https://usemytechstuffapp.herokuapp.com/api/items').then(res => {
-    dispatch({ type: SUCCESS, payload: res.data });
+   
+  dispatch({ type: SUCCESS, payload: res.data });
   })
     .catch(err => {
+
       dispatch({ type: ERROR })
     });
 };
@@ -55,7 +62,7 @@ export const deleter = (id) => dispatch => {
       
       return axiosWithAuth().get("https://usemytechstuffapp.herokuapp.com/api/items")
       .then(res => {
-      debugger
+
         dispatch({ type: DELETE, payload: res.data });
       });
     });
@@ -79,14 +86,14 @@ export const update = (id, owner, title, description, type,
       availability: availability,
       brand: brand,
       model: model,
-      // imageURL: imageURL,
+      // imgURL: imageURL,
       renter: numRenter2,
     };
 
     axiosWithAuth().put(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`, updateItem)
       .then(res => {
-        dispatch({ type: UPDATE, payload: res.data.changes });
 
+        dispatch({ type: UPDATE, payload: res.data.changes });
       }).catch(err => {
       });
   };
@@ -112,11 +119,6 @@ export const add = (owner, title, type, description,
       model: model,
       imgURL: imgURL,
       renter: numRenter,
-      // messages: [{
-      //   message: '',
-      //   img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg'
-      // },]
-      // dont work because server don't accept messages
     };
 
     axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)
@@ -127,7 +129,7 @@ export const add = (owner, title, type, description,
       });
   };
 
-export const addRating = (id, message, stars) => {
+export const addRating = (id, message, stars, img) => {
   
   const orangeStars = 'fa fa-star checked'.repeat(stars);
   
@@ -137,10 +139,13 @@ export const addRating = (id, message, stars) => {
   const arrayBlack = blackStars.match(/.{1,10}/g);
   
   const mergeArrays = arrayOrange.concat(arrayBlack);
+
+  const ifImageIsThere = img === ""
+   ? 'https://images.pexels.com/photos/2504837/pexels-photo-2504837.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' : img;
   
         const newMessage = {
           message: message,
-          img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+          img: ifImageIsThere,
           star1: mergeArrays[0],
           star2: mergeArrays[1],
           star3: mergeArrays[2],
@@ -163,6 +168,15 @@ export const buy = id => dispatch => {
 
   axiosWithAuth().get(`https://usemytechstuffapp.herokuapp.com/api/items/${id}`)
     .then(res => {
+
       dispatch({ type: BUY, payload: res.data })
     })
+};
+
+export const safeUser = (user) => {
+  return { type: SAFE_USER, payload: user};
+};
+
+export const deleteUser = () => {
+  return { type: DELETE_USER }
 };

@@ -1,51 +1,11 @@
 import React from 'react';
 import TechList from './TechList';
+import StyledContainer from './StyledContainer';
 import Droppable from './DragDrop/Droppable';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-
-
-const StyledContainer = styled.div`
-
-nav {
-  display: flex;
-  justify-content: space-around;
-}
-
-.navLink {
-text-decoration: none;
-font-size: 2rem;
-}
-
-.dr2 {
-height: 12rem;
-width: 100%;
-display: flex;
-background: #bdc3c7;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-      
-#dr2 {
-width: 100%;
-margin: 0;
-height: 12rem;
-}
-
-img {
-height: 12rem;
-}
-
-button {
-border: .1rem solid #3498db;
-color: black;
-transition: 0.8s;
-}
-
-button:hover {
-color: red;
-}
-`;
+import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner';
+import { deleteUser } from '../../store/actions';
 
 class TechContainer extends React.Component {
   constructor(props) {
@@ -53,20 +13,45 @@ class TechContainer extends React.Component {
     this.state = {}
   }
 
+  logout = () => {
+    localStorage.removeItem('token');
+
+    this.props.deleteUser();
+  };
+
 
   render() {
+    if(this.props.loading){
+return <Loader 
+type="Puff"
+color="#00BFFF"
+height="100"	
+width="100"
+/>   
+    }
+    if(this.props.error) {
+      return <h1>{this.props.error}</h1>
+    }
     return (
       <StyledContainer>
         <nav>
+            <NavLink
+              to="/"
+              className="navLink">
+              <p
+            onClick={this.logout}>
+                Logout
+                </p>
+            </NavLink>
         <NavLink
           className="navLink"
           to="/protected/slide_mode" >
-          Slide Mode
+          <p>Slide Mode</p>
            </NavLink>
            <NavLink
           className="navLink"
           to="/protected/user" >
-          User
+          <p>User</p>
            </NavLink>
            </nav>
         <div
@@ -81,4 +66,11 @@ class TechContainer extends React.Component {
   }
 }
 
-export default TechContainer;
+const mapStateToProps = state => {
+  return {
+    loading: state.loading,
+    error: state.error
+  }
+};
+
+export default connect(mapStateToProps, { deleteUser })(TechContainer);

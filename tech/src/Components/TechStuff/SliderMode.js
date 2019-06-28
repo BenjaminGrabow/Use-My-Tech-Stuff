@@ -1,218 +1,12 @@
 import React from 'react';
+import StyledSlider from './StyledSlider';
 import { connect } from 'react-redux';
-import { buy, deleter, add, update, search, back } from '../../store/actions';
+import { buy, deleter, add, update, search, back, deleteUser } from '../../store/actions';
 import 'react-animated-slider/build/horizontal.css';
-import styled from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
 import { Animated } from "react-animated-css";
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
-
-const StyledDiv = styled.div`
-
-nav {
-  display: flex;
-  justify-content: space-around;
-}
-
-.navLink {
-text-decoration: none;
-font-size: 2rem;
-}
-
-.functionality {
-height: 3rem;
-background: #bdc3c7; /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-padding-bottom: 2rem;
-
-@media (max-width:610px) {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-top: 10rem;
-}
-}
-
-.topButton {
-background-color: white;
-border-radius: 20%;
-width: 15%;
-height: 5rem;
-box-shadow: 1rem .5rem .5rem black;
-cursor: pointer;
-border: .1rem solid #3498db;
-  color: black;
-
-  @media (max-width:610px) {
-        width: 90%;
-        margin: .5rem;
-}
-}
-
-.pButton {
-font-size: 1.5rem;
-font-weight: bold;
-transition: 0.8s;
-
-@media (max-width:610px) {
-font-size: 2.5rem
-}
-
-&:hover {
-color: red;
-}
-}
-
-.topInput {
-border-radius: 3rem;
-box-shadow: 1rem .5rem .5rem black;
-width: 25%;
-height: 100%;
-text-align: center;
-font-size: 1.5rem;
-
-@media (max-width:610px) {
-        width: 90%;
-        margin: .5rem;
-        font-size: 2.5rem
-}
-}
-
-.techList {
-background: #bdc3c7; /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-@media (max-width:610px) {
-        padding-top: 10rem;
-}
-}
-
-.techItem {
-background: #bdc3c7; /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-width: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
-height: 45rem;
-}
- 
-a {
-text-decoration: none;
-}
- 
-p {
-color: black;
-font-size: 2rem;
-margin: 0;
-}
- 
-.off {
-display:none;
-top          : 50%;
-left         : 50%;
-position     : fixed;
-transform    : translate(-250%, -50%);
-}
-
-
-img {
-width: 20rem;
-height: 12rem;
-box-shadow: 1rem .5rem .5rem black;
-}
-
-.itemButton {
-  border-radius: 20%;
-  margin: .3rem;
-  width: 85%;
-  height: 4rem;
-  background-color: white;
-  box-shadow: 1rem .5rem .5rem black;
-  font-size: 1.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  border: .1rem solid #3498db;
-  color: black;
-  transition: 0.8s;
-}
-
-button:hover {
-color: red;
-}
-
-.soldItem {
-background: red;
-}
-
-.sold {
-font-size: 3rem;
-color: black;
-}
-
-.text {
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-text-align: left;
-width: 80%;
-}
-
-span {
-font-weight: bold;
-}
-
-.slider {
-height: 45rem;
-}
-
-.hiddenInput {
-background: #bdc3c7; /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-width: 100%;
-height: 4rem;
-transition: all 1s ease-in;
-
-.on {
-width: 100%;
-display: flex;
-flex-direction: column;
-top          : 50%;
-left         : 50%;
-position     : fixed;
-transform    : translate(-20%, -50%);
-}
-
-input {
-border-radius: 3rem;
-margin: .5rem 0 0 0;
-box-shadow: 1rem .5rem .5rem black;
-width: 40%;
-height: 4rem;
-text-align: center;
-font-size: 3rem;
-}
-
-button {
-
-background-color: white;
-border-radius: 20%;
-width: 40%;
-height: 6rem;
-box-shadow: 1rem .5rem .5rem black;
-font-size: 2.5rem;
-cursor: pointer;
-}
-}
-`;
 
 class SliderMode extends React.Component {
   constructor(props) {
@@ -313,44 +107,36 @@ class SliderMode extends React.Component {
 
   logout = () => {
     localStorage.removeItem('token');
+
+    this.props.deleteUser();
   };
 
   render() {
     return (
-      <StyledDiv>
+      <StyledSlider>
         <nav>
-        <NavLink
-          to="/protected"
-          className="navLink">
-          Normal View
-         </NavLink>
-         <NavLink
-          className="navLink"
-          to="/protected/user" >
-          User
-           </NavLink>
-           </nav>
-        <div className="functionality">
-          <button
-            className="topButton"
-            onClick={this.logout}>
-            <Link
-              to="/"
-              className="navLink">
-              <p
-                className="pButton">
-                Logout
-                </p>
-            </Link>
-          </button>
-          <button
-            className="topButton"
-            onClick={this.props.back}>
+          <NavLink
+            to="/"
+            className="navLink">
             <p
-              className="pButton">
-              Back
-             </p>
-          </button>
+              onClick={this.logout}>
+              Logout
+                </p>
+          </NavLink>
+          <NavLink
+            to="/protected"
+            className="navLink">
+            <p> Normal View </p>
+          </NavLink>
+          <NavLink
+            className="navLink"
+            to="/protected/user" >
+            <p>User</p>
+          </NavLink>
+        </nav>
+        <div className="functionality">
+            <i className="fa fa-backward"
+            onClick={this.props.back} />
           <input
             placeholder="Search"
             className="topInput"
@@ -359,26 +145,13 @@ class SliderMode extends React.Component {
             value={this.state.searchBrand}
             type="text"
           />
-          <button
-            onClick={this.searchIt}
-            className="topButton">
-            <p
-              className="pButton">
-              Search
-              </p>
-          </button>
-          <button
-            className="topButton"
-            onClick={this.showAddInput}>
-            <p
-              className="pButton">
-              Add
-              </p>
-          </button>
+      <i className="fa fa-search"
+      onClick={this.searchIt}
+      />
+            <i 
+             onClick={this.showAddInput}
+            className="fa fa-plus-circle"/>
         </div>
-
-        <div
-          className="techList">
           <Slider
             className="slider">
             {this.props.techItems.map(techItem => {
@@ -391,6 +164,7 @@ class SliderMode extends React.Component {
                 className={techItem.availability ? 'techItem' : 'soldItem techItem'}
                 key={techItem.id}>
                 <Link
+                className="pictureWrapper"
                   id={techItem.id} to={`/protected/${techItem.title}`}>
                   <img
                     id={techItem.model}
@@ -406,30 +180,30 @@ class SliderMode extends React.Component {
                   <p><span>Type:</span> {techItem.type}</p>
                   <p><span>Model:</span> {techItem.model}</p>
                   <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
-                  <p><span>Description:</span> {techItem.description}</p>
                   <p><span>Price:</span> {techItem.price}$</p>
                 </div>
-                <button
-                  className="itemButton"
+                <div
+                className="icons">
+                  <button 
+                  className="buttonIcon"
                   onClick={() =>
                     this.props.deleter(techItem.id)}>
-                  Delete
-</button>
-                <button
-                  className="itemButton"
-                  onClick={() => this.showInput(techItem.id)}>
-                  Update
-</button>
-                <button
-                  className="itemButton"
-                  onClick={() => this.props.buy(techItem.id)} >
-                  Buy
-  </button>
-
+              <i className="fa fa-user-times"/> &nbsp; Delete 
+               </button>
+                 <button
+                   className="buttonIcon"
+                   onClick={() => this.showInput(techItem.id)}>
+                 <i
+                 className="fa fa-wrench" /> &nbsp; Update</button>
+                 <button  
+                 className="buttonIcon"
+                 onClick={() => this.props.buy(techItem.id)}>
+                 <i 
+                 className="fa fa-shopping-cart" /> &nbsp; Buy </button>
+                 </div>
               </Animated>
             })}
           </Slider>
-        </div>
         <div className="hiddenInput">
           <div
             className={this.state.showInput === 'off' ? 'off' : 'on'}
@@ -495,7 +269,7 @@ class SliderMode extends React.Component {
             </button>
           </div>
         </div>
-      </StyledDiv>
+      </StyledSlider>
     );
   }
 }
@@ -508,4 +282,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, { deleter, add, update, search, back, buy })(SliderMode);
+export default connect(mapStateToProps, { deleter, add, update, search, back, buy, deleteUser })(SliderMode);
