@@ -28,11 +28,13 @@ class RegisterPage extends React.Component {
         register = e => {
                 e.preventDefault();
 
-                this.props.register(this.state.credentials)
-                        .then(() => {
-                                this.props.history.push('/login')
-                        })
-
+                if (this.state.credentials.username.length > 5 &&
+                        this.state.credentials.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/)) {
+                        this.props.register(this.state.credentials)
+                                .then(() => {
+                                        this.props.history.push('/login')
+                                })
+                }
         };
 
 
@@ -47,40 +49,40 @@ class RegisterPage extends React.Component {
                                         isVisible={true}>
                                         <img src={loginPic} alt="logo" />
                                 </Animated>
-                                        <div className="row">
-                                <form
-                                        onSubmit={this.register}>
-                                        <Animated
-                                                animationIn="rollIn"
-                                                animationOut="slideOutDown"
-                                                animationInDuration={1800}
-                                                animationOutDuration={1800}
-                                                isVisible={true}>
+                                <div className="row">
+                                        <form
+                                                onSubmit={this.register}>
+                                                <Animated
+                                                        animationIn="rollIn"
+                                                        animationOut="slideOutDown"
+                                                        animationInDuration={1800}
+                                                        animationOutDuration={1800}
+                                                        isVisible={true}>
 
-                                                <div
-                                                        className="inputs">
-                                                        <input
-                                                                name="username"
-                                                                onChange={this.handleChange}
-                                                                value={this.state.username}
-                                                                placeholder="Username"
-                                                                type="text"
-                                                        />
-                                                        <input
-                                                                name="password"
-                                                                type="password"
-                                                                onChange={this.handleChange}
-                                                                value={this.state.password}
-                                                                placeholder="Password"
-                                                        />
-                                                </div>
-                                        </Animated>
-                                        <button
-                                                type="submit">
-                                             <i className="fa fa-user-plus"></i>
-                                        </button>
-                                </form>
-                                        </div>
+                                                        <div
+                                                                className="inputs">
+                                                                <input
+                                                                        name="username"
+                                                                        onChange={this.handleChange}
+                                                                        value={this.state.username}
+                                                                        placeholder="Username"
+                                                                        type="text"
+                                                                />
+                                                                <input
+                                                                        name="password"
+                                                                        type="password"
+                                                                        onChange={this.handleChange}
+                                                                        value={this.state.password}
+                                                                        placeholder="Password"
+                                                                />
+                                                        </div>
+                                                </Animated>
+                                                <button
+                                                        type="submit">
+                                                        <i className="fa fa-user-plus"></i>
+                                                </button>
+                                        </form>
+                                </div>
                         </StyledDiv>
                 );
         }
