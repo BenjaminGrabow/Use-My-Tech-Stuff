@@ -1,163 +1,226 @@
 import * as types from './actions';
 
 const initialState = {
-        techItems: [],
-        loading: false,
-        error: null,
-        loggingIn: false,
-        copyOfList: [],
-        userData: null,
+  techItems: [],
+  loading: false,
+  error: null,
+  loggingIn: false,
+  copyOfList: [],
+  userData: null,
 };
 
 const messages = [
-        {
-                message: 'great job, next time again !',
-                img: 'https://images.pexels.com/photos/2504837/pexels-photo-2504837.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-                star1: 'fa fa-star checked',
-                star2: 'fa fa-star checked',
-                star3: 'fa fa-star checked',
-                star4: 'fa fa-star checked',
-                star5: 'fa fa-star checked'
-        },
-        {
-                message: 'Very good work, everytime again !',
-                img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
-                star1: 'fa fa-star checked',
-                star2: 'fa fa-star checked',
-                star3: 'fa fa-star checked',
-                star4: 'fa fa-star checked',
-                star5: 'fa fa-star'
-        },
+  {
+    message: 'great job, next time again !',
+    img: 'https://images.pexels.com/photos/2504837/pexels-photo-2504837.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    star1: 'fa fa-star checked',
+    star2: 'fa fa-star checked',
+    star3: 'fa fa-star checked',
+    star4: 'fa fa-star checked',
+    star5: 'fa fa-star checked'
+  },
+  {
+    message: 'Very good work, everytime again !',
+    img: 'https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg',
+    star1: 'fa fa-star checked',
+    star2: 'fa fa-star checked',
+    star3: 'fa fa-star checked',
+    star4: 'fa fa-star checked',
+    star5: 'fa fa-star'
+  },
 ];
 
+const ratingForUserConst = [{
+  star1: 'fa fa-star checked',
+    star2: 'fa fa-star checked',
+    star3: 'fa fa-star checked',
+    star4: 'fa fa-star checked',
+    star5: 'fa fa-star'
+}];
+
 const reducer = (state = initialState, action) => {
-        switch (action.type) {
-                case types.REGISTER:
-                        return { ...state };
+  switch (action.type) {
+    case types.REGISTER:
+      return { ...state };
 
-                case types.LOGIN_START:
-                        return { ...state, loggingIn: true };
+    case types.LOGIN_START:
+      return { ...state, loggingIn: true };
 
-                case types.LOGIN_SUCCESS:
-                        return { ...state, loggingIn: false };
+    case types.LOGIN_SUCCESS:
+      return { ...state, loggingIn: false };
 
-                case types.LOGIN_FAIL:
-                        return { ...state, loggingIn: false, error: action.payload }
+    case types.LOGIN_FAIL:
+      return { ...state, loggingIn: false, error: action.payload }
 
 
-                case types.LOADING:
-                        return { techItems: [], loading: true, error: null };
+    case types.LOADING:
+      return { techItems: [], loading: true, error: null };
 
-                case types.SUCCESS:
+    case types.SUCCESS:
 
-                        const result = action.payload.map(el => {
-                                const copyOfData = Object.assign({}, el);
-                                copyOfData.messages = messages;
+      const result = action.payload.map(el => {
+        const copyOfData = Object.assign({}, el);
+        copyOfData.messages = messages;
 
-                                return copyOfData;
-                        });
+        copyOfData.ratingForUser = ratingForUserConst;
 
-                        return { ...state, techItems: result, loading: false, error: null, copyOfList: result };
+        return copyOfData;
+      });
 
-                case types.ERROR:
-                        return { techItems: [], loading: false, error: 'ERROR NETWORK' };
+      return { ...state, techItems: result, loading: false, error: null, copyOfList: result };
 
-                case types.DELETE:
-                        const addMessageSection = action.payload.map(el => {
-                                const copyOfData = Object.assign({}, el);
+    case types.ERROR:
+      return { techItems: [], loading: false, error: 'ERROR NETWORK' };
 
-                                copyOfData.messages = messages;
+    case types.DELETE:
+      const addMessageSection = action.payload.map(el => {
+        const copyOfData = Object.assign({}, el);
 
-                                return copyOfData
-                        });
+        copyOfData.messages = messages;
 
-                        addMessageSection.map(newItem =>
-                                state.techItems.map(oldItem => {
-                                        if (newItem.id === oldItem.id) {
-                                                newItem.messages = oldItem.messages
-                                        } return newItem
-                                }));
+        return copyOfData
+      });
 
-                        return { ...state, techItems: addMessageSection };
+      addMessageSection.map(newItem =>
+        state.techItems.map(oldItem => {
+          if (newItem.id === oldItem.id) {
+            newItem.messages = oldItem.messages
+            newItem.ratingForUser = oldItem.ratingForUser;
+          } return newItem
+        }));
 
-                case types.UPDATE:
-                        const changeItem = state.techItems.map(item => {
-                                if (item.id === action.payload.id) {
-                                        item = action.payload;
-                                } return item
-                        });
+      return { ...state, techItems: addMessageSection };
 
-                        const addTheMessages = changeItem.map(el => {
-                                const copyOfData = Object.assign({}, el);
+    case types.UPDATE:
+      const changeItem = state.techItems.map(item => {
+        if (item.id === action.payload.id) {
+          item = action.payload;
+        } return item
+      });
 
-                                copyOfData.messages = messages;
+      const addTheMessages = changeItem.map(el => {
+        const copyOfData = Object.assign({}, el);
 
-                                return copyOfData;
-                        });
+        copyOfData.messages = messages;
 
-                        addTheMessages.map(newItem =>
-                                state.techItems.map(oldItem => {
-                                        if (newItem.id === oldItem.id) {
-                                                newItem.messages = oldItem.messages
-                                        } return newItem
-                                }));
+        return copyOfData;
+      });
 
-                        return { ...state, techItems: addTheMessages };
+      addTheMessages.map(newItem =>
+        state.techItems.map(oldItem => {
+          if (newItem.id === oldItem.id) {
+            newItem.messages = oldItem.messages
+            newItem.ratingForUser = oldItem.ratingForUser;
+          } return newItem
+        }));
 
-                case types.ADD:
+      return { ...state, techItems: addTheMessages };
 
-                        const copyArray = state.techItems;
+    case types.ADD:
 
-                        action.payload.messages = messages;
+      const copyArray = state.techItems;
 
-                        copyArray.unshift(action.payload);
+      action.payload.messages = messages;
+      action.payload.ratingForUser = ratingForUserConst;
 
-                        const addMessagesToNewPost = copyArray.map(el => {
-                                const copyOfData = Object.assign({}, el);
+      copyArray.unshift(action.payload);
 
-                                return copyOfData;
-                        });
+      const addMessagesToNewPost = copyArray.map(el => {
+        const copyOfData = Object.assign({}, el);
 
-                        return { ...state, techItems: addMessagesToNewPost };
+        return copyOfData;
+      });
 
-                case types.UPDATE_MESSAGES:
-                        const addMessage = state.techItems.map(item => {
-                                if (item.id === action.id) {
-                                        item.messages.push(action.message)
-                                } return item
-                        });
+      return { ...state, techItems: addMessagesToNewPost };
 
-                        return { ...state, techItems: addMessage };
+    case types.UPDATE_MESSAGES:
+      const addMessage = state.techItems.map(item => {
+        if (item.id === action.id) {
+          item.messages.push(action.message);
 
-                case types.SEARCH:
-                        const search = state.techItems.filter(item => item.brand === action.payload);
+          const goodRating = 'fa fa-star checked';
 
-                        const copyOftechItems = state.techItems;
+          const resultCounter = [];
+  
+          let numTotal = '';
+  
+          for (let i = 0; i < item.messages.length; i++) {
+            resultCounter.push(item.messages[i].star1 === goodRating);
+  
+            resultCounter.push(item.messages[i].star2 === goodRating);
+  
+            resultCounter.push(item.messages[i].star3 === goodRating);
+  
+            resultCounter.push(item.messages[i].star4 === goodRating);
+  
+            resultCounter.push(item.messages[i].star5 === goodRating);
+          }
+  
+          numTotal = resultCounter.length;
+  
+          const howManyGood = resultCounter.filter(good => good === true).length;
+  
+          const ruleOfProportion = howManyGood * 100 / numTotal;
+  
+          const ratingForStars = ruleOfProportion / 2;
+  
+          const numOfOrangeStars = parseInt(ratingForStars / 10);
+  
+          console.log(numOfOrangeStars)
+  
+          const orangeStars = 'fa fa-star checked'.repeat(numOfOrangeStars);
+  
+          const blackStars = 'fa fa-star'.repeat(5 - numOfOrangeStars);
+  
+          const arrayOrange = orangeStars.match(/.{1,18}/g);
+          const arrayBlack = blackStars.match(/.{1,10}/g);
+  
+          const mergeArrays = arrayOrange.concat(arrayBlack);
+  
+          const ratingForUser = [{
+            star1: mergeArrays[0],
+            star2: mergeArrays[1],
+            star3: mergeArrays[2],
+            star4: mergeArrays[3],
+            star5: mergeArrays[4]
+          }];
+  
+          item.ratingForUser = ratingForUser;
 
-                        return {
-                                ...state, techItems: search,
-                                copyOfList: copyOftechItems
-                        }
+        } return item
+      });
 
-                case types.BACK:
-                        return { ...state, techItems: state.copyOfList };
+      return { ...state, techItems: addMessage };
 
-                case types.BUY:
-                        const bought = state.techItems.map(item => {
-                                if (item.id === action.payload.id) {
-                                        item.availability = false;
-                                } return item;
-                        });
+    case types.SEARCH:
+      const search = state.techItems.filter(item => item.brand === action.payload);
 
-                        return { ...state, techItems: bought };
+      const copyOftechItems = state.techItems;
 
-                case types.SAFE_USER:
-                        return { ...state, userData: action.payload };
+      return {
+        ...state, techItems: search,
+        copyOfList: copyOftechItems
+      }
 
-                case types.DELETE_USER:
-                        return { ...state, userData: null };
-                default: return state;
-        };
+    case types.BACK:
+      return { ...state, techItems: state.copyOfList };
+
+    case types.BUY:
+      const bought = state.techItems.map(item => {
+        if (item.id === action.payload.id) {
+          item.availability = false;
+        } return item;
+      });
+
+      return { ...state, techItems: bought };
+
+    case types.SAFE_USER:
+      return { ...state, userData: action.payload };
+
+    case types.DELETE_USER:
+      return { ...state, userData: null };
+    default: return state;
+  };
 };
 
 export default reducer;

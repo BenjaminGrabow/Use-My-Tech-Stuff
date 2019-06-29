@@ -7,9 +7,9 @@ const StyledDiv = styled.div`
 display: flex;
 width: 100%;
 justify-content: space-around;
-background: #bdc3c7;
+/* background: #bdc3c7;
 background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
-background: linear-gradient(to right, #eaeaea, #deecff); 
+background: linear-gradient(to right, #eaeaea, #deecff);  */
 padding: 2rem 0;
 
 @media (max-width:610px) {
@@ -42,7 +42,7 @@ color: blue;
 
 .topInput {
 border-radius: 3rem;
-box-shadow: 1rem .5rem .5rem black;
+/* box-shadow: 1rem .5rem .5rem black; */
 width: 40%;
 height: 4rem;
 text-align: center;
@@ -62,39 +62,199 @@ flex-wrap: wrap;
 justify-content: center;
 background: #bdc3c7;
 background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
-background: linear-gradient(to right, #eaeaea, #deecff); 
+background: white; 
 }
 
 .techItem {
 background: #bdc3c7;
 background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
-background: linear-gradient(to right, #eaeaea, #deecff); 
-width: 45%;
-border: .08rem solid black;
-margin: 1rem;
+background: white; 
+width: 100%;
+border-bottom: .3rem solid #f5f5f5;
+/* margin-bottom: 1rem; */
 display: flex;
-flex-direction: column;
-justify-content: space-around;
+justify-content: space-between;
 align-items: center;
-flex-wrap: wrap;
-box-shadow: 1rem .5rem .5rem black;
-border-radius: .5rem;
+/* box-shadow: 1rem .5rem .5rem black; */
+/* border-radius: .5rem; */
+height: 20rem;
 
-@media (max-width:800px) {
+/* @media (max-width:800px) {
         width: 80%;
 }
 
 @media (max-width:610px) {
         width: 95;
-}
-}
- 
-a {
-text-decoration: none;
+} */
+
+#dr1 {
+height: 20rem;
+width: 20rem;
+margin: 0;
 }
 
-h1 {
+img {
+width: 20rem;
+height: 20rem;
+/* border-radius: .5rem; */
+
+/* @media (max-width:1200px) {
+width: 17rem; 
+}
+
+@media (max-width:1100px) {
+width: 15rem;
+}
+
+@media (max-width:1000px) {
+width: 17rem;
+}
+
+@media(max-width:800px) {
+width : 23rem;
+} 
+
+@media(max-width:610px) {
+width : 90%;
+}  */
+}
+
+
+
+/* .icons {
+height: 20rem;
+width: 20%;
+display: flex;
+flex-direction: column;
+margin: 1rem 1rem 1rem 0;
+background: none;
+
+@media(max-width:610px) {
+flex-direction: column;
+align-items: center;
+height: 15rem;
+} 
+} */
+
+.checked {
+color: #ffa724;
+} 
+
+.fa-star {
+  font-size: 1.5rem;
+}
+
+.delete {
+  height: 20rem;
+  width: 10%;
+  padding: 0;
+}
+
+.fa-user-times {
+font-size: 2rem;
+}
+
+#delete {
+  width: 100%;
+  background: white;
+  transition: .8s;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  font-size: 2rem;
+  height: 3rem;
+
+  &:hover {
+    background: red
+  }
+}
+
+.price {
+  color : red;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+
+.middle-button {
+  margin: .5rem;
+  height: 2.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+.buttonIcon {
+  padding: 0;
+border: .2rem solid #ffa724;
+transition: .8s;
+/* border-radius: .5rem; */
+width: 100%;
+font-size: 1.5rem; 
+/* width: 5rem; */
+background: #ffa724; 
+
+/* @media(max-width:610px) {
+width: 70%;      
+}  */
+
+
+/* &:hover {
+  border: .2rem solid blue;
+  color: blue;
+}
+
+&:hover .fa {
+  color: blue;
+} */
+
+.fa {
+font-size: 2rem;
+font-weight: bold;
+cursor: pointer;
+color: #002f36;
+transition: .8s;
+}
+}
+
+
+}
+ 
+
+.draggable {
 font-size: 3rem;
+color: black;
+height: 12rem;
+}
+
+
+
+.soldItem {
+background: red;
+}
+
+.sold {
+font-size: 3rem;
+color: black;
+}
+
+.textContainer {
+ width: 100%;
+ height: 20rem;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ 
+  a {
+text-decoration: none;
 }
 
 p {
@@ -102,7 +262,45 @@ color: black;
 font-size: 2rem;
 margin: 0;
 }
- 
+
+h1 {
+font-size: 3rem;
+margin: 0;
+}
+
+.text {
+display: flex;
+justify-content: space-around;
+width: 100%;
+height: 10rem;
+}
+
+.theText {
+  text-align: left;
+}
+
+span {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.brandLink {
+  font-size: 2.5rem;
+  font-weight: bold;
+  transition: .8s;
+  margin: 0;
+  color: #0066c0;
+
+
+  &:hover {
+    color: blue;
+  }
+}
+
+}
+
+
+
 .off {
 display:none;
 top          : 50%;
@@ -112,9 +310,9 @@ transform    : translate(-250%, -50%);
 }
 
 .hiddenInput {
-background: #bdc3c7;
+/* background: #bdc3c7;
 background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
-background: linear-gradient(to right, #eaeaea, #deecff); 
+background: linear-gradient(to right, #eaeaea, #deecff);  */
 width: 100%;
 height: 4rem;
 transition: all 1s ease-in;
@@ -149,125 +347,6 @@ box-shadow: 1rem .5rem .5rem black;
 font-size: 2.5rem;
 cursor: pointer;
 }
-}
- 
-img {
-width: 20rem;
-height: 12rem;
-box-shadow: 1rem .5rem .5rem black;
-
-@media (max-width:1200px) {
-width: 17rem; 
-}
-
-@media (max-width:1100px) {
-width: 15rem;
-}
-
-@media (max-width:1000px) {
-width: 17rem;
-}
-
-@media(max-width:800px) {
-width : 23rem;
-} 
-
-@media(max-width:610px) {
-width : 90%;
-} 
-}
-
-.draggable {
-font-size: 3rem;
-color: black;
-height: 12rem;
-}
-
-#dr1 {
-height: 12rem;
-display: flex;
-justify-content: center;
-margin: 0;
-}
-
-
-.icons {
-height: 6rem;
-width: 95%;
-/* background-color: white; */
-display: flex;
-margin: 1rem 1rem 1rem 0;
-background: none;
-
-@media(max-width:610px) {
-flex-direction: column;
-align-items: center;
-height: 15rem;
-} 
-
-.buttonIcon {
-border: .2rem solid black;
-transition: .8s;
-border-radius: .5rem;
-width: 33%;
-font-size: 1.5rem;
-background: #bdc3c7;
-background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
-background: linear-gradient(to right, #eaeaea, #deecff); 
-
-@media(max-width:610px) {
-width: 70%;      
-} 
-
-&:hover {
-  border: .2rem solid blue;
-  color: blue;
-}
-
-&:hover .fa {
-  color: blue;
-}
-
-.fa {
-font-size: 3rem;
-font-weight: bold;
-cursor: pointer;
-color: black;
-transition: .8s;
-}
-}
-}
-
-.soldItem {
-background: red;
-}
-
-.sold {
-font-size: 3rem;
-color: black;
-}
-
-.text {
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-text-align: left;
-width: 80%;
-}
-
-span {
-  font-weight: bold;
-  font-size: 2rem;
-}
-
-.brandLink {
-  font-size: 2.5rem;
-  font-weight: bold;
-  transition: .8s;
-
-  &:hover {
-    color: blue;
-  }
 }
 `;
 

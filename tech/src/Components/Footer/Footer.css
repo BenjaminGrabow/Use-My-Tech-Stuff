@@ -3,9 +3,6 @@
 .icons {
     display        : flex;
     justify-content: space-between;
-    background: #bdc3c7;
-    background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
-    background: linear-gradient(to right, #eaeaea, #deecff); 
     height: 100%;
 }
 

@@ -37,7 +37,7 @@ width: 100%;
 
 .ratings {
 display: flex;
-justify-content: space-around;
+justify-content: space-between;
 align-items: center;
 border: .5rem solid #facf5a;
 
@@ -106,6 +106,11 @@ justify-content: space-around;
 flex-direction: column;
 align-items: center;
 }
+}
+
+.fa-star {
+  margin: 1rem;
+  font-size: 2.5rem;
 }
 
 button {

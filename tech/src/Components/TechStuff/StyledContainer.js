@@ -5,9 +5,6 @@ const StyledContainer = styled.div`
 nav {
 display: flex;
 justify-content: space-around;
-background: #bdc3c7;
-background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
-background: linear-gradient(to right, #eaeaea, #deecff); 
 
 @media (max-width:500px) {
 flex-direction: column;

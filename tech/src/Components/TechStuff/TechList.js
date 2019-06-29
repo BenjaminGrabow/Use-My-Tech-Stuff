@@ -32,6 +32,11 @@ class TechList extends React.Component {
     }
   }
 
+  componentDidMount = () => {
+
+
+  };
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -99,11 +104,11 @@ class TechList extends React.Component {
 
   searchIt = () => {
 
-      this.props.search(this.state.searchBrand);
+    this.props.search(this.state.searchBrand);
 
-      this.setState({
-        searchBrand: '',
-      });
+    this.setState({
+      searchBrand: '',
+    });
 
   };
 
@@ -111,7 +116,7 @@ class TechList extends React.Component {
     return (
       <StyledDiv>
         <div className="functionality">
-        <i className="fa fa-backward"
+          <i className="fa fa-backward"
             onClick={this.props.back} />
           <input
             placeholder="Search"
@@ -121,12 +126,12 @@ class TechList extends React.Component {
             value={this.state.searchBrand}
             type="text"
           />
-      <i className="fa fa-search"
-      onClick={this.searchIt}
-      />
-            <i 
-             onClick={this.showAddInput}
-            className="fa fa-plus-circle"/>
+          <i className="fa fa-search"
+            onClick={this.searchIt}
+          />
+          <i
+            onClick={this.showAddInput}
+            className="fa fa-plus-circle" />
         </div>
         <div
           className="techList">
@@ -151,45 +156,62 @@ class TechList extends React.Component {
                   </Link>
                 </Draggable>
               </Droppable>
-              <Link
-                id={techItem.id}
-                to={`/protected/${techItem.title}`}>
-                <h1>
-                  <p className="brandLink">
-                {techItem.brand}
-                </p>
-                </h1>
-              </Link>
-              <div className="text">
-                <p><span>Type:</span> {techItem.type}</p>
-                <p><span>Model:</span> {techItem.model}</p>
-                <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
-                <p><span>Price:</span> {techItem.price}$</p>
+              <div className="textContainer">
+                <Link
+                  id={techItem.id}
+                  to={`/protected/${techItem.title}`}>
+                  <h1>
+                    <p className="brandLink">
+                      {techItem.brand}
+                    </p>
+                  </h1>
+                </Link>
+            <div className="star" >
+              <span className={techItem.ratingForUser[0].star1}></span>
+              <span className={techItem.ratingForUser[0].star2}></span>
+              <span className={techItem.ratingForUser[0].star3}></span>
+              <span className={techItem.ratingForUser[0].star4}></span>
+              <span className={techItem.ratingForUser[0].star5}></span>
+            </div>
+                <div className="text">
+                  <div className="theText">
+                  <p><span>Type:</span> {techItem.type}</p>
+                  <p><span>Model:</span> {techItem.model}</p>
+                  <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
+                  <p className="price">{techItem.price}$</p>
+                  </div>
+                  <div className="buttons">
+              <button
+                className="buttonIcon middle-button"
+                onClick={() => this.props.buy(techItem.id)}>
+                <i
+                  className="fa fa-shopping-cart" />
+                   Buy 
+                   </button>
+              <button
+                className="buttonIcon middle-button"
+                onClick={() => this.showInput(techItem.id)}>
+                <i
+                  className="fa fa-wrench" /> 
+                  Update 
+                  </button>
+                  </div>
+                  </div>
               </div>
-              <div
-                className="icons">
-              <button 
-                  className="buttonIcon"
-                  onClick={() =>
-                    this.props.deleter(techItem.id)}>
-              <i className="fa fa-user-times"/>
-               Delete 
+
+<div className="delete">
+              <button
+                className="buttonIcon"
+                id="delete"
+                onClick={() =>
+                  this.props.deleter(techItem.id)}>
+                <i className="fa fa-user-times" />
                </button>
-                 <button
-                   className="buttonIcon"
-                   onClick={() => this.showInput(techItem.id)}>
-                 <i
-                 className="fa fa-wrench" /> Update </button>
-                 <button  
-                 className="buttonIcon"
-                 onClick={() => this.props.buy(techItem.id)}>
-                 <i 
-                 className="fa fa-shopping-cart" /> Buy </button>
-                 </div>
+               </div>
             </Animated>
           })}
         </div>
-        <div className="hiddenInput">
+        <div className={this.state.showInput === 'off' ? 'off' : 'hiddenInput'}>
           <div
             className={this.state.showInput === 'off' ? 'off' : 'on'}
           >

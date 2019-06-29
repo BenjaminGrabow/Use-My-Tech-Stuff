@@ -9,7 +9,6 @@ const Footer = () => {
                                 <SocialMedia />
                 <div className="bottom">
                                 <div className="footer-left">
-                                        {/* <img></img> */}
                                         <h1>Use My Tech Stuff</h1>
                                         <p>&copy; Use My Tech Stuff Inc. 2019</p>
                                 </div>
