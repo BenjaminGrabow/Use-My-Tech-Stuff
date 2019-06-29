@@ -166,7 +166,6 @@ const reducer = (state = initialState, action) => {
   
           const numOfOrangeStars = parseInt(ratingForStars / 10);
   
-          console.log(numOfOrangeStars)
   
           const orangeStars = 'fa fa-star checked'.repeat(numOfOrangeStars);
   

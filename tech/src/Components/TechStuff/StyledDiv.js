@@ -310,9 +310,6 @@ transform    : translate(-250%, -50%);
 }
 
 .hiddenInput {
-/* background: #bdc3c7;
-background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
-background: linear-gradient(to right, #eaeaea, #deecff);  */
 width: 100%;
 height: 4rem;
 transition: all 1s ease-in;
@@ -321,15 +318,19 @@ transition: all 1s ease-in;
 width: 100%;
 display: flex;
 flex-direction: column;
+justify-content: center;
+align-items: center;
 top          : 50%;
 left         : 50%;
 position     : fixed;
-transform    : translate(-20%, -50%);
+transform    : translate(-50%, -50%);
+background: white;
+height: 100%;
 }
 
 input {
-border-radius: 3rem;
-margin: .5rem 0 0 0;
+border-radius: 6rem;
+margin: 0 0 .5rem 0;
 box-shadow: 1rem .5rem .5rem black;
 width: 40%;
 height: 4rem;
@@ -338,7 +339,6 @@ font-size: 3rem;
 }
  
 button {
-
 background-color: white;
 border-radius: 20%;
 width: 40%;
