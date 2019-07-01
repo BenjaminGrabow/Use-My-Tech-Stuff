@@ -79,6 +79,38 @@ align-items: center;
 /* box-shadow: 1rem .5rem .5rem black; */
 /* border-radius: .5rem; */
 height:30rem;
+position: relative;
+
+.card {
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  width: 100%;
+  height: 100%;
+
+&:hover {
+  transform: rotateY(180deg);
+}
+}
+
+.front {
+  position: absolute;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  /* background: yellow; */
+  /* color: white; */
+}
+
+.back {
+  transform: rotateY(180deg);
+  position: absolute;
+  backface-visibility: hidden;
+  /* background: yellow; */
+  /* color: white; */
+  width: 100%;
+  height: 100%;
+}
 
 /* @media (max-width:800px) {
         width: 80%;

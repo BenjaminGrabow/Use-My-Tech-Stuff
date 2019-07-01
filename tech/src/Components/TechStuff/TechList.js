@@ -143,61 +143,80 @@ class TechList extends React.Component {
               isVisible={true}
               className={techItem.availability ? 'techItem' : 'soldItem techItem'}
               key={techItem.id}>
-              <Droppable id="dr1">
-                <Draggable id={techItem.id}
-                  className="draggable">
-                  <Link
-                    id={techItem.id} to={`/protected/${techItem.title}`}>
-                    <img
-                      id={techItem.model}
-                      src={techItem.imgURL}
-                      alt={techItem.id} />
-                  </Link>
-                </Draggable>
-              </Droppable>
-              <div className="textContainer">
-                  <p>{techItem.title}</p>
-            <div className="star" >
-              <span className={techItem.ratingForUser[0].star1}></span>
-              <span className={techItem.ratingForUser[0].star2}></span>
-              <span className={techItem.ratingForUser[0].star3}></span>
-              <span className={techItem.ratingForUser[0].star4}></span>
-              <span className={techItem.ratingForUser[0].star5}></span>
-            </div>
-                <div className="text">
-                  <div className="theText">
-                    <p>New York</p>
-                  <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
-                  <p className="price">Daily Fee: {techItem.price}$</p>
+              <div className="card">
+                <div className="front">
+                  <Droppable id="dr1">
+                    <Draggable id={techItem.id}
+                      className="draggable">
+                      <Link
+                        id={techItem.id} to={`/protected/${techItem.title}`}>
+                        <img
+                          id={techItem.model}
+                          src={techItem.imgURL}
+                          alt={techItem.id} />
+                      </Link>
+                    </Draggable>
+                  </Droppable>
+                  <div className="textContainer">
+                    <p>{techItem.title}</p>
+                    <div className="star" >
+                      <span className={techItem.ratingForUser[0].star1}></span>
+                      <span className={techItem.ratingForUser[0].star2}></span>
+                      <span className={techItem.ratingForUser[0].star3}></span>
+                      <span className={techItem.ratingForUser[0].star4}></span>
+                      <span className={techItem.ratingForUser[0].star5}></span>
+                    </div>
+                    <div className="text">
+                      <div className="theText">
+                        <p>New York</p>
+                        <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
+                        <p className="price">Daily Fee: {techItem.price}$</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div className="back">
+                <Droppable id="dr1">
+                    <Draggable id={techItem.id}
+                      className="draggable">
+                      <Link
+                        id={techItem.id} to={`/protected/${techItem.title}`}>
+                        <img
+                          id={techItem.model}
+                          src={techItem.imgURL}
+                          alt={techItem.id} />
+                      </Link>
+                    </Draggable>
+                  </Droppable>
+                  <div className="delete">
+                    <button
+                      className="buttonIcon"
+                      id="delete"
+                      onClick={() =>
+                        this.props.deleter(techItem.id)}>
+                      <i className="fa fa-user-times" />
+                    </button>
                   </div>
                   <div className="buttons">
-              <button
-                className="buttonIcon middle-button"
-                onClick={() => this.props.buy(techItem.id)}>
-                <i
-                  className="fa fa-shopping-cart" />
-                   Buy 
+                    <button
+                      className="buttonIcon middle-button"
+                      onClick={() => this.props.buy(techItem.id)}>
+                      <i
+                        className="fa fa-shopping-cart" />
+                      Buy
                    </button>
-              <button
-                className="buttonIcon middle-button"
-                onClick={() => this.showInput(techItem.id)}>
-                <i
-                  className="fa fa-wrench" /> 
-                  Update 
+                    <button
+                      className="buttonIcon middle-button"
+                      onClick={() => this.showInput(techItem.id)}>
+                      <i
+                        className="fa fa-wrench" />
+                      Update
                   </button>
                   </div>
-                  </div>
+                </div>
               </div>
-
-<div className="delete">
-              <button
-                className="buttonIcon"
-                id="delete"
-                onClick={() =>
-                  this.props.deleter(techItem.id)}>
-                <i className="fa fa-user-times" />
-               </button>
-               </div>
             </Animated>
           })}
         </div>

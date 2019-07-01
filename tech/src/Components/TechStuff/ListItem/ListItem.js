@@ -55,37 +55,28 @@ class List extends React.Component {
   render() {
     return (
       <StyledDiv>
-          <img src={this.props.techItem.imgURL}
-            alt={this.props.model} />
-        <div className="article">
-          <div className="text">
-            <h1>Owner: {this.props.techItem.owner}</h1>
-            <h1>Title: {this.props.techItem.title}</h1>
-            <p>Type: {this.props.techItem.type}</p>
-            <p>Price: {this.props.techItem.price}</p>
-            <p>Brand: {this.props.techItem.brand}</p>
-            <p>Model: {this.props.techItem.model}</p>
-            <p>Renter: {this.props.techItem.renter}</p>
-            <StripeCheckout
-              className="buy"
-              stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa'
-              token={this.handleToken}
-              billingAddress
-              shippingAddress
-              amount={this.props.techItem.price * 100}
-              name={this.props.techItem.title}
-            />
-          </div>
+          <img 
+          src={this.props.techItem.imgURL}
+            alt={this.props.model}
+            className="pic" />
+        <div className="row">
+          <div
+          className="column">
+            <h1>{this.props.techItem.title}</h1>
+            {/* <p>Price: {this.props.techItem.price}</p> */}
+            <p>{this.props.techItem.description}</p>
+            {/* <p>Model: {this.props.techItem.model}</p>
+            <p>Renter: {this.props.techItem.renter}</p> */}
           <div
           className='ratingScroll'>
         {this.props.techItem.messages.map((message, index) =>
           <div
-            key={index}
-            className="ratings">
+          key={index}
+          className="ratings">
             <img
               src={message.img}
               alt={message.star5}
-              className="rating-pic" />
+              id="rating-pic" />
             <p
               className="message">
               {message.message}</p>
@@ -98,8 +89,6 @@ class List extends React.Component {
             </div>
           </div>
         )}
-        </div>
-        </div>
         <div
           className="adder">
           <form onSubmit={this.submit}>
@@ -128,6 +117,21 @@ class List extends React.Component {
                 className="fa fa-plus-circle" />
             </button>
           </form>
+        </div>
+        </div>
+        </div>
+        <div
+        className="column">
+<StripeCheckout
+  className="buy"
+  stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa'
+  token={this.handleToken}
+  billingAddress
+  shippingAddress
+  amount={this.props.techItem.price * 100}
+  name={this.props.techItem.title}
+/>
+</div>
         </div>
       </StyledDiv>
     );

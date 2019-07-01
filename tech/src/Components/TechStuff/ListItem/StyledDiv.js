@@ -2,24 +2,31 @@ import styled from 'styled-components';
 
 const StyledDiv = styled.div`
 
-.article {
-display: flex;
-width:100%;
-justify-content: space-around;
-
-@media(max-width:750px) {
-flex-direction: column;
-}
-
-img {
-width: 50%;
+.pic {
+width: 100%;
 height: 50rem; 
 
 @media(max-width:750px) {
 height: 40rem;
 width: 100%;
 }
-}        
+} 
+
+.row {
+display: flex;
+width:100%;
+height: 100%;
+justify-content: space-around;
+
+@media(max-width:750px) {
+flex-direction: column;
+}
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
 p {
@@ -27,34 +34,44 @@ font-size: 1.5rem;
 font-weight: bold;
 }
 
-.text {
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-align-items: center;
-width: 100%;
-}
-
 .ratingScroll {
 overflow-y : auto;
-width: 50%;
+width: 100%;
 height: 20rem;
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 .5rem grey; 
+  border-radius: .8rem;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: black; 
+  border-radius: .8rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
 }
 
 .ratings {
 display: flex;
 justify-content: space-between;
 align-items: center;
-border: .5rem solid #facf5a;
+border-bottom: .5rem solid lightgrey;
 
 @media(max-width:650px) {
 flex-direction: column;
 }
 }
 
-.rating-pic {
+#rating-pic {
 width: 20%;
-height: 9rem;
+height: 6rem;
 border-radius: 50%;
 
 @media(max-width:1100px) {
