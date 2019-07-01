@@ -156,8 +156,8 @@ export const addRating = (id, message, stars, img) => {
   return { type: UPDATE_MESSAGES, message: newMessage, id: id }
 };
 
-export const search = (brand) => dispatch => {
-  dispatch({ type: SEARCH, payload: brand })
+export const search = (result) => dispatch => {
+  dispatch({ type: SEARCH, payload: result })
 };
 
 export const back = () => {

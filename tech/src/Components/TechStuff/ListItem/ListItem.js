@@ -55,9 +55,9 @@ class List extends React.Component {
   render() {
     return (
       <StyledDiv>
-        <div className="article">
           <img src={this.props.techItem.imgURL}
             alt={this.props.model} />
+        <div className="article">
           <div className="text">
             <h1>Owner: {this.props.techItem.owner}</h1>
             <h1>Title: {this.props.techItem.title}</h1>
@@ -76,7 +76,8 @@ class List extends React.Component {
               name={this.props.techItem.title}
             />
           </div>
-        </div>
+          <div
+          className='ratingScroll'>
         {this.props.techItem.messages.map((message, index) =>
           <div
             key={index}
@@ -97,6 +98,8 @@ class List extends React.Component {
             </div>
           </div>
         )}
+        </div>
+        </div>
         <div
           className="adder">
           <form onSubmit={this.submit}>

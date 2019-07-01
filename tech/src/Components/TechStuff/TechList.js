@@ -103,8 +103,7 @@ class TechList extends React.Component {
   };
 
   searchIt = () => {
-
-    this.props.search(this.state.searchBrand);
+    this.props.search(this.props.techItems.filter(item => item.brand.toLowerCase().startsWith(this.state.searchBrand)));
 
     this.setState({
       searchBrand: '',

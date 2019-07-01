@@ -192,12 +192,10 @@ const reducer = (state = initialState, action) => {
       return { ...state, techItems: addMessage };
 
     case types.SEARCH:
-      const search = state.techItems.filter(item => item.brand === action.payload);
-
       const copyOftechItems = state.techItems;
 
       return {
-        ...state, techItems: search,
+        ...state, techItems: action.payload,
         copyOfList: copyOftechItems
       }
 

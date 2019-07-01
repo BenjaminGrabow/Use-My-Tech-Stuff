@@ -35,6 +35,12 @@ align-items: center;
 width: 100%;
 }
 
+.ratingScroll {
+overflow-y : auto;
+width: 50%;
+height: 20rem;
+}
+
 .ratings {
 display: flex;
 justify-content: space-between;
