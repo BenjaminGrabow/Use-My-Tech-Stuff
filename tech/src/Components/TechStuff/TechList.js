@@ -157,15 +157,7 @@ class TechList extends React.Component {
                 </Draggable>
               </Droppable>
               <div className="textContainer">
-                <Link
-                  id={techItem.id}
-                  to={`/protected/${techItem.title}`}>
-                  <h1>
-                    <p className="brandLink">
-                      {techItem.brand}
-                    </p>
-                  </h1>
-                </Link>
+                  <p>{techItem.title}</p>
             <div className="star" >
               <span className={techItem.ratingForUser[0].star1}></span>
               <span className={techItem.ratingForUser[0].star2}></span>
@@ -175,10 +167,9 @@ class TechList extends React.Component {
             </div>
                 <div className="text">
                   <div className="theText">
-                  <p><span>Type:</span> {techItem.type}</p>
-                  <p><span>Model:</span> {techItem.model}</p>
+                    <p>New York</p>
                   <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
-                  <p className="price">{techItem.price}$</p>
+                  <p className="price">Daily Fee: {techItem.price}$</p>
                   </div>
                   <div className="buttons">
               <button
