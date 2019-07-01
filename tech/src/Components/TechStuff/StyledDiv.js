@@ -7,9 +7,6 @@ const StyledDiv = styled.div`
 display: flex;
 width: 100%;
 justify-content: space-around;
-/* background: #bdc3c7;
-background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
-background: linear-gradient(to right, #eaeaea, #deecff);  */
 padding: 2rem 0;
 
 @media (max-width:610px) {
@@ -42,7 +39,6 @@ color: blue;
 
 .topInput {
 border-radius: 3rem;
-/* box-shadow: 1rem .5rem .5rem black; */
 width: 40%;
 height: 4rem;
 text-align: center;
@@ -76,8 +72,6 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 align-items: center;
-/* box-shadow: 1rem .5rem .5rem black; */
-/* border-radius: .5rem; */
 height:30rem;
 position: relative;
 
@@ -98,16 +92,12 @@ position: relative;
   backface-visibility: hidden;
   width: 100%;
   height: 100%;
-  /* background: yellow; */
-  /* color: white; */
 }
 
 .back {
   transform: rotateY(180deg);
   position: absolute;
   backface-visibility: hidden;
-  /* background: yellow; */
-  /* color: white; */
   width: 100%;
   height: 100%;
 }
@@ -129,7 +119,6 @@ margin: 0;
 img {
 width: 100%;
 height: 15rem;
-/* border-radius: .5rem; */
 
 /* @media (max-width:1200px) {
 width: 17rem; 
@@ -151,8 +140,6 @@ width : 23rem;
 width : 90%;
 }  */
 }
-
-
 
 /* .icons {
 height: 20rem;
@@ -178,7 +165,6 @@ color: #ffa724;
 }
 
 .delete {
-  height: 20rem;
   width: 10%;
   padding: 0;
 }
@@ -203,8 +189,6 @@ font-size: 2rem;
 }
 
 .price {
-  color : red;
-  font-size: 3rem;
   font-weight: bold;
 }
 
@@ -316,19 +300,6 @@ span {
   font-weight: bold;
   font-size: 2rem;
 }
-
-/* .brandLink {
-  font-size: 2.5rem;
-  font-weight: bold;
-  transition: .8s;
-  margin: 0;
-  color: #0066c0;
-
-
-  &:hover {
-    color: blue;
-  }
-} */
 
 }
 
