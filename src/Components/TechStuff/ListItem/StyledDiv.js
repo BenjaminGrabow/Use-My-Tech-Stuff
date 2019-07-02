@@ -4,7 +4,7 @@ const StyledDiv = styled.div`
 
 .pic {
 width: 100%;
-height: 50rem; 
+height: 45rem; 
 
 @media(max-width:750px) {
 height: 40rem;
@@ -29,9 +29,13 @@ flex-direction: column;
   width: 50%;
 }
 
+.messageContainer {
+  width: 60%;
+  text-align: left;
+}
+
 p {
-font-size: 1.5rem;
-font-weight: bold;
+font-size: 1rem;
 }
 
 .ratingScroll {
@@ -97,15 +101,10 @@ order: 2;
 color: orange;
 } 
 
-span {
-font-size: 1.5rem;
-}
-
 .star {
 @media(max-width:650px) {
 display: flex;
 order: 1;
-margin: 1rem;
 }
 }
 
@@ -132,8 +131,8 @@ align-items: center;
 }
 
 .fa-star {
-  margin: 1rem;
-  font-size: 2.5rem;
+  margin: .3rem;
+  font-size: 1rem;
 }
 
 button {
@@ -185,6 +184,7 @@ height: 5rem;
 a {
 text-decoration: none;
 }
+
 `;
 
 export default StyledDiv;

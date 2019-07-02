@@ -157,23 +157,21 @@ class TechList extends React.Component {
                       </Link>
                     </Draggable>
                   </Droppable>
-                  <div className="textContainer">
-                    <p>{techItem.title}</p>
-                    <div className="star" >
-                      <span className={techItem.ratingForUser[0].star1}></span>
-                      <span className={techItem.ratingForUser[0].star2}></span>
-                      <span className={techItem.ratingForUser[0].star3}></span>
-                      <span className={techItem.ratingForUser[0].star4}></span>
-                      <span className={techItem.ratingForUser[0].star5}></span>
-                    </div>
                     <div className="text">
-                      <div className="theText">
-                        <p>New York</p>
-                        <p className={techItem.availability ? null : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
-                        <p className="price">Daily Fee: {techItem.price}$</p>
-                      </div>
+                    <h2>{techItem.title}</h2>
+                        <p>New York <i class="fa fa-map-marker"></i></p>
+                        <p className={techItem.availability ? 'off' : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
+                        <p className="price">Daily Fee: <span>{techItem.price}$
+                        </span></p>
+                    <div className="star" >
+                      <i className={techItem.ratingForUser[0].star1}></i>
+                      <i className={techItem.ratingForUser[0].star2}></i>
+                      <i className={techItem.ratingForUser[0].star3}></i>
+                      <i className={techItem.ratingForUser[0].star4}></i>
+                      <i className={techItem.ratingForUser[0].star5}></i>
                     </div>
-                  </div>
+                    </div>
+               
 
                 </div>
 

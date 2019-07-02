@@ -77,26 +77,23 @@ class List extends React.Component {
               src={message.img}
               alt={message.star5}
               id="rating-pic" />
+            <div className="messageContainer">
             <p
               className="message">
               {message.message}</p>
+              </div>
             <div className="star">
-              <span className={message.star1}></span>
-              <span className={message.star2}></span>
-              <span className={message.star3}></span>
-              <span className={message.star4}></span>
-              <span className={message.star5}></span>
+              <i className={message.star1}></i>
+              <i className={message.star2}></i>
+              <i className={message.star3}></i>
+              <i className={message.star4}></i>
+              <i className={message.star5}></i>
             </div>
           </div>
         )}
         <div
           className="adder">
           <form onSubmit={this.submit}>
-            <button>
-              <Link to="/protected">
-                <i className="fa fa-backward" />
-            </Link>
-            </button>
             <input
               type="text"
               value={this.state.rating}
@@ -132,6 +129,14 @@ class List extends React.Component {
   name={this.props.techItem.title}
 />
 </div>
+        </div>
+        <div
+          className="adder">
+            <button>
+              <Link to="/protected">
+                <i className="fa fa-backward" />
+            </Link>
+            </button>
         </div>
       </StyledDiv>
     );
