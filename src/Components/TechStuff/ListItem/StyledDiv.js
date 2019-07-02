@@ -110,9 +110,6 @@ order: 1;
 
 .adder {
 height: 4rem;
-background: #bdc3c7;
-background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
-background: linear-gradient(to right, #eaeaea, #deecff); 
 padding: 1.5rem 0 4rem 0;
 
 @media(max-width:650px) {
@@ -141,9 +138,7 @@ transition: .8s;
 border-radius: 3rem;
 width: 15%;
 font-size: 4rem;
-background: #bdc3c7;
-background: -webkit-linear-gradient(to right, #eaeaea, #deecff); 
-background: linear-gradient(to right, #eaeaea, #deecff); 
+background: white;
 
 @media(max-width:650px) {
 width: 60%;

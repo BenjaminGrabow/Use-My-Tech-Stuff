@@ -12,6 +12,8 @@ class List extends React.Component {
     this.state = {
       rating: '',
       ratingStar: '',
+      startDate: '',
+      endDate: '',
     }
   }
 
@@ -119,6 +121,18 @@ class List extends React.Component {
         </div>
         <div
         className="column">
+          <p className="row">{this.props.techItem.price}$ per Day <div className="star" >
+                      <i className={this.props.techItem.ratingForUser[0].star1}></i>
+                      <i className={this.props.techItem.ratingForUser[0].star2}></i>
+                      <i className={this.props.techItem.ratingForUser[0].star3}></i>
+                      <i className={this.props.techItem.ratingForUser[0].star4}></i>
+                      <i className={this.props.techItem.ratingForUser[0].star5}></i>
+                    </div></p>
+                    <p>Start Date</p>
+                    <input type="date" onChange={this.handleChange} name="startDate" value={this.state.startDate} />
+                    <p>End Date</p>
+                    <input type="date" onChange={this.handleChange} name="endDate" value={this.state.endDate} />
+
 <StripeCheckout
   className="buy"
   stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa'
