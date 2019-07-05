@@ -122,9 +122,10 @@ color: #ffa724;
 }
 
 .delete {
-  width: 50%;
-  margin: 0 auto;
+  width: 100%;
   padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .fa-user-times {
@@ -133,7 +134,7 @@ font-size: 2rem;
 
 
 #delete {
-  width: 100%;
+  width: 15%;
   background: white;
   transition: .8s;
   padding: 0;
