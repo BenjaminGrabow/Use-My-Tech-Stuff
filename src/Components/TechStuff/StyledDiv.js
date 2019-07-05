@@ -122,7 +122,8 @@ color: #ffa724;
 }
 
 .delete {
-  width: 10%;
+  width: 50%;
+  margin: 0 auto;
   padding: 0;
 }
 
@@ -156,13 +157,13 @@ font-size: 2rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 40%;
+  width: 100%;
 }
 
 .middle-button {
   margin: .5rem;
   height: 2.5rem;
-  width: 100%;
+  width: 50%;
   display: flex;
   justify-content: space-evenly;
 }
@@ -172,8 +173,6 @@ font-size: 2rem;
   padding: 0;
 border: .2rem solid #ffa724;
 transition: .8s;
-/* border-radius: .5rem; */
-width: 100%;
 font-size: 1.5rem; 
 background: #ffa724; 
 
