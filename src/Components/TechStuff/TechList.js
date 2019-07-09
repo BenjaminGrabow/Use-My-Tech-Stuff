@@ -149,7 +149,7 @@ class TechList extends React.Component {
                     <Draggable id={techItem.id}
                       className="draggable">
                       <Link
-                        id={techItem.id} to={`/protected/${techItem.title}`}>
+                        id={techItem.id} to={`/protected/${techItem.id}`}>
                         <img
                           id={techItem.model}
                           src={techItem.imgURL}
@@ -159,7 +159,7 @@ class TechList extends React.Component {
                   </Droppable>
                     <div className="text">
                     <h2>{techItem.title}</h2>
-                        <p>New York <i class="fa fa-map-marker"></i></p>
+                        <p>New York <i className="fa fa-map-marker"></i></p>
                         <p className={techItem.availability ? 'off' : 'sold'}>{techItem.availability ? null : 'SOLD'}</p>
                         <p className="price">Daily Fee: <span>{techItem.price}$
                         </span></p>
@@ -180,7 +180,7 @@ class TechList extends React.Component {
                     <Draggable id={techItem.id}
                       className="draggable">
                       <Link
-                        id={techItem.id} to={`/protected/${techItem.title}`}>
+                        id={techItem.id} to={`/protected/${techItem.id}`}>
                         <img
                           id={techItem.model}
                           src={techItem.imgURL}

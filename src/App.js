@@ -33,7 +33,7 @@ class App extends React.Component {
         <PrivateRoute path="/protected/user" component={User} />
         {this.props.techItems.map((techItem) => <Route
           key={techItem.id}
-          path={`/protected/${techItem.title}`}
+          path={`/protected/${techItem.id}`}
           render={() => <ListItem techItem={techItem} />} />)}
         <Footer />
       </div>
