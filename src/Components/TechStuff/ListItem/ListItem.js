@@ -109,6 +109,7 @@ class List extends React.Component {
                   </div>
                 </div>
               )}
+            </div>
               <div
                 className="adder">
                 <form onSubmit={this.submit}>
@@ -133,7 +134,6 @@ class List extends React.Component {
                   </button>
                 </form>
               </div>
-            </div>
           </div>
           <div
             className="columnRight">
@@ -158,7 +158,7 @@ class List extends React.Component {
             <div className="oneLine">
               <p>{this.state.price} $</p>
               <button
-               onClick={this.calculatePrice}>Calculate</button>
+               onClick={this.calculatePrice}>$</button>
             </div>
             <div className="payment">
             <StripeCheckout
@@ -174,7 +174,7 @@ class List extends React.Component {
           </div>
         </div>
         <div
-          className="adder">
+          className="back">
           <button>
             <Link to="/protected">
               <i className="fa fa-backward" />

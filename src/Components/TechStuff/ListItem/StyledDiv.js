@@ -12,6 +12,10 @@ width: 100%;
 }
 } 
 
+h1 {
+  margin: 0;
+}
+
 .row {
 display: flex;
 width:100%;
@@ -26,6 +30,7 @@ flex-direction: column;
 .column {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 50%;
 }
 
@@ -110,7 +115,6 @@ order: 1;
 
 .adder {
 height: 4rem;
-padding: 1.5rem 0 4rem 0;
 
 @media(max-width:650px) {
 padding-bottom: 18rem;
@@ -137,7 +141,7 @@ border: .2rem solid black;
 transition: .8s;
 border-radius: 3rem;
 width: 15%;
-font-size: 4rem;
+font-size: 2.5rem;
 background: white;
 
 @media(max-width:650px) {
@@ -203,6 +207,11 @@ height: 5rem;
 
 a {
 text-decoration: none;
+}
+
+.back {
+  padding-top: 2rem; 
+
 }
 
 `;
