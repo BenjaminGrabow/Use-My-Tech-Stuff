@@ -156,6 +156,31 @@ i:hover {
   color: red;
 }
 
+.columnRight {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+.oneLine {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.fa-star {
+margin-top: 1.2rem;
+padding-right: 2rem;
+}
+
+.payment {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+}
+
 Input {
 border-radius: 3rem;
 box-shadow: 1rem .5rem .5rem black;

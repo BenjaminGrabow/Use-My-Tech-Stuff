@@ -136,23 +136,31 @@ class List extends React.Component {
             </div>
           </div>
           <div
-            className="column">
-              <div className="ro">
-            <p className="row">{this.props.techItem.price}$ per Day </p><div className="star" >
-              <i className={this.props.techItem.ratingForUser[0].star1}></i>
-              <i className={this.props.techItem.ratingForUser[0].star2}></i>
-              <i className={this.props.techItem.ratingForUser[0].star3}></i>
-              <i className={this.props.techItem.ratingForUser[0].star4}></i>
-              <i className={this.props.techItem.ratingForUser[0].star5}></i>
+            className="columnRight">
+            <div className="oneLine">
+              <p>{this.props.techItem.price}$ per Day </p>
+              <div className="star" >
+                <i className={this.props.techItem.ratingForUser[0].star1}></i>
+                <i className={this.props.techItem.ratingForUser[0].star2}></i>
+                <i className={this.props.techItem.ratingForUser[0].star3}></i>
+                <i className={this.props.techItem.ratingForUser[0].star4}></i>
+                <i className={this.props.techItem.ratingForUser[0].star5}></i>
+              </div>
             </div>
+            <div className="oneLine">
+              <p>Start Date</p>
+              <input type="date" onChange={this.handleChange} name="startDate" value={this.state.startDate} />
             </div>
-            <p>Start Date</p>
-            <input type="date" onChange={this.handleChange} name="startDate" value={this.state.startDate} />
-            <p>End Date</p>
-            <input type="date" onChange={this.handleChange} name="endDate" value={this.state.endDate} />
-            <p>{this.state.price} $</p>
-            <button onClick={this.calculatePrice}>Calculate</button>
-
+            <div className="oneLine">
+              <p>End Date</p>
+              <input type="date" onChange={this.handleChange} name="endDate" value={this.state.endDate} />
+            </div>
+            <div className="oneLine">
+              <p>{this.state.price} $</p>
+              <button
+               onClick={this.calculatePrice}>Calculate</button>
+            </div>
+            <div className="payment">
             <StripeCheckout
               className="buy"
               stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa'
@@ -162,6 +170,7 @@ class List extends React.Component {
               amount={this.props.techItem.price * 100}
               name={this.props.techItem.title}
             />
+            </div>
           </div>
         </div>
         <div
