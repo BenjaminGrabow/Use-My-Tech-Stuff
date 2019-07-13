@@ -134,38 +134,39 @@ const reducer = (state = initialState, action) => {
       return { ...state, techItems: addMessagesToNewPost };
 
     case types.UPDATE_MESSAGES:
-      const addMessage = state.techItems.map(item => {
+
+      const addMessage = state.techItems.map((item) => {
         if (item.id === action.id) {
+
           item.messages.push(action.message);
 
           const goodRating = 'fa fa-star checked';
 
-          const resultCounter = [];
+          const ArrayToCountGoodRatings = [];
   
-          let numTotal = '';
+          let numOfGoodRatings = '';
   
           for (let i = 0; i < item.messages.length; i++) {
-            resultCounter.push(item.messages[i].star1 === goodRating);
+            ArrayToCountGoodRatings.push(item.messages[i].star1 === goodRating);
   
-            resultCounter.push(item.messages[i].star2 === goodRating);
+            ArrayToCountGoodRatings.push(item.messages[i].star2 === goodRating);
   
-            resultCounter.push(item.messages[i].star3 === goodRating);
+            ArrayToCountGoodRatings.push(item.messages[i].star3 === goodRating);
   
-            resultCounter.push(item.messages[i].star4 === goodRating);
+            ArrayToCountGoodRatings.push(item.messages[i].star4 === goodRating);
   
-            resultCounter.push(item.messages[i].star5 === goodRating);
+            ArrayToCountGoodRatings.push(item.messages[i].star5 === goodRating);
           }
   
-          numTotal = resultCounter.length;
+          numOfGoodRatings = ArrayToCountGoodRatings.length;
   
-          const howManyGood = resultCounter.filter(good => good === true).length;
+          const howManyGoodRatings = ArrayToCountGoodRatings.filter(good => good === true).length;
   
-          const ruleOfProportion = howManyGood * 100 / numTotal;
+          const ruleOfProportion = howManyGoodRatings * 100 / numOfGoodRatings;
   
           const ratingForStars = ruleOfProportion / 2;
   
           const numOfOrangeStars = parseInt(ratingForStars / 10);
-  
   
           const orangeStars = 'fa fa-star checked'.repeat(numOfOrangeStars);
   
@@ -186,7 +187,8 @@ const reducer = (state = initialState, action) => {
   
           item.ratingForUser = ratingForUser;
 
-        } return item
+        }
+        return item
       });
 
       return { ...state, techItems: addMessage };

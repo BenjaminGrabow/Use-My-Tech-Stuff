@@ -130,7 +130,7 @@ export const add = (owner, title, type, description,
   };
 
 export const addRating = (id, message, stars, img) => {
-  
+
   const orangeStars = 'fa fa-star checked'.repeat(stars);
   
   const blackStars = 'fa fa-star'.repeat(5 - stars);
@@ -140,12 +140,10 @@ export const addRating = (id, message, stars, img) => {
   
   const mergeArrays = arrayOrange.concat(arrayBlack);
 
-  const ifImageIsThere = img === ""
-   ? 'https://images.pexels.com/photos/2504837/pexels-photo-2504837.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' : img;
-  
         const newMessage = {
           message: message,
-          img: ifImageIsThere,
+          img: `${img
+            ? img : 'https://images.pexels.com/photos/2504837/pexels-photo-2504837.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'}`,
           star1: mergeArrays[0],
           star2: mergeArrays[1],
           star3: mergeArrays[2],
