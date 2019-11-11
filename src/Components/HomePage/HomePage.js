@@ -63,7 +63,7 @@ class HomePage extends React.Component {
                                                 <h1>The App to rent a</h1>
                                                 <h1 className="typing">Hi</h1>
                                                 <p>Tired of paying ridiculous fees for camera and other equipment rentals?
-                                                         Bypass the middleman and rent from a real person!
+                                                    Bypass the middleman and rent from a real person!
 </p>
                                                 <button>Get a demo</button>
                                                 <p className="trust">Trusted by technology companies at all stages</p>

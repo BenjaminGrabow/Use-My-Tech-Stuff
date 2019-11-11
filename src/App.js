@@ -22,9 +22,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Route exact path="/" component={HomePage} />
+        {/* <Route exact path="/" component={HomePage} /> */}
         <Route path="/login" component={LoginPage} />
-        <Route path="/register" component={RegisterPage} />
+        <Route path="/" component={RegisterPage} />
         <PrivateRoute
           exact path="/protected"
           component={TechContainer}
