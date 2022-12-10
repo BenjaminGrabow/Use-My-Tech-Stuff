@@ -7,7 +7,7 @@
     "body-parser": "^1.19.0",
     "consolidate": "^0.15.1",
     "ejs": "^2.6.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "paypal-rest-sdk": "^1.8.1",
     "react": "^16.8.6",
     "react-animate-on-scroll": "^2.1.5",
